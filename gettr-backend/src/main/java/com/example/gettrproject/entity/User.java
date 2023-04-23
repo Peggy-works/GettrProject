@@ -3,25 +3,25 @@ package com.example.gettrproject.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "user")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+@Table(name = "appuser")
+public class User extends AbstractEntity{
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private long id;
     private String username;
-    private long hashedPassword;
+    private String hashedPassword;
     private String name;
 
     public User() {
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
+//    public long getId() {
+//        return id;
+//    }
+//
+//    public void setId(long id) {
+//        this.id = id;
+//    }
 
     public String getUsername() {
         return username;
@@ -31,11 +31,11 @@ public class User {
         this.username = username;
     }
 
-    public long getHashedPassword() {
+    public String getHashedPassword() {
         return hashedPassword;
     }
 
-    public void setHashedPassword(long hashedPassword) {
+    public void setHashedPassword(String hashedPassword) {
         this.hashedPassword = hashedPassword;
     }
 
