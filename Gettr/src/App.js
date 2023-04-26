@@ -1,24 +1,22 @@
-import './App.css';
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
-import SignupPage from './pages/Signup';
-import LoginPage from './pages/Login';
+import { Box, Stack } from "@mui/material";
+
+import Sidebar from "./components/Sidebar";
+import Feed from "./components/Feed";
+import Navbar from "./components/Navbar";
+import Add from "./components/Add";
+
 
 function App() {
+
   return (
-    <div className="min-h-full h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-    <div className="max-w-md w-full space-y-8">
-     <BrowserRouter>
-        <Routes>
-            <Route path="/" element={<LoginPage/>} />
-            <Route path="/signup" element={<SignupPage/>} />
-        </Routes>
-      </BrowserRouter>
-    </div>
-  </div>
+    <Box>
+      <Navbar/>
+      <Stack direction="row" spacing={2} justifyContent="space-between">
+        <Sidebar/>
+        <Feed/>
+      </Stack>
+      <Add/>
+    </Box>
   );
 }
 
