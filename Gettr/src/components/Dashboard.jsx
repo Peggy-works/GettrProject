@@ -2,10 +2,9 @@ import { Box } from '@mui/material'
 import React from 'react'  
 import Post from './Post'
 
-const Feed = () => {
+const Dashboard = () => {
 
-  return (
-    
+  return ( 
     <Box flex={6} padding={2}>
       <Post/>
       <Post/>
@@ -15,4 +14,4 @@ const Feed = () => {
   )
 }
 
-export default Feed
+export default Dashboard
