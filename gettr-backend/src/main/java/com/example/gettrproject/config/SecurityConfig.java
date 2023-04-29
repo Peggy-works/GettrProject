@@ -25,6 +25,14 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers("/user/**")/*Allowing all methods from userController*/
                 .permitAll()
+                .requestMatchers("/ws/**") // for WS
+                .permitAll()
+                .requestMatchers("/user/**") // for WS
+                .permitAll()
+                .requestMatchers("/app/**") // for WS
+                .permitAll()
+                .requestMatchers("/chatroom/**") // for WS
+                .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
