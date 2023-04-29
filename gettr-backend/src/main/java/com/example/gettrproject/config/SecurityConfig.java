@@ -23,8 +23,8 @@ public class SecurityConfig {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/user/**")/*Allowing all methods from userController*/
-                .permitAll()
+                .requestMatchers("/api/v1/auth/**", "/user/**", "/public").permitAll()
+                .requestMatchers("/").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

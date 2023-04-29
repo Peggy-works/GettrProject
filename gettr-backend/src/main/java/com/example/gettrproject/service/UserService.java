@@ -3,9 +3,15 @@ import com.example.gettrproject.entity.User;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin
 public interface UserService {
-    public User saveUser(User user);
-    public List<User> getAllUsers();
+
+    User saveUser(User user);
+
+    List<User> getAllUsers();
+
+    void deleteUser(User user);
+
 }

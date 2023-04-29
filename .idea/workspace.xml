@@ -4,126 +4,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="59b682e5-bd01-47f2-947b-d116c34a5088" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/getter-project.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_4_7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_4_7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_5_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_14_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_14_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_14_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_14_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_14_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_parameter_names_2_14_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_jayway_jsonpath_json_path_2_7_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_mysql_mysql_connector_j_8_0_33.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_istack_istack_commons_runtime_4_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_external_google_android_json_0_0_20131108_vaadin1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_zaxxer_HikariCP_5_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_api_0_11_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_impl_0_11_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_jackson_0_11_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_micrometer_micrometer_commons_1_10_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_micrometer_micrometer_observation_1_10_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_activation_jakarta_activation_api_2_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_annotation_jakarta_annotation_api_2_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_inject_jakarta_inject_api_2_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_persistence_jakarta_persistence_api_3_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_transaction_jakarta_transaction_api_2_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_xml_bind_jakarta_xml_bind_api_4_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_12_23.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_agent_1_12_23.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_accessors_smart_2_4_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_json_smart_2_4_10.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_antlr_antlr4_runtime_4_10_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_19_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_to_slf4j_2_19_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_10_1_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_el_10_1_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_websocket_10_1_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_9_19.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_assertj_assertj_core_3_23_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_angus_angus_activation_2_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_jaxb_core_4_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_jaxb_runtime_4_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_txw2_4_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_2_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_common_hibernate_commons_annotations_6_0_6_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_orm_hibernate_core_6_1_7_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_jandex_2_4_2_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_5_0_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_5_9_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_9_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_9_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_9_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_9_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_9_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_core_4_8_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_junit_jupiter_4_8_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_objenesis_objenesis_3_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_9_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_26.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_skyscreamer_jsonassert_1_5_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_jul_to_slf4j_2_0_7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_2_0_7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_3_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_3_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_devtools_3_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_3_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_aop_3_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_jpa_3_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_jdbc_3_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_json_3_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_3_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_security_3_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_3_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_3_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_3_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_3_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_3_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_commons_3_0_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_jpa_3_0_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_config_6_0_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_core_6_0_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_crypto_6_0_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_web_6_0_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_6_0_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aspects_6_0_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_6_0_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_6_0_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_6_0_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_6_0_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jcl_6_0_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jdbc_6_0_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_orm_6_0_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_6_0_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_6_0_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_6_0_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_6_0_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_xmlunit_xmlunit_core_2_9_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_33.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/config/ApplicationConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/config/JwtAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/config/JwtService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/AuthenticationRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/AuthenticationResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/AuthenticationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/DemoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/RegisterRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="59b682e5-bd01-47f2-947b-d116c34a5088" name="Changes" comment="Added authentication via jwt, need to comment stuff.">
+      <change afterPath="$PROJECT_DIR$/Gettr/src/components/Add.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Gettr/src/components/Feed.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Gettr/src/components/Navbar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Gettr/src/components/Post.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Gettr/src/components/Sidebar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Gettr/src/constants/api.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Gettr/src/theme.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/AuthenticationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/PostingsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/exception/DuplicateUsername.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gettr-backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/config/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/config/ApplicationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/DemoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/DemoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/RegisterRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/entity/Postings.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/entity/Postings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/entity/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/service/UserServiceImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/service/UserServiceImplementation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,23 +73,26 @@
     </option>
   </component>
   <component name="ProjectId" id="2Ong7es7sMyn5JpNPTk80413DaK" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "D:/getter-project",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/getter-project&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor.code.editing&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.example.gettrproject.controller" />
@@ -181,6 +100,19 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration name="GetterProjectApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.gettrproject.GetterProjectApplication" />
+      <module name="gettr-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.gettrproject.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="gettr-backend" />
       <method v="2">
@@ -194,6 +126,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.GetterProjectApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -204,6 +141,14 @@
       <option name="presentableId" value="Default" />
       <updated>1682201593718</updated>
     </task>
+    <task id="LOCAL-00001" summary="Added authentication via jwt, need to comment stuff.">
+      <created>1682309743357</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1682309743357</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -211,27 +156,28 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="Angel'sBranch" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <ignored-roots>
       <path value="$PROJECT_DIR$/Gettr" />
     </ignored-roots>
+    <MESSAGE value="Added authentication via jwt, need to comment stuff." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added authentication via jwt, need to comment stuff." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalArgumentException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

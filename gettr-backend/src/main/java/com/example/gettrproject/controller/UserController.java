@@ -16,21 +16,6 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
-    private final AuthenticationService service;
-
-    @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(
-            @RequestBody RegisterRequest request
-    ) {
-        return ResponseEntity.ok(service.register(request));
-    }
-
-    @PostMapping("/authenticate")
-    public ResponseEntity<AuthenticationResponse> register(
-            @RequestBody AuthenticationRequest request
-    ) {
-        return ResponseEntity.ok(service.authenticate(request));
-    }
 
     @PostMapping("/add")
     public String add(@RequestBody User user){
@@ -42,4 +27,7 @@ public class UserController {
     public List<User> getAllUsers(){
         return userService.getAllUsers();
     }
+
+    //@GetMapping("/deleteUser")
+
 }
