@@ -1,24 +1,28 @@
-import './App.css';
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
-import SignupPage from './pages/Signup';
-import LoginPage from './pages/Login';
+import { Box } from "@mui/material";
+
+import Add from "./components/Add";
+import Dashboard from "./components/Dashboard";
+import ResponsiveAppBar from "./components/Nav";
+import Users from "./components/Users";
+import Messages from "./components/Messages";
+import Signup from "./components/Signup";
+import About from "./components/About";
+
+import { Routes, Route } from "react-router-dom"
 
 function App() {
   return (
-    <div className="min-h-full h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-    <div className="max-w-md w-full space-y-8">
-     <BrowserRouter>
-        <Routes>
-            <Route path="/" element={<LoginPage/>} />
-            <Route path="/signup" element={<SignupPage/>} />
-        </Routes>
-      </BrowserRouter>
-    </div>
-  </div>
+    <Box>
+      <ResponsiveAppBar/>
+      <Routes>
+        <Route path="/Dashboard" element={<Dashboard/>}/>
+        <Route path="/Users" element={<Users/>}/>
+        <Route path="/Messages" element={<Messages/>}/>
+        <Route path="/About" element={<About/>}/>
+        <Route path="/Logout" element={<Signup/>}/>
+      </Routes>
+      <Add/>
+    </Box>
   );
 }
 
