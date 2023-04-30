@@ -7,7 +7,7 @@ import TungstenIcon from '@mui/icons-material/Tungsten';
 
 import { Link } from 'react-router-dom';
 
-const pages = ['Dashboard', 'Users', 'Messages'];
+const pages = ['Dashboard', 'Users', 'Messages', 'About'];
 const settings = ['Logout'];
 
 function ResponsiveAppBar() {

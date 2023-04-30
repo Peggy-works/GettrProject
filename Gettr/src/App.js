@@ -6,6 +6,7 @@ import ResponsiveAppBar from "./components/Nav";
 import Users from "./components/Users";
 import Messages from "./components/Messages";
 import Signup from "./components/Signup";
+import About from "./components/About";
 
 import { Routes, Route } from "react-router-dom"
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/Dashboard" element={<Dashboard/>}/>
         <Route path="/Users" element={<Users/>}/>
         <Route path="/Messages" element={<Messages/>}/>
+        <Route path="/About" element={<About/>}/>
         <Route path="/Logout" element={<Signup/>}/>
       </Routes>
       <Add/>
