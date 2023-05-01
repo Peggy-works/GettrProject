@@ -1,5 +1,6 @@
 package com.example.gettrproject.entity;
 
+import com.example.gettrproject.controller.embedded.MessagesMapId;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -17,16 +19,20 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "user")
+@Table(name = "app_user")
 public class User implements UserDetails {
     @Id
     @GeneratedValue
     private long id;
+    @Column(unique = true)
     private String username;
     private String hashedPassword;
     private String name;
+    private boolean connected = false;
     @Enumerated(EnumType.STRING)
     private Role role;
+    @Column(columnDefinition = "BLOB")
+    private List<MessagesMapId> messageIds = new ArrayList<MessagesMapId>();
 
     public long getId() {
         return id;
@@ -89,4 +95,13 @@ public class User implements UserDetails {
     public void setName(String name) {
         this.name = name;
     }
+    public List<MessagesMapId> getMessageIds(){
+        return messageIds;
+    }
+    public void setMessages(List<MessagesMapId> map){
+        messageIds = map;
+    }
+
+    public boolean getConnected(){return connected;}
+    public void setConnected(boolean bool){connected = bool;}
 }
