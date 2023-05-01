@@ -25,7 +25,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "user")
+@Table(name = "_user")
 /*
 * User entity class
 * */
@@ -34,12 +34,12 @@ public class User implements UserDetails {
     @GeneratedValue // Finds the best auto generation strategy, set to GenerationType.AUTO as default
     private Integer id;
     private String username;
-    private String hashedPassword;
+    private String password;
     private String name;
     @Enumerated(EnumType.STRING) //Set field as enum of type String, takes string value of the enum
     private Role role;
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -58,9 +58,10 @@ public class User implements UserDetails {
 
     @Override
     public String getPassword() {
-        return hashedPassword;
+        return password;
     }
 
+    @Override
     public String getUsername() {
         return username;
     }
@@ -72,7 +73,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
@@ -83,25 +84,5 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getHashedPassword() {
-        return hashedPassword;
-    }
-
-    public void setHashedPassword(String hashedPassword) {
-        this.hashedPassword = hashedPassword;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }
