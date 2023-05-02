@@ -6,15 +6,15 @@ import com.example.gettrproject.entity.MessagesMap;
 import com.example.gettrproject.entity.User;
 import com.example.gettrproject.repository.MessagesMapRepository;
 import com.example.gettrproject.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImplementation implements UserService {
-    @Autowired
+
     private UserRepository userRepository;
     @Autowired
     private MessagesMapRepository messagesMapRepository;
@@ -30,6 +30,7 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
+
     public User findById(Long id){return userRepository.findById(id).get();}
 
     @Override
@@ -99,4 +100,8 @@ public class UserServiceImplementation implements UserService {
         messagesMapRepository.save(r);
     }
 
+
+    public void deleteUser(User user) {
+
+    }
 }

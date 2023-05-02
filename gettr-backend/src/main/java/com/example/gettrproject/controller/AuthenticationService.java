@@ -10,6 +10,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+/*
+* */
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -17,6 +19,13 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+
+    /*
+    * Build user out of RegisterRequest object, save user, generate token for user,
+    * return AuthenticationResponse that contains jwt token
+    * @Param request
+    * @Returns AuthenticationResponse
+    * */
     public AuthenticationResponse register(RegisterRequest request) {
         var user = User.builder()
                 .id(request.getId())

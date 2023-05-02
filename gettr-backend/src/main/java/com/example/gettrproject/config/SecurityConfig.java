@@ -23,16 +23,8 @@ public class SecurityConfig {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/user/**")/*Allowing all methods from userController*/
-                .permitAll()
-                .requestMatchers("/ws/**") // for WS
-                .permitAll()
-                .requestMatchers("/user/**") // for WS
-                .permitAll()
-                .requestMatchers("/app/**") // for WS
-                .permitAll()
-                .requestMatchers("/chatroom/**") // for WS
-                .permitAll()
+                .requestMatchers("/api/v1/auth/**", "/user/**", "/public").permitAll()
+                .requestMatchers("/").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

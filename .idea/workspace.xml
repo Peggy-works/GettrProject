@@ -4,19 +4,44 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="59b682e5-bd01-47f2-947b-d116c34a5088" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/embedded/MessagesMapId.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/entity/MessagesMap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/repository/MessagesMapRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/resources/data.sql" afterDir="false" />
+
+    <list default="true" id="59b682e5-bd01-47f2-947b-d116c34a5088" name="Changes" comment="Added authentication via jwt, need to comment stuff.">
+      <change afterPath="$PROJECT_DIR$/Gettr/src/components/Add.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Gettr/src/components/Feed.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Gettr/src/components/Navbar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Gettr/src/components/Post.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Gettr/src/components/Sidebar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Gettr/src/constants/api.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Gettr/src/theme.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/AuthenticationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/PostingsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/exception/DuplicateUsername.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/ChatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/config/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/config/ApplicationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/DemoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/DemoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/RegisterRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/model/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/model/Message.java" afterDir="false" />
+
       <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/entity/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/service/UserServiceImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/service/UserServiceImplementation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/resources/application.properties" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,21 +77,24 @@
     </option>
   </component>
   <component name="ProjectId" id="2Ong7es7sMyn5JpNPTk80413DaK" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/cam00/Desktop/Java/RestPractice&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/getter-project&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
+
   }
 }</component>
   <component name="RecentsManager">
@@ -74,6 +102,40 @@
       <recent name="com.example.gettrproject.controller" />
       <recent name="com.example.gettrproject.config" />
     </key>
+  </component>
+
+  <component name="RunManager">
+    <configuration name="GetterProjectApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.gettrproject.GetterProjectApplication" />
+      <module name="gettr-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.gettrproject.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="gettr-backend" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="gettr-backend" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.GetterProjectApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -84,6 +146,14 @@
       <option name="presentableId" value="Default" />
       <updated>1682201593718</updated>
     </task>
+    <task id="LOCAL-00001" summary="Added authentication via jwt, need to comment stuff.">
+      <created>1682309743357</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1682309743357</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -91,27 +161,28 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="Angel'sBranch" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <ignored-roots>
       <path value="$PROJECT_DIR$/Gettr" />
     </ignored-roots>
+    <MESSAGE value="Added authentication via jwt, need to comment stuff." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added authentication via jwt, need to comment stuff." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalArgumentException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
