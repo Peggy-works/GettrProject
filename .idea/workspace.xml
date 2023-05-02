@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
     <list default="true" id="59b682e5-bd01-47f2-947b-d116c34a5088" name="Changes" comment="Added authentication via jwt, need to comment stuff.">
       <change afterPath="$PROJECT_DIR$/Gettr/src/components/Add.jsx" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Gettr/src/components/Feed.jsx" afterDir="false" />
@@ -36,10 +37,11 @@
       <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/DemoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/DemoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/RegisterRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/UserController.java" afterDir="false" />
+
       <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/service/UserServiceImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/service/UserServiceImplementation.java" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,14 +51,16 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="ChristiansBranch" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -90,7 +94,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor.code.editing&quot;
+
   }
 }</component>
   <component name="RecentsManager">
@@ -99,6 +103,7 @@
       <recent name="com.example.gettrproject.config" />
     </key>
   </component>
+
   <component name="RunManager">
     <configuration name="GetterProjectApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.gettrproject.GetterProjectApplication" />
