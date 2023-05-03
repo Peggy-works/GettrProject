@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Setter
 @Embeddable
 public class MessagesMapId implements Serializable {
-    private Long user_id;
+    private Integer user_id;
     private String username_to;
 
 

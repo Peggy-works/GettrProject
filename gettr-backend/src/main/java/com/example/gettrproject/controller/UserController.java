@@ -38,17 +38,17 @@ public class UserController {
     }
 
     @GetMapping("/getUser/{userid}")
-    public ResponseEntity<?> getUser(@PathVariable("userid") Long id){
+    public ResponseEntity<?> getUser(@PathVariable("userid") Integer id){
         return ResponseEntity.ok(userService.findById(id));
     }
 
     @GetMapping("/getUserMessageIds/{userid}")
-    public List<MessagesMapId> getUserMessageIds(@PathVariable("userid") Long id){
+    public List<MessagesMapId> getUserMessageIds(@PathVariable("userid") Integer id){
         return userService.findById(id).getMessageIds();
     }
 
     @GetMapping("/getUserMessages/{userid}")
-    public List<MessagesMap> getUserMessages(@PathVariable("userid") Long id){
+    public List<MessagesMap> getUserMessages(@PathVariable("userid") Integer id){
         return userService.getAllMessages(id);
     }
     //@GetMapping("/deleteUser")

@@ -10,8 +10,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 @ToString
 public class Message implements Serializable {
-    private Long senderId;
-    private Long receiverId;
+    private Integer senderId;
+    private Integer receiverId;
     private String senderName;
     private String receiverName;
     private String message;

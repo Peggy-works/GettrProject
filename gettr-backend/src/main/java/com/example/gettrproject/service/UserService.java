@@ -10,18 +10,18 @@ import java.util.Optional;
 @CrossOrigin
 public interface UserService {
 
-    public void setConnected (boolean bool, Long userId);
+    public void setConnected (boolean bool, Integer userId);
 
-    public List<MessagesMap> getAllMessages(Long id);
+    public List<MessagesMap> getAllMessages(Integer id);
 
     public void addMessage(Message message);
 
-    public User findById(Long id);
+    public User findById(Integer id);
 
     User saveUser(User user);
 
     List<User> getAllUsers();
 
-    void deleteUser(User user);
+    //void deleteUser(User user);
 
 }

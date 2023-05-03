@@ -6,6 +6,7 @@ import com.example.gettrproject.entity.MessagesMap;
 import com.example.gettrproject.entity.User;
 import com.example.gettrproject.repository.MessagesMapRepository;
 import com.example.gettrproject.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -30,11 +31,10 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-
-    public User findById(Long id){return userRepository.findById(id).get();}
+    public User findById(Integer id){return userRepository.findById(id).get();}
 
     @Override
-    public void setConnected (boolean bool, Long userId){
+    public void setConnected (boolean bool, Integer userId){
         if(userRepository.existsById(userId)) {
             User user = userRepository.findById(userId).get();
             user.setConnected(bool);
@@ -43,7 +43,7 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public List<MessagesMap> getAllMessages(Long id){
+    public List<MessagesMap> getAllMessages(Integer id){
         List<MessagesMapId> messageIds= findById(id).getMessageIds();
         List<MessagesMap> temp = new ArrayList<MessagesMap>();
         if(messageIds != null) {
@@ -101,7 +101,7 @@ public class UserServiceImplementation implements UserService {
     }
 
 
-    public void deleteUser(User user) {
-
-    }
+//    public void deleteUser(User user) {
+//
+//    }
 }
