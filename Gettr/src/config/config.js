@@ -1,13 +1,16 @@
 module.exports = {
     prod: {
         url: {
-            API_BASE_URL: 'localhost:8080'
+            API_BASE_URL: 'http://localhost:8080'
         }
     },
-    
-    dev: {
+
+    dev:  {
         url: {
-            API_BASE_URL: 'localhost:8080'
+            API_BASE_URL: 'http://localhost:8080'
         }
     }
-};
+}
+
+
+

@@ -1,21 +1,15 @@
-const axios = require('axios').default
+import axios from 'axios';
 const config = require('../config/config.js') 
 
 const instance = axios.create({
-    baseUrl: config.url.API_BASE_URL
+    baseUrl: config.dev.url.API_BASE_URL
 }) 
 
 function authenticate(username, password) {
-    return instance.post('/auth/authenticate', {
-        params: {
-            'username': username,
-            'password': password
-        },
-        headers: {
-            'Content-type': 'application/json'
-        }
-    })
-} 
+    return axios.post('http://localhost:8080/api/auth/authenticate',
+    { "username": username, "password": password },
+    { headers: {"Content-Type": "application/json"}})
+}
 
 function register(username, password, name) {
     return instance.post('/auth/register',{
@@ -29,4 +23,6 @@ function register(username, password, name) {
         }
     })
 }
+
+export { authenticate, register };
 
