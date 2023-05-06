@@ -46,7 +46,7 @@ public class User implements UserDetails {
     @Column(columnDefinition = "BLOB")
     private List<MessagesMapId> messageIds = new ArrayList<MessagesMapId>();
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
