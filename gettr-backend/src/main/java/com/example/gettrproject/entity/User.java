@@ -34,7 +34,8 @@ import java.util.List;
 * */
 public class User implements UserDetails {
     @Id
-    @GeneratedValue // Finds the best auto generation strategy, set to GenerationType.AUTO as default
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "idgenerator") // Finds the best auto generation strategy, set to GenerationType.AUTO as default
+    @SequenceGenerator(name="idgenerator",initialValue = 1000)  // temporary so no conflicts with data.sql
     private Integer id;
     @Column(unique = true)
     private String username;
