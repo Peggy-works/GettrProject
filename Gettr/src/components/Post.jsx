@@ -1,8 +1,43 @@
 import { Favorite, FavoriteBorder, MoreVert, Delete, Message } from '@mui/icons-material'
 import { Card, CardHeader, Avatar, IconButton, CardContent, Typography, CardActions, Checkbox, Tooltip } from '@mui/material'
 import React from 'react'
+import { authenticate, register } from '../api/AuthApi.js';
+import axios from 'axios';
 
 const Post = () => {
+console.log("Hello from post.jsx");
+
+authenticate("Peggy", "12345")
+.then(response => {
+    console.log(response.data.token);
+    return response;
+})
+.catch(error => {
+    console.log(error);
+})
+
+/*
+axios.post('http://localhost:8080/api/auth/authenticate',
+    {
+        "username": "Peggy",
+        "password": "12345"
+    },
+    {
+        headers: {"Content-Type": "application/json"}
+    }
+)
+.then(response => {
+    console.log(response);
+    return response;
+})
+.then(data => {
+    console.log(data.token);
+})
+.catch(error => {
+    console.log(error);
+})
+*/
+
   return (
     <Card sx={{ maxWidth: 5000 , margin: 5 }}>
       <CardHeader 
