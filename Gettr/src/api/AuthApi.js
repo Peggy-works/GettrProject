@@ -7,7 +7,7 @@ const instance = axios.create({
 
 function authenticate(username, password) {
     return axios.post('http://localhost:8080/api/auth/authenticate',
-    { "username": username, "password": password },
+    { "username": username, "hashedPassword": password },
     { headers: {"Content-Type": "application/json"}})
 }
 
@@ -15,7 +15,7 @@ function register(username, password, name) {
     return instance.post('/auth/register',{
         params: {
             'username': username,
-            'password': password,
+            'hashedPassword': password,
             'name': name
         },
         headers: {
