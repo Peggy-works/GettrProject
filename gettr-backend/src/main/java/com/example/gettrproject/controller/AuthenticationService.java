@@ -38,7 +38,7 @@ public class AuthenticationService {
                 .id(request.getId())
                 .username(request.getUsername())
                 .name(request.getName())
-                .password(passwordEncoder.encode(request.getPassword()))
+                .hashedPassword(passwordEncoder.encode(request.getHashedPassword()))
                 .role(Role.USER)
                 .build();
         repository.save(user);
@@ -50,17 +50,12 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        //List<User> users = new ArrayList<>();
-        //Optional<User> usert;
-        //repository.findAll().forEach(users::add);
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getUsername(),
-                        request.getPassword()
+                        request.getHashedPassword()
                 )
         );
-        //Logger.info(passwordEncoder.encode(request.getPassword()));
-        //Logger.info("YO");
         // User is authenticated
         // Generate token and send it back
         var user = repository.findByUsername (request.getUsername())

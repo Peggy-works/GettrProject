@@ -31,6 +31,7 @@ public class UserController {
     public List<User> getAllUsers(){
         return userService.getAllUsers();
     }
+
     @PutMapping("/addMessage/{userid}")
     public List<User> addMessage(@PathVariable("userid") Long id, @RequestBody Message message){
         userService.addMessage(message);

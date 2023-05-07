@@ -1,4 +1,4 @@
-package com.example.gettrproject.controller;
+package com.example.gettrproject.config;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationRequest {
-    public String username;
-    public String hashedPassword;
+public class CommentRequest {
+    private Integer user_id;
+    private long post_id;
+
+    private String text;
+
 }

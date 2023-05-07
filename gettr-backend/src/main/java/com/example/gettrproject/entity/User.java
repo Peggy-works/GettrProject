@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -46,13 +48,11 @@ public class User implements UserDetails {
     @Column(columnDefinition = "BLOB")
     private List<MessagesMapId> messageIds = new ArrayList<MessagesMapId>();
 
-    public long getId() {
-        return id;
-    }
+    //@OneToMany(mappedBy = "id", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    //private List<Post> postings;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    //private List<Post> likes;
+
 
     /*
     * Returns a list of user roles
@@ -68,6 +68,7 @@ public class User implements UserDetails {
         return hashedPassword;
     }
 
+    @Override
     public String getUsername() {
         return username;
     }
@@ -79,7 +80,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
@@ -92,25 +93,6 @@ public class User implements UserDetails {
         return true;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getHashedPassword() {
-        return hashedPassword;
-    }
-
-    public void setHashedPassword(String hashedPassword) {
-        this.hashedPassword = hashedPassword;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
     public List<MessagesMapId> getMessageIds(){
         return messageIds;
     }
