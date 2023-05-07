@@ -1,3 +1,5 @@
+delete from comments
+delete from postings
 delete from app_user
 delete from messages_map
 delete from postings

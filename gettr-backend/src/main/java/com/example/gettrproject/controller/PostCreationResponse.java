@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationRequest {
-    public String username;
-    public String hashedPassword;
+public class PostCreationResponse {
+    private String posterUsername;
+    private long post_id;
 }
