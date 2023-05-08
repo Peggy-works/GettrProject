@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -51,6 +52,15 @@ public class UserController {
     @GetMapping("/getUserMessages/{userid}")
     public List<MessagesMap> getUserMessages(@PathVariable("userid") Integer id){
         return userService.getAllMessages(id);
+    }
+
+    @GetMapping("/getUserInfo")
+    public List<UserInfoResponse> getUserInfo(){
+        List<UserInfoResponse> temp = new ArrayList<UserInfoResponse>();
+        for(User i : userService.getAllUsers()){
+            temp.add(new UserInfoResponse(i.getId(),i.getUsername()));
+        }
+        return temp;
     }
     //@GetMapping("/deleteUser")
 
