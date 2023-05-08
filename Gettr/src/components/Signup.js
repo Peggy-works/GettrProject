@@ -4,7 +4,7 @@ import FormAction from "./FormAction";
 import Input from "./Input";
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
-import Image from './Images/pic.jpg'
+//import Image from './Images/pic.jpg'
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
