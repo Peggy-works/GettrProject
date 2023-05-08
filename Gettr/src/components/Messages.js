@@ -38,11 +38,14 @@ const ChatRoom = () => {
     })
 
     
+    const [searchResults,setSearchResults] = useState(
+        []
+    )
+
     const handleValue =(event)=>{
         const {value,name} = event.target;
         setUserData({...userData,[name]:value});
     }
-
 
     /*This code defines a function named registerUser that connects to a WebSocket endpoint using the SockJS 
     library and the STOMP protocol.
