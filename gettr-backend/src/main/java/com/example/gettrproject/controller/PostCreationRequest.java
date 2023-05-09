@@ -10,6 +10,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+/*
+* Class representing a PostCreation Request
+* that is bounded to the incoming http request body
+* @Author Angel Samora
+* */
 public class PostCreationRequest {
     private long id;
     private String title;
