@@ -1,19 +1,18 @@
 import { Box } from '@mui/material'
-import React from 'react'  
-import Post from './Post'
+import React from 'react'
 import Add from './Add'
 
-const Dashboard = () => {
+import { PostsProvider } from './PostsContext'
+import PostList from './Post'
 
-  return ( 
+export default function Dashboard() {
+
+  return (
     <Box flex={6} padding={2}>
-      <Add/>
-      <Post/>
-      <Post/>
-      <Post/>
-      <Post/>
+      <PostsProvider>
+        <Add/>
+        <PostList/>
+      </PostsProvider>
     </Box>
   )
 }
-
-export default Dashboard

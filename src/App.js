@@ -2,7 +2,6 @@ import { Box } from "@mui/material";
 
 import Dashboard from "./components/Dashboard";
 import ResponsiveAppBar from "./components/Nav";
-import Users from "./components/Users";
 import Messages from "./components/Messages";
 import Signup from "./components/Signup";
 import About from "./components/About";
@@ -15,7 +14,6 @@ function App() {
       <ResponsiveAppBar/>
       <Routes>
         <Route path="/Dashboard" element={<Dashboard/>}/>
-        <Route path="/Users" element={<Users/>}/>
         <Route path="/Messages" element={<Messages/>}/>
         <Route path="/About" element={<About/>}/>
         <Route path="/Logout" element={<Signup/>}/>

@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Avatar, Button, Tooltip, MenuItem } from '@mui/material';
+import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Button, MenuItem } from '@mui/material';
 
 import MenuIcon from '@mui/icons-material/Menu';
 import TungstenIcon from '@mui/icons-material/Tungsten';
 
 import { Link } from 'react-router-dom';
 
-const pages = ['Dashboard', 'Users', 'Messages', 'About'];
+const pages = ['Dashboard', 'Messages', 'About'];
 const settings = ['Logout'];
 
 function ResponsiveAppBar() {
@@ -132,11 +132,9 @@ function ResponsiveAppBar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="User Settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <div>[user]</div>
               </IconButton>
-            </Tooltip>
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"

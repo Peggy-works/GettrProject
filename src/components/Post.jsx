@@ -1,33 +1,37 @@
-import { Favorite, FavoriteBorder, MoreVert, Delete, Message } from '@mui/icons-material'
-import { Card, CardHeader, Avatar, IconButton, CardContent, Typography, CardActions, Checkbox, Tooltip } from '@mui/material'
+import { Favorite, FavoriteBorder, Delete, Message } from '@mui/icons-material'
+import { Card, CardHeader, IconButton, CardContent, Typography, CardActions, Checkbox, Tooltip } from '@mui/material'
 import React from 'react'
 
-const Post = () => {
+import { usePosts } from './PostsContext'
+
+export default function PostList() {
+  const posts = usePosts()
+  return <>(
+      {posts.map (post => (
+          <Post post={post} key={post.id} />
+      ))}
+  )
+  </>
+}
+
+
+function Post({post}) {
+
   return (
-    <Card sx={{ maxWidth: 5000 , margin: 5 }}>
-      <CardHeader 
-        avatar={
-          <Avatar sx={{ bgcolor: "#002E5A" }} aria-label="recipe">
-            R
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVert/>
-          </IconButton>
-        }
-        title="Project Idea"
-        subheader="April 25, 2023"
+    <Card sx={{ maxWidth: 5000 , margin: 2 }}>
+      <CardHeader
+        title={post.title}
+        subheader={post.username}
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
-        ut labore et dolore magna aliqua. Sit amet consectetur adipiscing elit. Elementum integer 
-        enim neque volutpat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
-        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
-        culpa qui officia deserunt mollit anim id est laborum.
+        <Typography
+          //{desc.name} (move to inside typography)
+          variant="body2"
+          color="text.secondary">
+        {post.description}
         </Typography>
       </CardContent>
+      
       <CardActions disableSpacing>
 
         <IconButton aria-label="favorite-post">
@@ -43,10 +47,7 @@ const Post = () => {
             <Delete/>
           </IconButton>
         </Tooltip>
-
       </CardActions>
     </Card>
   )
 }
-
-export default Post

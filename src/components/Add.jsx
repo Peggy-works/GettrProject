@@ -2,6 +2,7 @@ import { Box, Button, Fab, Modal, TextField, Tooltip, Typography, styled } from 
 import { Add as AddIcon } from "@mui/icons-material"
 
 import React, { useReducer, useState } from 'react'
+import { usePostsDispatch } from './PostsContext'
 
 /* Custom Modal Styling (centers popup) */
 const StyledModal = styled(Modal)({
@@ -10,12 +11,12 @@ const StyledModal = styled(Modal)({
     justifyContent: "center"
 })
 
-/* Clear Data on Submit + Return Values */
+// Clear Form on Submit + Return Values
 const formReducer = (state, event) => {
     if(event.reset) {
         return {
             title: "",
-            desc: ""
+            description: ""
         }
     }
     return {
@@ -24,15 +25,18 @@ const formReducer = (state, event) => {
     }
 }
 
-/*  Updating Form w/Controlled Component b/c..
-        - Controlled updates value Prop
-        - Can Sync Data / Dynamically Control Form Data */
 
-const Add = () => {
-    /* State Hooks for Popup, Submission, Form Data */
+/*  Add Function Contains:
+        - Add Button Functionality
+        - Form Info (values) + Handles Submission       */
+export default function Add() {
+
+    /* useState Hooks for Popup, Form Submission, Form Data */
     const [open, setOpen] = useState(false)
-    const [submitting, setSubmitting] = useState(false);
-    const [formData, setFormData] = useReducer(formReducer, {});
+    const [submitting, setSubmitting] = useState(false)
+    const [formData, setFormData] = useReducer(formReducer, {})
+
+    const dispatch = usePostsDispatch()
 
     /*  onSubmit
             - Prevent Browser from Reloading Page
@@ -41,23 +45,24 @@ const Add = () => {
             - Reset Form + Close Popup      */
     const handleSubmit = (e) => {
         e.preventDefault()
-        setSubmitting(true);
+        setSubmitting(true)
         
         setTimeout(() => {
             setSubmitting(false)
-            setOpen(false);
+            setOpen(false)
             setFormData({
                 reset: true
             })
-        }, 3000)
+        }, 1000)
 
-        // Read Form Data
+        // Make Form Object w/Post Info
         const form = e.target
         const formData = new FormData(form)
 
         // Work with Data as Plain Object
-        const formJson = Object.fromEntries(formData.entries());
-        console.log(formJson);
+        const formJson = Object.fromEntries(formData.entries())
+        console.log(formJson)
+
     }
 
     /* Pulls Data from event.target + passes object to setFormData */
@@ -77,17 +82,13 @@ const Add = () => {
                     <AddIcon />
                 </Fab>
             </Tooltip>
-
             <StyledModal
                 open={open}
                 onClose={(e) => setOpen(false)}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-
-
-
-                <form 
+                <form
                     method='post'
                     onSubmit={handleSubmit}>
                     <Box width={400} height={250} bgcolor="white" p={3} borderRadius={5}>
@@ -106,13 +107,12 @@ const Add = () => {
                             variant="standard"
                             required
                             disabled={submitting}
-
                         />
 
                         <TextField
-                            name='desc'
+                            name='description'
                             onChange={handleChange}
-                            value={formData.desc || ""}
+                            value={formData.description || ""}
 
                             sx={{ width: "100%" }}
                             multiline
@@ -123,10 +123,19 @@ const Add = () => {
                             disabled={submitting}
                         />
 
-                        <Button
+                        <Button onClick={() => {
+                            dispatch({
+                                type: "added",
+                                id: nextId++,
+                                title: formData.title,
+                                description: formData.description,
+                                //username: formData.username
+                            })
+                        }}
                             type='submit'
-                            sx={{ left: 160, top: 10 }}
-                        >Post</Button>
+                            sx={{ left: 160, top: 10 }}>
+                        Post
+                        </Button>
                     </Box>
                 </form>
             </StyledModal>
@@ -134,4 +143,5 @@ const Add = () => {
     )
 }
 
-export default Add
+// temp Id setting
+let nextId = 10
