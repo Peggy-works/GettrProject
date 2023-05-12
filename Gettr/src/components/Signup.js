@@ -1,10 +1,12 @@
 import { useEffect, useState, useRef } from 'react';
 import { signupFields } from "../constants/formFields"
-import FormAction from "./FormAction";
 import Input from "./Input";
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
-import Image from './Images/pic.jpg'
+import { register } from '../api/AuthApi.js'
+import PasswordMeter from "./PasswordMeter";
+import { useNavigate } from 'react-router-dom';
+
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -39,9 +41,16 @@ const theme = createTheme();
 
 export default function SignUp() {
 
+const navigate = useNavigate();
+
 const userRef = useRef();
 const errRef = useRef();
 
+const [user, setUser] = useState('');
+const [userFocus, setUserFocus] = useState(false);
+
+const [fName, setFName] = useState('');
+const [lName, setLName] = useState('');
 const [pwd, setPwd] = useState('');
 const [validPwd, setValidPwd] = useState(false);
 const [pwdFocus, setPwdFocus] = useState(false);
@@ -55,13 +64,19 @@ const [matchPwd, setMatchPwd] = useState('');
 const [validMatch, setValidMatch] = useState(false);
 const [matchFocus, setMatchFocus] = useState(false);
 
-const [errMsg, setErrMsg] = useState('');
+
+  const [pwdInput, initValue] = useState({
+    password: "",
+  });
+
+const [isError, setError] = useState(null);
 const [success, setSuccess] = useState(false);
 
 useEffect(() => {
     userRef.current.focus();
 }, [])
 
+//Validate email to see if it ends in .edu
 useEffect(() => {
     const result = emailReg.test(email);
     console.log(result);
@@ -69,38 +84,73 @@ useEffect(() => {
     setValidEmail(result)
 }, [email])
 
-useEffect(() => {
-    const result = passReg.test(pwd);
-    console.log(result);
-    console.log(pwd);
-    setValidPwd(result);
-    const match = pwd === matchPwd;
-    setValidMatch(match);
-}, [pwd, matchPwd])
+//Validate the password with requirements: Length 8, 1 lowercase, 1 lowercase, 1 symbol
+ const onChange = (e) => {
+    let password = e.target.value;
+    setPwd(e.target.value);
+    initValue({
+      ...pwdInput,
+      password: e.target.value,
+    });
+    setError(null);
+    setValidPwd(true);
+    let caps, small, num, specialSymbol;
+    if (password.length < 4) {
+      setError(
+        "Password should contain minimum 4 characters, with one UPPERCASE, lowercase, number and special character: @$! % * ? &"
+      );
+      return;
+      setValidPwd(false);
+    } else {
+      caps = (password.match(/[A-Z]/g) || []).length;
+      small = (password.match(/[a-z]/g) || []).length;
+      num = (password.match(/[0-9]/g) || []).length;
+      specialSymbol = (password.match(/\W/g) || []).length;
+      if (caps < 1) {
+        setError("Must add one UPPERCASE letter");
+        setValidPwd(false);
+        return;
 
-useEffect(() => {
-    setErrMsg('');
-}, [email, pwd, matchPwd])
+      } else if (small < 1) {
+        setError("Must add one lowercase letter");
+        setValidPwd(false);
+        return;
+      } else if (num < 1) {
+        setError("Must add one number");
+        setValidPwd(false);
+        return;
+      } else if (specialSymbol < 1) {
+        setError("Must add one special symbol: @$! % * ? &");
+        setValidPwd(false);
+        return;
+      }
+    }
+  };
 
+  const [isStrong, initRobustPassword] = useState(null);
+  const initPwdInput = async (childData) => {
+    initRobustPassword(childData);
+  };
 
-
-const emailValidation = (e) => {
-    e.preventDefault();
-
-};
-
-const handleOnChange = (e) => {
-    setEmail(e.target.value)
-};
-
+//Send data from form
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
       password: data.get('password'),
+      firstName: data.get('firstName'),
+      lastName: data.get('lastName'),
+      username: data.get('username'),
     });
+    //API call to AuthApi.js
+    register(data.get('username'), data.get('password'), data.get('firstName') + data.get('lastName'))
+         .then(response => {console.log(response.data.token); navigate("/#");})
+         .catch(error => console.log(error));
+
+
   };
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -114,9 +164,7 @@ const handleOnChange = (e) => {
             alignItems: 'center',
           }}
         >
-
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-
           </Avatar>
           <Typography component="h1" variant="h4">
            Join the Community
@@ -134,20 +182,23 @@ const handleOnChange = (e) => {
                   fullWidth
                   id="firstName"
                   label="First Name"
+                  onChange = {(e) => setFName(e.target.value)}
                   autoFocus
              />
             </Grid>
-            <Grid item xs={12} sm={6}>
-                  <TextField
+           <Grid item xs={12} sm={6}>
+                <TextField
                   required
                   fullWidth
                   id="lastName"
                   label="Last Name"
                   name="lastName"
+                  onChange = {(e) => setLName(e.target.value)}
                   autoComplete="off"
-             />
-            </Grid>
-            </Grid>
+
+           />
+           </Grid>
+           </Grid>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -168,18 +219,33 @@ const handleOnChange = (e) => {
                 <TextField
                   required
                   fullWidth
+                  name="username"
+                  label="Username"
+                  id="username"
+                  onChange = {(e) => setUser(e.target.value)}
+                  autoComplete="username"
+                  onFocus={() => setUserFocus(true)}
+                  />
+                </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
                   name="password"
                   label="Password"
                   type="password"
                   id="password"
-                  onChange = {(e) => setPwd(e.target.value)}
+                  onChange={onChange}
                   autoComplete="new-password"
                   onFocus={() => setPwdFocus(true)}
                   onBlue={() => setPwdFocus(false)}
                   aria-invalid={validMatch ? "false" : "true"}
                   aria-describebedby="confirmnote"
                 />
+
               </Grid>
+              {isError !== null && <p className="errors"> - {isError}</p>}
+              <PasswordMeter password={pwdInput.password} actions={initPwdInput} />
               <Grid item xs={11}>
               </Grid>
               <Typography component="caption">
@@ -188,11 +254,10 @@ const handleOnChange = (e) => {
             </Grid>
             <Button
               //button is disabled until valid input of a valid email and valid password
-              disabled = {!validEmail || !validPwd ? true : false}
+              disabled = {!validEmail || !validPwd  ? true : false}
               type="submit"
               fullWidth
               variant="contained"
-              onChange = {emailValidation}
               sx={{ mt: 3, mb: 2 }}
             >
               Sign Up
