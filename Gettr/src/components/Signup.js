@@ -7,6 +7,7 @@ import { register } from '../api/AuthApi.js'
 import PasswordMeter from "./PasswordMeter";
 import { useNavigate } from 'react-router-dom';
 
+
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';

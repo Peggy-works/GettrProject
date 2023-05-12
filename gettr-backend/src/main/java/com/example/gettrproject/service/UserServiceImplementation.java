@@ -16,6 +16,7 @@ import java.util.Optional;
 @Service
 public class UserServiceImplementation implements UserService {
 
+    @Autowired
     private UserRepository userRepository;
     @Autowired
     private MessagesMapRepository messagesMapRepository;
@@ -46,7 +47,7 @@ public class UserServiceImplementation implements UserService {
     public List<MessagesMap> getAllMessages(Integer id){
         List<MessagesMapId> messageIds= findById(id).getMessageIds();
         List<MessagesMap> temp = new ArrayList<MessagesMap>();
-        if(messageIds != null) {
+        if(messageIds != null && messageIds.size() != 0) {
             for (int i = 0; i < messageIds.size(); i++) {
                 temp.add(messagesMapRepository.findById(messageIds.get(i)).get());
             }
