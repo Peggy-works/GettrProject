@@ -9,7 +9,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+/*
+* A class representing a AuthenticationResponse
+* which is returned when system validates user credentials
+* using Authentication Service.
+* @Author Angel Samora
+* */
 public class AuthenticationResponse {
     private String token;
+    private Integer id;
 
 }
