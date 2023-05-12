@@ -1,10 +1,12 @@
 package com.example.gettrproject.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.event.EventListener;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
+import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
 @Configuration
 @EnableWebSocketMessageBroker
@@ -30,4 +32,12 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws").setAllowedOriginPatterns("*").withSockJS();
     }
+
+    @EventListener
+    public void onDisconnectEvent(SessionDisconnectEvent event) {
+        //LOGGER.debug("Client with username {} disconnected", event.getUser());
+        // handle user disconnecting here:
+        System.out.println(event.getUser().getName()); // test
+    }
+
 }

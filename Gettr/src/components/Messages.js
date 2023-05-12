@@ -21,7 +21,7 @@ const ChatRoom = () => {
     })
 
     const [userInfo,setUserInfo] = useState(
-        getAllUserInfo()
+        getAllUserInfo()    // once connected a user will get a map of ("username",id) for quick search results
     )
 
     const [publicChats, setPublicChats] = useState(
@@ -33,13 +33,13 @@ const ChatRoom = () => {
     )
 
     const [tab,setTab] = useState({
-        currTab:"",
-        id:null
+        currTab:"", // curr tab will be set to the empty tab until user chooses a specific direct message
+        id:null     // the other user id that will be messaged
     })
 
     
     const [searchResults,setSearchResults] = useState(
-        []
+        []  // search results in list
     )
 
     const handleValue =(event)=>{
@@ -99,7 +99,7 @@ const ChatRoom = () => {
                     setUserInfo(new Map(userInfo));
                 }
                 break;
-            case "MESSAGE": // case for MESSAGE status (public)
+            case "MESSAGE": // case for MESSAGE status (public) // WILL NOT BE USED FOR DM FEATURE
                 publicChats.push(payloadData);  // pushing entire json data into local memory 
                 setPublicChats([...publicChats]);    // updating use state // may not work
                 break;
@@ -112,7 +112,7 @@ const ChatRoom = () => {
         let payloadData = JSON.parse(payload.body); // parsing into json
         // if user id (username) is already in the listeners map
         if(privateChats.get(payloadData.senderName)){
-            privateChats.get(payloadData.senderName).push(payloadData);
+            privateChats.get(payloadData.senderName).push(payloadData); // pushing the entire message object
             setPrivateChats(new Map(privateChats));
         // if not, then initialize key value pair in users private map
         }else{
@@ -123,7 +123,7 @@ const ChatRoom = () => {
         }
     }
 
-    const sendPublicMessage=()=>{
+    const sendPublicMessage=()=>{   // THIS FUNCTION WILL NOT BE USED FOR DM FEATURE
         if(stompClient){
             let chatMessage={
                 senderName:userData.username,
@@ -165,8 +165,7 @@ const ChatRoom = () => {
             <div className='chat-box'>
                 <div className='member-list'>
                     <ul>
-                        <li onClick={()=>{setTab({...tab,"currTab":"CHATROOM"})}} className = {`member ${tab.currTab==="CHATROOM" && "active"}`}> ChatRoom</li>
-                        
+                        <li onClick={()=>{setTab({...tab,"currTab":"CHATROOM"})}} className = {`member ${tab.currTab==="CHATROOM" && "active"}`}> ChatRoom</li>                         
                         
                         {
                         /*Below we are matching every arr value to the var 'name' as well as grabing the int index 
