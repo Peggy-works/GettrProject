@@ -3,50 +3,54 @@ import { Card, CardHeader, IconButton, CardContent, Typography, CardActions, Che
 import React from 'react'
 
 import { usePosts } from './PostsContext'
+import { Link } from 'react-router-dom'
 
 export default function PostList() {
   const posts = usePosts()
-  return <>(
-      {posts.map (post => (
-          <Post post={post} key={post.id} />
-      ))}
-  )
+
+  /*  - Empty Fragment Used to Render Multiple Posts
+      - Posts.slice(0).reverse().map -> newest post first */
+  return <>
+    {posts.slice(0).reverse().map(post => (
+      <Post post={post} key={post.id} />
+    ))}
   </>
 }
 
 
-function Post({post}) {
-
+function Post({ post }) {
   return (
-    <Card sx={{ maxWidth: 5000 , margin: 2 }}>
+    <Card sx={{ maxWidth: 5000, margin: 4 }}>
       <CardHeader
         title={post.title}
         subheader={post.username}
       />
+
       <CardContent>
         <Typography
-          //{desc.name} (move to inside typography)
-          variant="body2"
+          variant="body4"
           color="text.secondary">
-        {post.description}
+          {post.description}
         </Typography>
       </CardContent>
-      
+
       <CardActions disableSpacing>
-
         <IconButton aria-label="favorite-post">
-          <Checkbox icon={<FavoriteBorder/>} checkedIcon={<Favorite sx={{ color: "#002E5A" }}/>} />
+          <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: "#002E5A" }} />} />
         </IconButton>
 
-        <IconButton aria-label="view-comments">
-          <Message/>
-        </IconButton>
- 
+        <Link to="PostComments">
+          <IconButton>
+            <Message/>
+          </IconButton>
+        </Link>
+
         <Tooltip title="Delete">
           <IconButton>
-            <Delete/>
+            <Delete />
           </IconButton>
         </Tooltip>
+
       </CardActions>
     </Card>
   )

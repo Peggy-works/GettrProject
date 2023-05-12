@@ -31,11 +31,11 @@ const formReducer = (state, event) => {
         - Form Info (values) + Handles Submission       */
 export default function Add() {
 
-    /* useState Hooks for Popup, Form Submission, Form Data */
+    /* useState Hooks for Popup, Form Submission, Form Data, Disable */
     const [open, setOpen] = useState(false)
     const [submitting, setSubmitting] = useState(false)
     const [formData, setFormData] = useReducer(formReducer, {})
-
+    const [disable, setDisable] = useState(false)
     const dispatch = usePostsDispatch()
 
     /*  onSubmit
@@ -43,17 +43,19 @@ export default function Add() {
             - Send Data to Database
             - Notify User Post is Submit
             - Reset Form + Close Popup      */
-    const handleSubmit = (e) => {
+        const handleSubmit = (e) => {
         e.preventDefault()
         setSubmitting(true)
+        setDisable(true)
         
         setTimeout(() => {
             setSubmitting(false)
             setOpen(false)
+            setDisable(false)
             setFormData({
                 reset: true
             })
-        }, 1000)
+        }, 2000)
 
         // Make Form Object w/Post Info
         const form = e.target
@@ -85,8 +87,6 @@ export default function Add() {
             <StyledModal
                 open={open}
                 onClose={(e) => setOpen(false)}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
             >
                 <form
                     method='post'
@@ -123,16 +123,30 @@ export default function Add() {
                             disabled={submitting}
                         />
 
-                        <Button onClick={() => {
+                        <Button
+                        
+                        onClick={() => {
+                            
                             dispatch({
-                                type: "added",
+                                type: 'added',
                                 id: nextId++,
                                 title: formData.title,
                                 description: formData.description,
-                                //username: formData.username
+                                username: formData.username,
                             })
                         }}
+                        /*
+                        onSubmit={() => {
+                            dispatch({
+                                type: 'added',
+                                id: nextId++,
+                                title: formData.title,
+                                description: formData.description,
+                                username: formData.username,
+                            })
+                        }}*/
                             type='submit'
+                            disabled={disable}
                             sx={{ left: 160, top: 10 }}>
                         Post
                         </Button>

@@ -41,8 +41,8 @@ function ResponsiveAppBar() {
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href="Dashboard"
+            //component="a"
+            //href="Dashboard"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -55,7 +55,6 @@ function ResponsiveAppBar() {
           >
             GETTR
           </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -88,10 +87,10 @@ function ResponsiveAppBar() {
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}
-                    <Link 
-                      style={{textDecoration: "none", color:"white"}} 
+                    <Link
+                      style={{ textDecoration: "none", color: "white" }}
                       to={`/${page}`}>
-                        {page}
+                      {page}
                     </Link>
                   </Typography>
                 </MenuItem>
@@ -102,8 +101,8 @@ function ResponsiveAppBar() {
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href="Dashboard"
+            //component="a"
+            //href="Dashboard"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -124,17 +123,17 @@ function ResponsiveAppBar() {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                <Link 
-                style={{textDecoration: "none", color:"white"}} 
-                to={`/${page}`}>{page}</Link>
+                <Link
+                  style={{ textDecoration: "none", color: "white" }}
+                  to={`/${page}`}>{page}</Link>
               </Button>
             ))}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <div>[user]</div>
-              </IconButton>
+            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <div>[user]</div>
+            </IconButton>
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
@@ -154,10 +153,10 @@ function ResponsiveAppBar() {
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}
-                    <Link 
-                      style={{textDecoration: "none", color:"white"}} 
+                    <Link
+                      style={{ textDecoration: "none", color: "white" }}
                       to={`/${setting}`}>
-                        {setting}
+                      {setting}
                     </Link>
                   </Typography>
                 </MenuItem>

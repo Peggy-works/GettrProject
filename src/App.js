@@ -7,6 +7,7 @@ import Signup from "./components/Signup";
 import About from "./components/About";
 
 import { Routes, Route } from "react-router-dom"
+import PostComments from "./components/PostComments";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/Messages" element={<Messages/>}/>
         <Route path="/About" element={<About/>}/>
         <Route path="/Logout" element={<Signup/>}/>
+        <Route path="/Dashboard/PostComments" element={<PostComments/>}/>
       </Routes>
     </Box>
   );
