@@ -12,14 +12,15 @@ function authenticate(username, password) {
 }
 
 function register(username, password, name) {
-    return instance.post('/auth/register',{
-        params: {
-            'username': username,
-            'hashedPassword': password,
-            'name': name
-        },
+    return axios.post('http://localhost:8080/api/auth/register',
+    {
+        "username": username,
+        'hashedPassword': password,
+        'name': name
+    },
+    {
         headers: {
-            'Content-type': 'application/json'
+            "Content-type": "application/json"
         }
     })
 }

@@ -1,9 +1,27 @@
-import { Favorite, FavoriteBorder, MoreVert, Delete, Message } from '@mui/icons-material'
-import { Card, CardHeader, Avatar, IconButton, CardContent, Typography, CardActions, Checkbox, Tooltip } from '@mui/material'
+import { Favorite, FavoriteBorder, Delete, Message } from '@mui/icons-material'
+import { Card, CardHeader, IconButton, CardContent, Typography, CardActions, Checkbox, Tooltip } from '@mui/material'
 import React from 'react'
 import { authenticate, register } from '../api/AuthApi.js';
 import axios from 'axios';
 
+import { usePosts } from './PostsContext'
+import { Link } from 'react-router-dom'
+
+export default function PostList() {
+  const posts = usePosts()
+
+  /*  - Empty Fragment Used to Render Multiple Posts
+      - Posts.slice(0).reverse().map -> newest post first */
+  return <>
+    {posts.slice(0).reverse().map(post => (
+      <Post post={post} key={post.id} />
+    ))}
+  </>
+}
+
+
+function Post({ post }) {
+/*
 const Post = () => {
 console.log("Hello from post.jsx");
 
@@ -39,43 +57,34 @@ axios.post('http://localhost:8080/api/auth/authenticate',
 */
 
   return (
-    <Card sx={{ maxWidth: 5000 , margin: 5 }}>
-      <CardHeader 
-        avatar={
-          <Avatar sx={{ bgcolor: "#002E5A" }} aria-label="recipe">
-            R
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVert/>
-          </IconButton>
-        }
-        title="Project Idea"
-        subheader="April 25, 2023"
+    <Card sx={{ maxWidth: 5000, margin: 4 }}>
+      <CardHeader
+        title={post.title}
+        subheader={post.username}
       />
+
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
-        ut labore et dolore magna aliqua. Sit amet consectetur adipiscing elit. Elementum integer 
-        enim neque volutpat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
-        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
-        culpa qui officia deserunt mollit anim id est laborum.
+        <Typography
+          variant="body4"
+          color="text.secondary">
+          {post.description}
         </Typography>
       </CardContent>
+
       <CardActions disableSpacing>
-
         <IconButton aria-label="favorite-post">
-          <Checkbox icon={<FavoriteBorder/>} checkedIcon={<Favorite sx={{ color: "#002E5A" }}/>} />
+          <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: "#002E5A" }} />} />
         </IconButton>
 
-        <IconButton aria-label="view-comments">
-          <Message/>
-        </IconButton>
- 
+        <Link to="PostComments">
+          <IconButton>
+            <Message/>
+          </IconButton>
+        </Link>
+
         <Tooltip title="Delete">
           <IconButton>
-            <Delete/>
+            <Delete />
           </IconButton>
         </Tooltip>
 
@@ -83,5 +92,3 @@ axios.post('http://localhost:8080/api/auth/authenticate',
     </Card>
   )
 }
-
-export default Post

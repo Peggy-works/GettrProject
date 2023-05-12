@@ -49,6 +49,12 @@ public class AuthenticationService {
                 .build();
     }
 
+    /*
+    * Function that takes in request to endpoint authenticating user based on username
+    * and password, if validated returns a authenticationResponse object.
+    * @Param AuthenticationRequest
+    * @Return AuthenticationResponse
+    * */
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -56,8 +62,10 @@ public class AuthenticationService {
                         request.getHashedPassword()
                 )
         );
-        // User is authenticated
-        // Generate token and send it back
+        /*
+        * User is authenticated
+        * Generate a jwt token and user id and save it in a AuthenticationResponse object
+        * */
         var user = repository.findByUsername (request.getUsername())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);

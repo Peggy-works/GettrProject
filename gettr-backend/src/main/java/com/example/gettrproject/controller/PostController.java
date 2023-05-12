@@ -22,6 +22,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/post")
 @RequiredArgsConstructor
+/*
+* Controller class that handles "/post/**" endpoints,
+* @Author Angel Samora
+* */
 public class PostController {
 
     //private final PostService postService;
@@ -33,6 +37,13 @@ public class PostController {
     @Autowired
     private UserService userService;
 
+    /*
+    * public createPost function that bounds the incoming http request body
+    * to a PostCreationRequest object which is used create and save a post object into our
+    * database.
+    * @Param PostCreationRequest
+    * @Returns ResponseEntity<PostCreationResponse>
+    * */
     @PostMapping("/newPost")
     public ResponseEntity<PostCreationResponse> createPost(@RequestBody PostCreationRequest request){
         var user = userRepository.findByUsername (request.getUsername())
@@ -51,6 +62,13 @@ public class PostController {
                 .build());
     }
 
+    /*
+    * public addComment function that maps the incoming http request body to
+    * a CommentRequest object, handles adding comment to specific posts and
+    * updates forum post in database with new comment.
+    * @Param CommentRequest
+    * @Return ResponseEntity<String>
+    * */
     @PostMapping("/addComment")
     public ResponseEntity<String> addComment(@RequestBody CommentRequest request){
         var user = userRepository.findById (request.getUser_id())
@@ -69,15 +87,19 @@ public class PostController {
         return ResponseEntity.ok("We attached message to forum post");
     }
 
-
+    /*
+    * public getAllPosts function that returns every post in
+    * the database as a List of PostGetResponse objects
+    * @Param none
+    * @Return List<PostGetResponse>
+    * */
     @GetMapping("/getPosts")
     public List<PostGetResponse> getAllPosts(){
-        //List<Post> pots = new ArrayList<>();
         List<PostGetResponse> posts = new ArrayList<>();
-        //postRepository.findAll().forEach(post -> pots.add(post));
-        //System.out.println(pots);
         postRepository.findAll().forEach(post -> {
-
+            /*
+            * Pull specific details and build a PostGetResponse object
+            * */
             var response = PostGetResponse.builder()
                     .id(post.getId())
                     .title(post.getTitle())
@@ -86,7 +108,6 @@ public class PostController {
                     .poster_id(post.getPoster().getId())
                     .comments(new ArrayList<String>())
                     .usernames(new ArrayList<String>())
-                    //.commentList(post.getComments())
                     .build();
             post.getComments().forEach(comment -> {
                 response.getUsernames().add(comment.getUser().getUsername());
@@ -97,28 +118,7 @@ public class PostController {
 
         });
 
-        //postRepository.findAll().forEach(posts::add);
         return posts;
     }
-
-    /*
-
-    @PostMapping("/newPost")
-    public Post createPost(@RequestBody Post post){
-        return postRepository.save(post);
-    }
-
-    @PutMapping("/posts/{postId}")
-    public Post updatePost(@PathVariable Long postId, @RequestBody Post postRequest){
-        //return postRepository.findById(postId).map(post --> blah blah)
-        return null;
-    }
-
-    @DeleteMapping
-    public ResponseEntity<?> deletePost(@PathVariable Long longId){
-        return null;
-    }
-
-     */
 
 }
