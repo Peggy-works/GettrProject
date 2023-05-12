@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7a34e03-0427-4e82-8112-90b73207ea36" name="Changes" comment="WS react update">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_7_2023_1_18_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_7_2023_1_18_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_7_2023_1_18_PM__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_7_2023_1_18_PM__Changes_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/src/api/MessagesApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/api/MessagesApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/src/api/UserApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/api/UserApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/src/components/Messages.js" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/components/Messages.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
