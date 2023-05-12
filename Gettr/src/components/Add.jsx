@@ -126,25 +126,16 @@ export default function Add() {
                         <Button
                         
                         onClick={() => {
-                            
-                            dispatch({
-                                type: 'added',
-                                id: nextId++,
-                                title: formData.title,
-                                description: formData.description,
-                                username: formData.username,
-                            })
+                            if(formData.title != undefined && formData.description != undefined){
+                                dispatch({
+                                    type: 'added',
+                                    id: nextId++,
+                                    title: formData.title,
+                                    description: formData.description,
+                                    username: formData.username,
+                                })
+                            }
                         }}
-                        /*
-                        onSubmit={() => {
-                            dispatch({
-                                type: 'added',
-                                id: nextId++,
-                                title: formData.title,
-                                description: formData.description,
-                                username: formData.username,
-                            })
-                        }}*/
                             type='submit'
                             disabled={disable}
                             sx={{ left: 160, top: 10 }}>

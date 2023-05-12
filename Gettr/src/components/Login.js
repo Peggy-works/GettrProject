@@ -54,6 +54,7 @@ export default function Login(){
             .then(response => {
                 console.log(response.data.token);
                 localStorage.setItem("token", response.data.token);
+                localStorage.setItem("user", response.data);
             })
             .catch(error => {
                 console.log(error);
