@@ -29,7 +29,7 @@ public class AuthenticationService {
 
     /*
     * Build user out of RegisterRequest object, save user, generate token for user,
-    * return AuthenticationResponse that contains jwt token
+    * return AuthenticationResponse that contains jwt token, user_id
     * @Param request
     * @Returns AuthenticationResponse
     * */
@@ -42,10 +42,14 @@ public class AuthenticationService {
                 .role(Role.USER)
                 .build();
         repository.save(user);
+        /*
+        * Once
+        * */
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .id(user.getId())
+                .username(user.getUsername())
                 .build();
     }
 
@@ -72,6 +76,7 @@ public class AuthenticationService {
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .id(user.getId())
+                .username(user.getUsername())
                 .build();
     }
 

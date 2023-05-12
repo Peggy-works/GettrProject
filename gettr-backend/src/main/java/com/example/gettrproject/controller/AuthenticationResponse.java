@@ -1,9 +1,12 @@
 package com.example.gettrproject.controller;
 
+import com.example.gettrproject.controller.embedded.MessagesMapId;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @Builder
@@ -18,5 +21,6 @@ import lombok.NoArgsConstructor;
 public class AuthenticationResponse {
     private String token;
     private Integer id;
+    private String username;
 
 }
