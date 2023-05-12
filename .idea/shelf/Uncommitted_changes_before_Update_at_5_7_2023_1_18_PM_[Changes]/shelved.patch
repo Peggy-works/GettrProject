@@ -1,0 +1,56 @@
+Index: Gettr/src/components/Messages.jsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React from 'react'\r\n\r\nfunction Messages() {\r\n  return (\r\n    <div>Messages</div>\r\n  )\r\n}\r\n\r\nexport default Messages
+===================================================================
+diff --git a/Gettr/src/components/Messages.jsx b/Gettr/src/components/Messages.jsx
+--- a/Gettr/src/components/Messages.jsx	
++++ b/Gettr/src/components/Messages.jsx	
+@@ -1,9 +1,43 @@
+ import React from 'react'
+ 
+-function Messages() {
+-  return (
+-    <div>Messages</div>
++// function Messages() {
++//   return (
++//     <div>Messages</div>
++//   )
++// }
++var stompClient = null;
++
++const Messages =()=>{
++
++  const [messageData,setmessageData] = useState({
++    senderId:null,
++    senderName:"",
++    recieverId:null,
++    receiverName:"",
++    message:"",
++    date:null,
++    status:null,
++  })
++
++  const [userMessages,setUserMessages] = useState(
++    new Map()
+   )
++
++  const [tab,setTab] = useState({
++    currTab:null
++  })
++
++  // const handleVAlue =(event)=>{
++  //   const{value,userId} = event.target;
++  //   setUserData({...userData,[name]:value});
++  // }
++
++  const registerUser =()=>{
++    let Sock = new SockJS('http://localhost:8080/ws');
++    stompClient = over(Sock);
++    stompClient.connect({},onConnected,onError) // the {} can contain headers if need be
++  }
++
+ }
+ 
+ export default Messages
+\ No newline at end of file

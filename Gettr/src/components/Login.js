@@ -1,9 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { loginFields } from "../constants/formFields";
-import FormAction from "./FormAction";
-import FormExtra from "./FormExtra";
 import Input from "./Input";
 import ReCAPTCHA from "react-google-recaptcha"
+import { authenticate } from '../api/AuthApi.js'
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -17,7 +16,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider} from '@mui/material/styles';
-import image from "./Images/pic.jpg";
 
 function Copyright(props){
   return (
@@ -49,22 +47,22 @@ export default function Login(){
         setErrorMsg('');
     }, [username, password])
 
-
-
-
     const handleSubmit= async (e)=>{
         e.preventDefault();
         console.log(username, password)
-        const v1 =
+        authenticate(username, password)
+            .then(response => {
+                console.log(response.data.token);
+                localStorage.setItem("token", response.data.token);
+            })
+            .catch(error => {
+                console.log(error);
+            })
         setUsername('');
         setPassword('');
         setSuccess(true);
-        }
-
-    //Handle Login API Integration here
-    const authenticateUser = () =>{
-
     }
+
 
 
 
@@ -100,9 +98,9 @@ export default function Login(){
                    margin="normal"
                    required
                    fullWidth
-                   id="email"
-                   label="Email Address"
-                   name="email"
+                   id="username"
+                   label="Username"
+                   name="username"
                    autoComplete="email"
                    value={username}
                    onChange={(e) => setUsername(e.target.value)}

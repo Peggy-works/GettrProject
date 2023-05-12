@@ -1,12 +1,13 @@
 import React from 'react';
-import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Avatar, Button, Tooltip, MenuItem } from '@mui/material';
+
+import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Button, MenuItem } from '@mui/material';
 
 import MenuIcon from '@mui/icons-material/Menu';
 import TungstenIcon from '@mui/icons-material/Tungsten';
 
 import { Link } from 'react-router-dom';
 
-const pages = ['Dashboard', 'Users', 'Messages', 'About'];
+const pages = ['Dashboard', 'Messages', 'About'];
 const settings = ['Logout'];
 
 function ResponsiveAppBar() {
@@ -40,8 +41,8 @@ function ResponsiveAppBar() {
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href="Dashboard"
+            //component="a"
+            //href="Dashboard"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -54,7 +55,6 @@ function ResponsiveAppBar() {
           >
             GETTR
           </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -87,10 +87,10 @@ function ResponsiveAppBar() {
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}
-                    <Link 
-                      style={{textDecoration: "none", color:"white"}} 
+                    <Link
+                      style={{ textDecoration: "none", color: "white" }}
                       to={`/${page}`}>
-                        {page}
+                      {page}
                     </Link>
                   </Typography>
                 </MenuItem>
@@ -101,8 +101,8 @@ function ResponsiveAppBar() {
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href="Dashboard"
+            //component="a"
+            //href="Dashboard"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -123,19 +123,17 @@ function ResponsiveAppBar() {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                <Link 
-                style={{textDecoration: "none", color:"white"}} 
-                to={`/${page}`}>{page}</Link>
+                <Link
+                  style={{ textDecoration: "none", color: "white" }}
+                  to={`/${page}`}>{page}</Link>
               </Button>
             ))}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="User Settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
+            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <div>[user]</div>
+            </IconButton>
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
@@ -155,10 +153,10 @@ function ResponsiveAppBar() {
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}
-                    <Link 
-                      style={{textDecoration: "none", color:"white"}} 
+                    <Link
+                      style={{ textDecoration: "none", color: "white" }}
                       to={`/${setting}`}>
-                        {setting}
+                      {setting}
                     </Link>
                   </Typography>
                 </MenuItem>
