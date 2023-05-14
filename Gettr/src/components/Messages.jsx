@@ -2,10 +2,44 @@ import React, { useEffect, useState } from 'react';
 import {over} from 'stompjs';
 import SockJS from 'sockjs-client';
 import './Messages.css'
+//import { makeStyles } from '@mui/styles';
+//import { ThemeProvider, createMuiTheme, makeStyles } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider} from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import Divider from '@mui/material/Divider';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Avatar from '@mui/material/Avatar';
+import Fab from '@mui/material/Fab';
+import SendIcon from '@mui/icons-material/Send';
 import{getUserMessages} from '../api/MessagesApi.js';
 import { getAllUserInfo } from '../api/UserApi.js';
 
 var stompClient = null;
+const theme = createTheme({
+  table: {
+    inWidth: 650,
+  },
+  chatSection: {
+    width: '100%',
+    height: '80vh'
+  },
+  headBG: {
+      backgroundColor: '#e0e0e0'
+  },
+  borderRight500: {
+      borderRight: '1px solid #e0e0e0'
+  },
+  messageArea: {
+    height: '70vh',
+    overflowY: 'auto'
+  }
+});
 
 // let Sock = await new SockJS('http://localhost:8080/ws');
 // stompClient = over(Sock);
@@ -259,6 +293,26 @@ var stompClient = null;
 //   )
 // }
 // export default Messages;
+// const useStyles = makeStyles({
+//   table: {
+//     minWidth: 650,
+//   },
+//   chatSection: {
+//     width: '100%',
+//     height: '80vh'
+//   },
+//   headBG: {
+//       backgroundColor: '#e0e0e0'
+//   },
+//   borderRight500: {
+//       borderRight: '1px solid #e0e0e0'
+//   },
+//   messageArea: {
+//     height: '70vh',
+//     overflowY: 'auto'
+//   }
+// });
+
 const Messages = () => {
     /*const [userData,setUserData] is defining a state variable called userData using the useState hook. 
     The state variable is initialized as an object with four properties: username, receivername, connected, 
@@ -266,6 +320,7 @@ const Messages = () => {
     /*setUserData is a function that can be used to update the userData state variable. When this function 
     is called with a new value for userData, React will automatically update the component to reflect the 
     new state.*/
+    //const classes = useStyles();
 
     useEffect(()=>{
         console.log("in USE EFFECT");
@@ -424,67 +479,161 @@ const Messages = () => {
     }
 
   return (
-    <div className="containter">
+    // <div className="containter">
        
-            <div className='chat-box'>
-                <div className='member-list'>
-                    <ul>
-                        <li onClick={()=>{setTab({...tab,"currTab":"CHATROOM"})}} className = {`member ${tab.currTab==="CHATROOM" && "active"}`}> ChatRoom</li>
+    //         <div className='chat-box'>
+    //             <div className='member-list'>
+    //                 <ul>
+    //                     <li onClick={()=>{setTab({...tab,"currTab":"CHATROOM"})}} className = {`member ${tab.currTab==="CHATROOM" && "active"}`}> ChatRoom</li>
                         
                         
-                        {
-                        /*Below we are matching every arr value to the var 'name' as well as grabing the int index 
-                        of the current array value that we are on, for each arr value we then create an html list
-                        item to show the information of that person*/
+    //                     {
+    //                     /*Below we are matching every arr value to the var 'name' as well as grabing the int index 
+    //                     of the current array value that we are on, for each arr value we then create an html list
+    //                     item to show the information of that person*/
                         
-                        [...privateChats.keys()].map((name,index)=>(
-                            <li onClick={()=>{setTab({...tab,"currTab":name})}} className={`member ${tab.currTab===name && "active"}`} key={index}>
-                                {name}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-                {tab.currTab==="CHATROOM" && <div className='chat-content'>
-                    <ul className='chat-messages'>
-                    {
-                        /*same thing as above but we are now putting the actual public chat data into a html list item*/
-                        publicChats.map((chat,index)=>(
-                            <li className={`message ${chat.senderName === userData.username && "self"}`} key={index}>
-                                {chat.senderName !== userData.username && <div className='avatar'>{chat.senderName}</div>}
-                                <div className='message-data'>{chat.message}</div>
-                                {chat.senderName === userData.username && <div className='avatar self'>{chat.senderName}</div>}
-                            </li>
+    //                     [...privateChats.keys()].map((name,index)=>(
+    //                         <li onClick={()=>{setTab({...tab,"currTab":name})}} className={`member ${tab.currTab===name && "active"}`} key={index}>
+    //                             {name}
+    //                         </li>
+    //                     ))}
+    //                 </ul>
+    //             </div>
+    //             {tab.currTab==="CHATROOM" && <div className='chat-content'>
+    //                 <ul className='chat-messages'>
+    //                 {
+    //                     /*same thing as above but we are now putting the actual public chat data into a html list item*/
+    //                     publicChats.map((chat,index)=>(
+    //                         <li className={`message ${chat.senderName === userData.username && "self"}`} key={index}>
+    //                             {chat.senderName !== userData.username && <div className='avatar'>{chat.senderName}</div>}
+    //                             <div className='message-data'>{chat.message}</div>
+    //                             {chat.senderName === userData.username && <div className='avatar self'>{chat.senderName}</div>}
+    //                         </li>
                         
-                    ))}
-                    </ul>
-                    <div className='send-message'>
-                        <input type='text' className='input-message' placeholder='enter public message' value={userData.message} name = 'message'
-                            onChange={handleValue}/>
-                        <button type='button' className='send-button' onClick={sendPublicMessage}>send</button>
-                    </div>
-                </div>}
-                {tab.currTab!=="CHATROOM" && <div className='chat-content'>
-                    <ul className='chat-messages'>
-                    {
-                        /*same thing as above but we are now putting the actual public chat data into a html list item*/
-                        [...privateChats.get(tab.currTab)].map((chat,index)=>(
-                            <li className='message' key={index}>
-                                {chat.senderName !== userData.username && <div className='avatar'>{chat.senderName}</div>}
-                                <div className='message-data'>{chat.message}</div>
-                                {chat.senderName === userData.username && <div className='avatar self'>{chat.senderName}</div>}
-                            </li>
-                    ))}
-                    </ul>
+    //                 ))}
+    //                 </ul>
+    //                 <div className='send-message'>
+    //                     <input type='text' className='input-message' placeholder='enter public message' value={userData.message} name = 'message'
+    //                         onChange={handleValue}/>
+    //                     <button type='button' className='send-button' onClick={sendPublicMessage}>send</button>
+    //                 </div>
+    //             </div>}
+    //             {tab.currTab!=="CHATROOM" && <div className='chat-content'>
+    //                 <ul className='chat-messages'>
+    //                 {
+    //                     /*same thing as above but we are now putting the actual public chat data into a html list item*/
+    //                     [...privateChats.get(tab.currTab)].map((chat,index)=>(
+    //                         <li className='message' key={index}>
+    //                             {chat.senderName !== userData.username && <div className='avatar'>{chat.senderName}</div>}
+    //                             <div className='message-data'>{chat.message}</div>
+    //                             {chat.senderName === userData.username && <div className='avatar self'>{chat.senderName}</div>}
+    //                         </li>
+    //                 ))}
+    //                 </ul>
 
-                    <div className='send-message'>
-                        <input type='text' className='input-message' placeholder={`enter private message for ${tab.currTab}`} value={userData.message}
-                            name = 'message' onChange={handleValue}/>
-                        <button type='button' className='send-button' onClick={sendPrivateMessage}>send</button>
-                    </div>
-                </div>}
-            </div>
+    //                 <div className='send-message'>
+    //                     <input type='text' className='input-message' placeholder={`enter private message for ${tab.currTab}`} value={userData.message}
+    //                         name = 'message' onChange={handleValue}/>
+    //                     <button type='button' className='send-button' onClick={sendPrivateMessage}>send</button>
+    //                 </div>
+    //             </div>}
+    //         </div>
         
-    </div>
-  )
+    // </div>
+
+
+
+
+<div>
+  <ThemeProvider theme={theme}>
+        <Grid container>
+            <Grid item xs={12} >
+                <Typography variant="h5" className="header-message">Messages</Typography>
+            </Grid>
+        </Grid>
+        <Grid container component={Paper} style={theme.chatSection}>
+            <Grid item xs={3} style={theme.borderRight500}>
+                <List>
+                    <ListItem button key="RemySharp">
+                        <ListItemIcon>
+                        <Avatar alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/1.jpg" />
+                        </ListItemIcon>
+                        <ListItemText primary="John Wick"></ListItemText>
+                    </ListItem>
+                </List>
+                <Divider />
+                <Grid item xs={12} style={{padding: '10px'}}>
+                    <TextField id="outlined-basic-email" label="Search" variant="outlined" fullWidth />
+                </Grid>
+                <Divider />
+                <List>
+                    <ListItem button key="RemySharp">
+                        <ListItemIcon>
+                            <Avatar alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/1.jpg" />
+                        </ListItemIcon>
+                        <ListItemText primary="Remy Sharp">Remy Sharp</ListItemText>
+                        <ListItemText secondary="online" align="right"></ListItemText>
+                    </ListItem>
+                    <ListItem button key="Alice">
+                        <ListItemIcon>
+                            <Avatar alt="Alice" src="https://material-ui.com/static/images/avatar/3.jpg" />
+                        </ListItemIcon>
+                        <ListItemText primary="Alice">Alice</ListItemText>
+                    </ListItem>
+                    <ListItem button key="CindyBaker">
+                        <ListItemIcon>
+                            <Avatar alt="Cindy Baker" src="https://material-ui.com/static/images/avatar/2.jpg" />
+                        </ListItemIcon>
+                        <ListItemText primary="Cindy Baker">Cindy Baker</ListItemText>
+                    </ListItem>
+                </List>
+            </Grid>
+            <Grid item xs={9}>
+                <List style={theme.messageArea}>
+                    <ListItem key="1">
+                        <Grid container>
+                            <Grid item xs={12}>
+                                <ListItemText align="right" primary="Hey man, What's up ?"></ListItemText>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <ListItemText align="right" secondary="09:30"></ListItemText>
+                            </Grid>
+                        </Grid>
+                    </ListItem>
+                    <ListItem key="2">
+                        <Grid container>
+                            <Grid item xs={12}>
+                                <ListItemText align="left" primary="Hey, Iam Good! What about you ?"></ListItemText>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <ListItemText align="left" secondary="09:31"></ListItemText>
+                            </Grid>
+                        </Grid>
+                    </ListItem>
+                    <ListItem key="3">
+                        <Grid container>
+                            <Grid item xs={12}>
+                                <ListItemText align="right" primary="Cool. i am good, let's catch up!"></ListItemText>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <ListItemText align="right" secondary="10:30"></ListItemText>
+                            </Grid>
+                        </Grid>
+                    </ListItem>
+                </List>
+                <Divider />
+                <Grid container style={{padding: '20px'}}>
+                    <Grid item xs={11}>
+                        <TextField id="outlined-basic-email" label="Type Something" fullWidth />
+                    </Grid>
+                    <Grid xs={1} align="right">
+                        <Fab color="primary" aria-label="add"><SendIcon /></Fab>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+        </ThemeProvider>
+      </div>
+  );
 }
 export default Messages;
