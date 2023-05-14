@@ -52,9 +52,10 @@ export default function Login(){
         console.log(username, password)
         authenticate(username, password)
             .then(response => {
-                console.log(response.data.token);
-                localStorage.setItem("token", response.data.token);
-                localStorage.setItem("user", response.data);
+                console.log(response.data);
+                //localStorage.setItem('token', response.data.token);
+                localStorage.setItem('user',JSON.stringify(response.data));
+                console.log(JSON.parse(localStorage.getItem('user')).id);
             })
             .catch(error => {
                 console.log(error);
