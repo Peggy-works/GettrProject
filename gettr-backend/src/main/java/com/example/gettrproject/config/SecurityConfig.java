@@ -17,14 +17,29 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
 
+    /**
+     * Defining a bean of type security filter chain that gets invoked depending on the URL.
+     * Incoming requests with matching URLs found within .requestMatchers() are whitelisted
+     * in particular the endpoints found in AuthController that authenticate/register users within our
+     * system need to be allowed for users to register and authenticate in the frontend.
+     * @param http
+     * @return
+     * @throws Exception
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        /*
+        * Configuring stateless Authentication that we used in conjunction with java web tokens
+        * that validates the token
+        * instead uses java web tokens to validate
+        * every request
+        * */
         http
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/auth/**", "/api/auth/authenticate", "/public", "/index.html", "/post/**","/user/**")
-                .permitAll()
+                .requestMatchers("/api/auth/**")
+                    .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -33,7 +48,7 @@ public class SecurityConfig {
                 .and()
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
-
+                /*Configuring */
         return http.build();
     }
 

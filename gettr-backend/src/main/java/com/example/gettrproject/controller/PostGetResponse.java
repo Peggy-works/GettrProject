@@ -14,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 public class PostGetResponse {
     private long id;
+    private String poster_name;
     private String title;
     private String description;
     private int likes;

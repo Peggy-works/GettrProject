@@ -34,6 +34,11 @@ public class ApplicationConfig {
     }
 
     @Bean
+    /*
+    * Our Authentication provider implementation that uses (data-access-object) DaoAuthenticationProvider that retrieves userDetails
+    * and uses our @Bean passwordEncoder to authenticate users by username and password. After user credentials
+    * have been validated the SecurityContext
+    * */
     public AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService());
@@ -41,11 +46,19 @@ public class ApplicationConfig {
         return authProvider;
     }
 
+    /**
+     * @param config
+     * @return
+     * @throws Exception
+     */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 
+    /**
+     * @return
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

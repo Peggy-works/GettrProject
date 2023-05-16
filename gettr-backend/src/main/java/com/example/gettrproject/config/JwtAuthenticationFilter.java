@@ -10,12 +10,15 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
+/**
+ * Our authentication filter that extends OncePerRequestFilter. Spring boot uses servlet architecture which essentially intercepts http request,
+ * this class specifically gets invoked once per request and handles authentication of users.
+ */
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
@@ -23,24 +26,44 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
 
+    /**
+     * Once per request filter that intercepts http request, checks if authorization header has token
+     * @param request
+     * @param response
+     * @param filterChain
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
-    protected void doFilterInternal(
-            @NonNull HttpServletRequest request,
-            @NonNull HttpServletResponse response,
-            @NonNull FilterChain filterChain
-    ) throws ServletException, IOException {
-        final String authHeader = request.getHeader("Authorization");
+    protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
+        /*
+        * Retrieving the value of authorization from header
+        * Ex.
+        * headers: {
+        *   Authorization: Bearer <Token>
+        * }
+        * */
+        final String authenticationHeader = request.getHeader("Authorization");
         final String jwtToken;
         final String username;
-        if(authHeader == null || !authHeader.startsWith("Bearer")){
+        /*
+        * If header is null or doesn't contain the bearer token
+        * then call filter chain to call/invoke the next filter
+        * */
+        if(authenticationHeader == null || !authenticationHeader.startsWith("Bearer")){
             filterChain.doFilter(request, response);
             return;
         }
-        jwtToken = authHeader.substring(7);
-        username = jwtService.extractUsername(jwtToken);
+        jwtToken = authenticationHeader.substring(7); // Extract the jwtToken
+        username = jwtService.getUsername(jwtToken);
+        /*
+        * Check if securityContextHolder has user credentials saved
+        * If current user credentials have not been saved into our securityContextHolder
+        * authenticate user and token while
+        * */
         if(username != null && SecurityContextHolder.getContext().getAuthentication() == null){
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
-            if(jwtService.isTokenValid(jwtToken, userDetails)){
+            if(jwtService.isValid(jwtToken, userDetails)){
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails,
                         null,
