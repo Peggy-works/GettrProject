@@ -6,20 +6,22 @@ const instance = axios.create({
 })
 
 function getAllUserInfo(){
-    let json = null;
     axios.get('http://localhost:8080/user/getUserInfo')
     .then((response)=>{
-        if(response.data.length>0){
-            json = JSON.parse(response.data);
+        if(response.data.length>0 && response.data){
+            const temp = new Map();
+            if(response.data != null){
+                for(let i = 0; i < response.data.length; i++) {
+                    temp.set(response.data[i].username,response.data[i].id);
+                }
+            }
+            return temp;
         }
+    }).catch((error)=>{
+        console.log(error);
     });
-    const temp = new Map();
-    if(json != null){
-        for(let i = 0; i < json.length; i++) {
-            temp.set(json[i].username,json[i].id);
-        }
-    }
-    return temp;
+ 
+    return new Map();
 }
 
 export{getAllUserInfo}

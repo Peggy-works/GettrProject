@@ -17,25 +17,28 @@ function getUserMessages(){
     //     //headers:{'Authorization': `Bearer ${localStorage.getItem('user').token}`}
     // }
     // const json = JSON.parse(await axios.get(config));
-    let json = null;
+    //let json = null;
     //console.log('http://localhost:8080/user/getUserMessages/'+(JSON.parse(localStorage.getItem('user')).id));
     axios.get('http://localhost:8080/user/getUserMessages/'+(JSON.parse(localStorage.getItem('user')).id))
     .then((response)=>{
-        if(response.data.length>0){
-            json = JSON.parse(response.data);
-        }
-    });
-    if(json === null || Object.keys(json).length === 0) {return new Map();}
-    else{
-        let tempMap = new Map();
-        for(let i = 0; i < json.length; i++) {
-            tempMap.set(json[i].messagesMapId.username_to,[]);
-            for(let j = 0; j < json[i].messages.length; j++){
-                tempMap.get(json[i].messagesMapId.username_to).push(json[i].messages[j]);
+        if(response.data.length>0 && response.data){
+            //json = JSON.parse(response.data);
+            if(response.data === null || Object.keys(response.data).length === 0) {return new Map();}
+            else{
+                let tempMap = new Map();
+                for(let i = 0; i < response.data.length; i++) {
+                    tempMap.set(response.data[i].messagesMapId.username_to,[]);
+                    for(let j = 0; j < response.data[i].messages.length; j++){
+                        tempMap.get(response.data[i].messagesMapId.username_to).push(response.data[i].messages[j]);
+                    }
+                }
+                return tempMap;
             }
         }
-        return tempMap;
-    }
+    }).catch((error)=>{
+        console.log(error);
+    })
+    return new Map();
 }
 
 // const registerUser =()=>{

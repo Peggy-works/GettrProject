@@ -322,8 +322,7 @@ const Messages = () => {
     new state.*/
     //const classes = useStyles();
 
-    useEffect(()=>{
-        console.log("in USE EFFECT");
+    useEffect(()=>{ // will run once, as soon as component mounts
         const registerUser =async()=>{
             if(stompClient !== null){
                 await stompClient.disconnect();
@@ -351,11 +350,17 @@ const Messages = () => {
     )
 
     const [privateChats,setPrivateChats] = useState(
-        new Map() // map for key value pairs ("sender name",[]chats sent and recieved)
+        //initialPrivateMessages // map for key value pairs ("sender name",[]chats sent and recieved)
+        getUserMessages()
+    )
+
+    const [userInfo,setUserInfo] = useState(
+        getAllUserInfo()
     )
 
     const [tab,setTab] = useState({
-        currTab:"CHATROOM"
+        currTab:"CHATROOM", // will hold user name
+        id:null             // will hold userId
     })
 
     // will handle username and message value
@@ -407,6 +412,7 @@ const Messages = () => {
     const userJoin =()=>{
         let chatMessage={
             senderName:userData.username,
+            senderId:userData.userId,
             status:'JOIN'
         };
         stompClient.send('/app/message',{},JSON.stringify(chatMessage));
@@ -419,6 +425,10 @@ const Messages = () => {
                 if(!privateChats.get(payloadData.senderName)){ // if new user joins chat room, and sends chat to public, then the user id will be added to all user listeners to /public local map
                     privateChats.set(payloadData.senderName,[]);
                     setPrivateChats(new Map(privateChats));
+                }
+                if(!userInfo.get(payloadData.senderName)){  // updating user info
+                    userInfo.set(payloadData.senderName,payloadData.userId);
+                    setUserInfo(new Map(userInfo));
                 }
                 break;
             case "MESSAGE": // case for MESSAGE status (public)
@@ -461,7 +471,9 @@ const Messages = () => {
         if(stompClient){
             let chatMessage={
                 senderName:userData.username,
+                senderId:userData.userId,
                 receiverName:tab.currTab,
+                receiverId:tab.id,
                 message:userData.message,
                 status:'MESSAGE'
             };
