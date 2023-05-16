@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer } from 'react';
 
-// useContext: manage state globally
+// Context: manage state globally
 // Dispatch: Update Component 
 const PostsContext = createContext(null);
 const PostsDispatchContext = createContext(null);
@@ -9,7 +9,10 @@ const PostsDispatchContext = createContext(null);
 export function PostsProvider({ children }) {
     const [posts, dispatch] = useReducer(
         postsReducer,
+
+        // replace with local storage / database
         initialPosts
+        
     );
 
     return (
@@ -53,7 +56,34 @@ function postsReducer(posts, action) {
 
 // Test Posts
 const initialPosts = [
-    { id: 0, title: "Project A", description: "bruh", username: "[userA]"},
-    { id: 1, title: "Project B", description: "deez", username: "[userB]"},
-    { id: 2, title: "Project C", description: "yeat", username: "[userC]"}
+    {
+        id: 1052,
+        title: "testing posting 1",
+        description: "Hello world1, im here.",
+        likes: 10,
+        poster_id: 1951,
+        poster_name: "Peggster",
+        usernames: ["Peggster","Peggster"],
+        comments: ["damn finals suck", "get off the fucking main branch"]
+    },
+    {
+        id: 1053,
+        title: "testing posting 2",
+        description: "Hello",
+        likes: 9,
+        poster_id: 1952,
+        poster_name: "Mijo",
+        usernames: ["Peggster", "Peggster"],
+        comments: ["damn son", "soooooooooooooooooooooooo......................"]
+    },
+    {
+        id: 1054,
+        title: "testing posting 3",
+        description: "Hola soy dora",
+        likes: 2,
+        poster_id: 1953,
+        poster_name: "Bruh",
+        usernames: ["Mijo", "Peggster"],
+        comments: ["yolo", "thats crazy"]
+    }
 ];
