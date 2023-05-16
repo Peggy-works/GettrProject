@@ -13,7 +13,7 @@ function getUserMessages(){
     return new Promise((resolve,reject) => {
         axios.get('http://localhost:8080/user/getUserMessages/'+(JSON.parse(localStorage.getItem('user')).id))
         .then((response)=>{
-            if(response.data.length>0 && response.data){
+            if(response.data.length>0 && response.data !== undefined){
                 let tempMap = new Map();
                 for(let i = 0; i < response.data.length; i++) {
                     tempMap.set(response.data[i].messagesMapId.username_to,[]);
@@ -23,6 +23,7 @@ function getUserMessages(){
                 }
                 resolve(tempMap);
             }
+            resolve(new Map());
         })
         .catch((error)=>{
             console.log(error);
@@ -38,8 +39,13 @@ async function fetchUserMessages() {
     } catch (error) {
       console.log(error);
     }
-  }
+}
+
+function sendMessage(payload) {
+    console.log(payload);
+    axios.put('http://localhost:8080/user/addMessage/'+(JSON.parse(localStorage.getItem('user')).id),payload)
+}
 
 
 
-export{fetchUserMessages}
+export{fetchUserMessages,sendMessage}

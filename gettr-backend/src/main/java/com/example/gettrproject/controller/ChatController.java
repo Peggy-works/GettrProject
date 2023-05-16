@@ -42,7 +42,7 @@ public class ChatController {
         //userService.findById(message.getReceiverId()).get().getMessages().add(message); // adding message to user receiver list
         //userService.findById(message.getSenderId()).get().getMessages().add(message);   // adding message to user sender list
 
-        userService.addMessage(message);
+        //userService.addMessage(message);
 
         return message;
     }
