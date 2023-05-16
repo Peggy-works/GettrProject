@@ -13,7 +13,7 @@ const StyledModal = styled(Modal)({
 
 // Clear Form on Submit + Return Values
 const formReducer = (state, event) => {
-    if(event.reset) {
+    if (event.reset) {
         return {
             title: "",
             description: ""
@@ -40,14 +40,14 @@ export default function Add() {
 
     /*  onSubmit
             - Prevent Browser from Reloading Page
-            - Send Data to Database
             - Notify User Post is Submit
-            - Reset Form + Close Popup      */
-        const handleSubmit = (e) => {
+            - Reset Form + Close Popup
+            - Send Data to Local Database      */
+    const handleSubmit = (e) => {
         e.preventDefault()
         setSubmitting(true)
         setDisable(true)
-        
+
         setTimeout(() => {
             setSubmitting(false)
             setOpen(false)
@@ -57,23 +57,27 @@ export default function Add() {
             })
         }, 2000)
 
-        // Make Form Object w/Post Info
+        /* (testing)
+        // Make Form Object w/Post Info 
         const form = e.target
         const formData = new FormData(form)
 
         // Work with Data as Plain Object
         const formJson = Object.fromEntries(formData.entries())
         console.log(formJson)
+        */
+        
+        //localStorage.setItem()
 
     }
 
     /* Pulls Data from event.target + passes object to setFormData */
     const handleChange = event => {
         setFormData({
-        name: event.target.name,
-        value: event.target.value,
-    });
-}
+            name: event.target.name,
+            value: event.target.value,
+        });
+    }
 
     return (
         <>
@@ -124,22 +128,25 @@ export default function Add() {
                         />
 
                         <Button
-                        
-                        onClick={() => {
-                            if(formData.title != undefined && formData.description != undefined){
-                                dispatch({
-                                    type: 'added',
-                                    id: nextId++,
-                                    title: formData.title,
-                                    description: formData.description,
-                                    username: formData.username,
-                                })
-                            }
-                        }}
+
+                            onClick={() => {
+                                if (formData.title !== undefined && formData.description !== undefined) {
+                                    dispatch({
+                                        type: 'added',
+                                        id: formData.id,
+                                        title: formData.title,
+                                        description: formData.description,
+                                        likes: formData.likes,
+                                        poster_id: formData.poster_id,
+                                        usernames: formData.usernames,
+                                        comments: formData.comments
+                                    })
+                                }
+                            }}
                             type='submit'
                             disabled={disable}
                             sx={{ left: 160, top: 10 }}>
-                        Post
+                            Post
                         </Button>
                     </Box>
                 </form>
@@ -147,6 +154,3 @@ export default function Add() {
         </>
     )
 }
-
-// temp Id setting
-let nextId = 10

@@ -1,23 +1,43 @@
 import { Favorite, FavoriteBorder, Delete, Message } from '@mui/icons-material'
 import { Card, CardHeader, IconButton, CardContent, Typography, CardActions, Checkbox, Tooltip } from '@mui/material'
 import React from 'react'
-import { authenticate, register } from '../api/AuthApi.js';
-import axios from 'axios';
+//import { authenticate, register } from '../api/AuthApi.js';
+//import axios from 'axios';
 
 import { usePosts } from './PostsContext'
 import { Link } from 'react-router-dom'
 
 export default function PostList() {
+  
+  // get posts from database (.get = usePosts())
   const posts = usePosts()
 
-  /*  - Empty Fragment Used to Render Multiple Posts
-      - Posts.slice(0).reverse().map -> newest post first */
   return <>
     {posts.slice(0).reverse().map(post => (
       <Post post={post} key={post.id} />
     ))}
   </>
 }
+
+
+
+
+
+// Specific Post Thread
+export function ThreadPost() {
+  let id = window.location.search.slice(1)
+  const posts = usePosts()
+
+  posts.find(post => post.id === id)
+
+  return (
+    <div>bruh</div>
+  )
+}
+
+
+
+
 
 
 function Post({ post }) {
@@ -60,7 +80,7 @@ axios.post('http://localhost:8080/api/auth/authenticate',
     <Card sx={{ maxWidth: 5000, margin: 4 }}>
       <CardHeader
         title={post.title}
-        subheader={post.username}
+        subheader={post.poster_name}
       />
 
       <CardContent>
@@ -73,18 +93,22 @@ axios.post('http://localhost:8080/api/auth/authenticate',
 
       <CardActions disableSpacing>
         <IconButton aria-label="favorite-post">
-          <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: "#002E5A" }} />} />
+          <Checkbox icon={<FavoriteBorder/>} checkedIcon={<Favorite sx={{ color: "#002E5A" }} />}/>
         </IconButton>
 
-        <Link to="PostComments">
+        <Typography paddingRight={1}>
+          {post.likes}
+        </Typography>
+
+        <Link to="PostComments?id=${post.id}">
           <IconButton>
             <Message/>
-          </IconButton>
+          </IconButton> 
         </Link>
 
         <Tooltip title="Delete">
           <IconButton>
-            <Delete />
+            <Delete/>
           </IconButton>
         </Tooltip>
 

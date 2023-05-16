@@ -101,8 +101,6 @@ function ResponsiveAppBar() {
           <Typography
             variant="h5"
             noWrap
-            //component="a"
-            //href="Dashboard"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -154,6 +152,7 @@ function ResponsiveAppBar() {
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}
                     <Link
+                      //localStorage.clear()
                       style={{ textDecoration: "none", color: "white" }}
                       to={`/${setting}`}>
                       {setting}
