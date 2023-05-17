@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from 'react';
 import { signupFields } from "../constants/formFields"
 import Input from "./Input";
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import { register } from '../api/AuthApi.js'
 import PasswordMeter from "./PasswordMeter";
 import { useNavigate } from 'react-router-dom';
@@ -19,6 +18,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import TungstenOutlinedIcon from '@mui/icons-material/TungstenOutlined';
 
 
 function Copyright(props) {
@@ -165,8 +165,8 @@ useEffect(() => {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-          </Avatar>
+          <TungstenOutlinedIcon sx={{ m: 1, size: "large" }}/>
+          
           <Typography component="h1" variant="h4">
            Join the Community
           </Typography>
