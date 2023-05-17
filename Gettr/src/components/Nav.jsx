@@ -13,7 +13,7 @@ const settings = ['Logout']
 
 // Disables Navbar if User is not Logged In
 function checkLogin() {
-  if (localStorage.getItem('token') == null) {
+  if (JSON.parse(localStorage.getItem('user')).token == null) {
     window.location.assign("\Signup")
   }
 }

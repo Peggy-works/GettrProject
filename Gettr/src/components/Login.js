@@ -17,6 +17,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider} from '@mui/material/styles'; 
 import TungstenIcon from '@mui/icons-material/Tungsten'
 
+
 function Copyright(props){
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -43,6 +44,7 @@ export default function Login(){
     const [success, setSuccess] = useState(false);
 
 
+
     useEffect(() => {
         setErrorMsg('');
     }, [username, password])
@@ -52,13 +54,19 @@ export default function Login(){
         console.log(username, password)
         authenticate(username, password)
             .then(response => {
-                console.log(response.data.token);
-                localStorage.setItem("token", response.data.token);
-                //localStorage.setItem("username", response.data.username);
-                localStorage.setItem("user", response.data);
-                localStorage.setItem("username", response.data.username);
-                console.log(localStorage.getItem("username")); 
+
+                // console.log(response.data.token);
+                // localStorage.setItem("token", response.data.token);
+                // //localStorage.setItem("username", response.data.username);
+                // localStorage.setItem("user", response.data);
+                // localStorage.setItem("username", response.data.username);
+                // console.log(localStorage.getItem("username")); 
+                console.log(response.data);
+                localStorage.setItem('user',JSON.stringify(response.data));
+                console.log(JSON.parse(localStorage.getItem('user')).id);
                 navigate("/Dashboard")
+
+                
             })
             .catch(error => {
                 console.log(error);
