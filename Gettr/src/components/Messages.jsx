@@ -19,6 +19,7 @@ import Fab from '@mui/material/Fab';
 import SendIcon from '@mui/icons-material/Send';
 import{fetchUserMessages,sendMessage} from '../api/MessagesApi.js';
 import { fetchUserInfo } from '../api/UserApi.js';
+import { borderRadius, padding } from '@mui/system';
 
 var stompClient = null;
 const theme = createTheme({
@@ -36,9 +37,26 @@ const theme = createTheme({
       borderRight: '1px solid #e0e0e0'
   },
   messageArea: {
-    height: '70vh',
+    height: '77vh',
     overflowY: 'auto'
-  }
+  },
+  chatSelf:{
+    backgroundColor: '#c5c8e0',
+    padding:'10px',
+    borderRadius:'5px',
+    //display: 'inline-flex',
+    align:'left'
+  },
+  chatOut:{
+    backgroundColor: '#9bd996',
+    padding:'10px',
+    borderRadius:'5px',
+    //display: 'inline-flex',  
+    align:'right'
+    },
+    divWidth:{
+        width:'50%'
+    }
 });
 
 
@@ -276,7 +294,7 @@ const Messages = () => {
                 <List>
                     <ListItem key="User">
                         <ListItemIcon>
-                        <Avatar alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/1.jpg" />
+                        <Avatar alt={userData.username} src="https://i.ytimg.com/vi/T4ZSspHXjt8/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AHuBIAC4AOKAgwIABABGFUgVChlMA8=&rs=AOn4CLC0NrTivpwu2erx_yCuXGjQJAGA8w" />
                         </ListItemIcon>
                         <ListItemText primary={userData.username}></ListItemText>
                     </ListItem>
@@ -337,7 +355,7 @@ const Messages = () => {
             </Grid>
             <Grid item xs={9}>
             { tab.currTab != "" &&
-                <List style={theme.messageArea}>
+                <List style={theme.messageArea} >
                     {/* <ListItem key="1">
                         <Grid container>
                             <Grid item xs={12}>
@@ -372,13 +390,23 @@ const Messages = () => {
                         [...privateChats.get(tab.currTab)].map((chat,index)=>(
                             <ListItem key={index}>
                                 <Grid container>
-                                    <Grid item xs={12}>
-                                        {chat.senderName === userData.username && <ListItemText align="left" primary={chat.message}></ListItemText>}
-                                        {chat.senderName !== userData.username && <ListItemText align="right" primary={chat.message}></ListItemText>}
+                                    <Grid item xs={12} >
+                                        <Grid container columns={2}>
+                                            { chat.senderName === userData.username &&
+                                            <Grid item xs='auto' justifyContent='left' alignItems='flex-start'>
+                                                {chat.senderName === userData.username && <ListItemText primary={chat.message}  style= {theme.chatSelf} align="left" ></ListItemText>}
+                                            </Grid>
+                                            }
+
+                                            {chat.senderName !== userData.username && <Grid item xs></Grid>}
+
+                                            { chat.senderName !== userData.username &&
+                                            <Grid item xs='auto' justifyContent='right' alignItems='flex-end'>
+                                                {chat.senderName !== userData.username && <ListItemText primary={chat.message} style={theme.chatOut} align="right"></ListItemText>}
+                                            </Grid>
+                                            }  
+                                        </Grid>
                                     </Grid>
-                                    {/* <Grid item xs={12}>
-                                        <ListItemText align="right" secondary="09:30"></ListItemText>
-                                    </Grid> */}
                                 </Grid>
                             </ListItem>
                         ))
@@ -386,7 +414,7 @@ const Messages = () => {
                 </List>
             }
                 <Divider />
-                <Grid container style={{padding: '20px'}}>
+                <Grid container style={{padding: '10px'}}>
                     <Grid item xs={11}>
                         <TextField id="outlined-basic-email" label="Type Something" fullWidth name = 'message' value={userData.message} onChange={handleValue}/>
                     </Grid>
