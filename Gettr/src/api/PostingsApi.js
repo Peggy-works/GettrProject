@@ -25,16 +25,14 @@ function getPost(token, id){
 function newPost(title, description, username, token){
     return axios.post('http//localhost:8080/post/newPost',
     {
-        {
-            "title": title,
-            "description": description,
-            "username": username
-        },
-        headers:{
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-            "Authorization": `Bearer ${token}`
-        }
+        "title": title,
+        "description": description,
+        "username": username
+    },
+    headers:{
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Authorization": `Bearer ${token}`
     })
 }
 
@@ -51,16 +49,14 @@ function upVote(id, token){
 function addComment(userId, postId, text, token){
      return axios.post('http//localhost:8080/post/addComment,
      {
-         {
-            "user_id": userId,
-            "post_id": postId,
-            "text": text
-         },
-         headers:{
-             "Content-Type": "application/json",
-             "Access-Control-Allow-Origin": "*",
-             "Authorization": `Bearer ${token}`
-         }
+        "user_id": userId,
+        "post_id": postId,
+        "text": text
+     },
+     headers:{
+         "Content-Type": "application/json",
+         "Access-Control-Allow-Origin": "*",
+         "Authorization": `Bearer ${token}`
      })
 }
 
