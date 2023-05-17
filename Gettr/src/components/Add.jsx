@@ -57,17 +57,15 @@ export default function Add() {
             })
         }, 2000)
 
-        /* (testing)
-        // Make Form Object w/Post Info 
+        //Make Form Object w/Post Info
         const form = e.target
         const formData = new FormData(form)
 
         // Work with Data as Plain Object
         const formJson = Object.fromEntries(formData.entries())
+
+        //console.log(localStorage.getItem('username'))
         console.log(formJson)
-        */
-        
-        //localStorage.setItem()
 
     }
 
@@ -75,7 +73,7 @@ export default function Add() {
     const handleChange = event => {
         setFormData({
             name: event.target.name,
-            value: event.target.value,
+            value: event.target.value
         });
     }
 
@@ -138,6 +136,7 @@ export default function Add() {
                                         description: formData.description,
                                         likes: formData.likes,
                                         poster_id: formData.poster_id,
+                                        username: formData.username,
                                         usernames: formData.usernames,
                                         comments: formData.comments
                                     })

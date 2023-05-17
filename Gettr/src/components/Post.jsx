@@ -51,7 +51,7 @@ function Post({ post }) {
     <Card sx={{ maxWidth: 5000, margin: 4 }}>
       <CardHeader
         title={post.title}
-        subheader={post.poster_name}
+        subheader={post.username}
       />
 
       <CardContent>
@@ -63,12 +63,11 @@ function Post({ post }) {
       </CardContent>
 
       <CardActions disableSpacing>
-        <IconButton aria-label="favorite-post">
-          <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: "#002E5A" }} />} />
+        <IconButton>
+          <Checkbox icon={<FavoriteBorder/>} checkedIcon={<Favorite sx={{ color: "#002E5A" }} />} />
         </IconButton>
 
-        <Typography paddingRight={1}>
-          {post.likes}
+        <Typography paddingRight={0}>
         </Typography>
 
         <Link to="PostComments?id=${post.id}">

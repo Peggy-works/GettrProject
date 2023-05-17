@@ -55,6 +55,7 @@ export default function Login(){
             .then(response => {
                 console.log(response.data.token);
                 localStorage.setItem("token", response.data.token);
+                //localStorage.setItem("username", response.data.username);
                 localStorage.setItem("user", response.data);
                 getPosts(localStorage.getItem("token"))
                 .then(response => {

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Button, MenuItem } from '@mui/material'
+import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Button, MenuItem, Avatar } from '@mui/material'
 
 import MenuIcon from '@mui/icons-material/Menu'
 import TungstenIcon from '@mui/icons-material/Tungsten'
@@ -23,10 +23,12 @@ function deleteItems() {
   localStorage.clear();
 }
 
+//function 
+
 function ResponsiveAppBar() {
 
-  // Kicks out Nonusers (1 min)
-  setTimeout(checkLogin, 60000)
+  // Kicks out Nonusers
+  setTimeout(checkLogin, 600000)
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -145,7 +147,9 @@ function ResponsiveAppBar() {
 
           <Box sx={{ flexGrow: 0 }}>
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <div>[user]</div>
+              <Avatar 
+                sx={{ bgcolor: "#002E5A" }}
+                src="/broken-image.jpg"/>
             </IconButton>
             <Menu
               sx={{ mt: '45px' }}

@@ -1,4 +1,6 @@
-import { createContext, useContext, useReducer } from 'react';
+import { createContext, useContext, useReducer } from 'react'
+import { getPosts, getPost } from '../api/PostingsApi.js'
+import { newPost } from '../api/PostingsApi.js'
 
 // Context: manage state globally
 // Dispatch: Update Component 
@@ -9,10 +11,7 @@ const PostsDispatchContext = createContext(null);
 export function PostsProvider({ children }) {
     const [posts, dispatch] = useReducer(
         postsReducer,
-
-        // replace with local storage / database
         initialPosts
-        
     );
 
     return (
@@ -26,6 +25,12 @@ export function PostsProvider({ children }) {
 
 // Reads Posts (globally)
 export function usePosts() {
+    //const data = new FormData(event.currentTarget)
+
+    //newPost(title, description, username)
+    //    .then(response => console.log(response))
+    //    .catch(error => console.log(error))
+
     return useContext(PostsContext)
 }
 
@@ -42,7 +47,12 @@ function postsReducer(posts, action) {
                 id: action.id,
                 title: action.title,
                 description: action.description,
-                username: action.username
+                username: action.username,
+                likes: action.likes,
+                poster_id: action.poster_id,
+                poster_name: action.poster_name,
+                usernames: action.usernames,
+                comments: action.comments
             }];
         }
         case 'deleted': {
@@ -62,8 +72,8 @@ const initialPosts = [
         description: "Hello world1, im here.",
         likes: 10,
         poster_id: 1951,
-        poster_name: "Peggster",
-        usernames: ["Peggster","Peggster"],
+        username: "Peggster",
+        usernames: ["Peggster", "Peggster"],
         comments: ["damn finals suck", "get off the fucking main branch"]
     },
     {
@@ -72,7 +82,7 @@ const initialPosts = [
         description: "Hello",
         likes: 9,
         poster_id: 1952,
-        poster_name: "Mijo",
+        username: "Mijo",
         usernames: ["Peggster", "Peggster"],
         comments: ["damn son", "soooooooooooooooooooooooo......................"]
     },
@@ -82,7 +92,7 @@ const initialPosts = [
         description: "Hola soy dora",
         likes: 2,
         poster_id: 1953,
-        poster_name: "Bruh",
+        username: "Bruh",
         usernames: ["Mijo", "Peggster"],
         comments: ["yolo", "thats crazy"]
     }
