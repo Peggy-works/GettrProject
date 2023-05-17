@@ -3,7 +3,7 @@ import { loginFields } from "../constants/formFields";
 import Input from "./Input";
 import ReCAPTCHA from "react-google-recaptcha"
 import { authenticate } from '../api/AuthApi.js'
-
+import { useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -32,11 +32,12 @@ function Copyright(props){
 
 const theme = createTheme();
 
+
 export default function Login(){
 
     const userRef = useRef();
     const errRef = useRef();
-
+    const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setErrorMsg] = useState("");
@@ -55,6 +56,7 @@ export default function Login(){
                 console.log(response.data.token);
                 localStorage.setItem("token", response.data.token);
                 localStorage.setItem("user", response.data);
+                navigate("/Dashboard")
             })
             .catch(error => {
                 console.log(error);

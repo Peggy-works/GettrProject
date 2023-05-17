@@ -14,13 +14,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000/")
 @RestController
 @RequestMapping("/post")
 @RequiredArgsConstructor
-/*
-* Controller class that handles "/post/**" endpoints,
-* @Author Angel Samora
-* */
 public class PostController {
 
     //private final PostService postService;
