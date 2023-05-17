@@ -4,10 +4,9 @@ import React from 'react'
 
 import { usePosts } from './PostsContext'
 import { Link } from 'react-router-dom'
+import { getPost } from '../api/PostingsApi.js'
 
 export default function PostList() {
-
-  // get posts from database (.get = usePosts())
   const posts = usePosts()
 
   return <>  
@@ -17,18 +16,12 @@ export default function PostList() {
   </>
 }
 
+// Deletes Post (Database)
+function deletePost() {
 
-export function deletePost() {
-  //const userMatchA = getPost()
-  //const userMatchB = localStorage.getItem("")
-
-  //if (userMatchA == userMatchB) {
-    //localStorage.removeItem(<Post/>)
-
-    //getPosts.removeItem(<Post/>)
-  //}
-
-  return
+    deletePost(localStorage.getItem("token"), 52)
+        .then(response => console.log(response))
+        .catch(error => console.log(error));
 }
 
 

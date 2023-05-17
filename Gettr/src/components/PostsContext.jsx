@@ -1,6 +1,5 @@
 import { createContext, useContext, useReducer } from 'react'
-import { getPosts, getPost } from '../api/PostingsApi.js'
-import { newPost } from '../api/PostingsApi.js'
+import { getPosts } from '../api/PostingsApi.js'
 
 // Context: manage state globally
 // Dispatch: Update Component 
@@ -59,54 +58,16 @@ function postsReducer(posts, action) {
 
 
 function callDatabase () {
-getPosts(localStorage.getItem("token"))
-    .then(response => {
-        setTimeout(30000)
+    getPosts(localStorage.getItem("token"))
+        .then(response => {
+            setTimeout(30000)
 
+            postArray = response.data
 
-        //postArray.push(response.data)
-        postArray = response.data
-
-
-        // comment out after test
-        console.log(postArray)
-    })
+            // comment out after test
+            console.log(postArray)
+        })
 }
 
 let postArray = []
 callDatabase(postArray)
-
-
-/* list of posts
-let postArray = [
-    {
-        id: 1052,
-        title: "testing posting 1",
-        description: "Hello world1, im here.",
-        likes: 10,
-        poster_id: 1951,
-        poster_name: "Peggster",
-        usernames: ["Peggster", "Peggster"],
-        comments: ["damn finals suck", "get off the fucking main branch"]
-    },
-    {
-        id: 1053,
-        title: "testing posting 2",
-        description: "Hello",
-        likes: 9,
-        poster_id: 1952,
-        poster_name: "Mijo",
-        usernames: ["Peggster", "Peggster"],
-        comments: ["damn son", "soooooooooooooooooooooooo......................"]
-    },
-    {
-        id: 1054,
-        title: "testing posting 3",
-        description: "Hola soy dora",
-        likes: 2,
-        poster_id: 1953,
-        poster_name: "Bruh",
-        usernames: ["Mijo", "Peggster"],
-        comments: ["yolo", "thats crazy"]
-    }
-];*/
