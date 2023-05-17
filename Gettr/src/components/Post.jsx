@@ -1,14 +1,12 @@
 import { Favorite, FavoriteBorder, Delete, Message } from '@mui/icons-material'
 import { Card, CardHeader, IconButton, CardContent, Typography, CardActions, Checkbox, Tooltip } from '@mui/material'
 import React from 'react'
-//import { authenticate, register } from '../api/AuthApi.js';
-//import axios from 'axios';
 
 import { usePosts } from './PostsContext'
 import { Link } from 'react-router-dom'
 
 export default function PostList() {
-  
+
   // get posts from database (.get = usePosts())
   const posts = usePosts()
 
@@ -20,7 +18,18 @@ export default function PostList() {
 }
 
 
+export function deletePost() {
+  //const userMatchA = getPost()
+  //const userMatchB = localStorage.getItem("")
 
+  //if (userMatchA == userMatchB) {
+    //localStorage.removeItem(<Post/>)
+
+    //getPosts.removeItem(<Post/>)
+  //}
+
+  return
+}
 
 
 // Specific Post Thread
@@ -36,46 +45,8 @@ export function ThreadPost() {
 }
 
 
-
-
-
-
+// Make a Post using post formData (post)
 function Post({ post }) {
-/*
-const Post = () => {
-console.log("Hello from post.jsx");
-
-authenticate("Peggy", "12345")
-.then(response => {
-    console.log(response.data.token);
-    return response;
-})
-.catch(error => {
-    console.log(error);
-})
-
-/*
-axios.post('http://localhost:8080/api/auth/authenticate',
-    {
-        "username": "Peggy",
-        "password": "12345"
-    },
-    {
-        headers: {"Content-Type": "application/json"}
-    }
-)
-.then(response => {
-    console.log(response);
-    return response;
-})
-.then(data => {
-    console.log(data.token);
-})
-.catch(error => {
-    console.log(error);
-})
-*/
-
   return (
     <Card sx={{ maxWidth: 5000, margin: 4 }}>
       <CardHeader
@@ -93,7 +64,7 @@ axios.post('http://localhost:8080/api/auth/authenticate',
 
       <CardActions disableSpacing>
         <IconButton aria-label="favorite-post">
-          <Checkbox icon={<FavoriteBorder/>} checkedIcon={<Favorite sx={{ color: "#002E5A" }} />}/>
+          <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: "#002E5A" }} />} />
         </IconButton>
 
         <Typography paddingRight={1}>
@@ -103,14 +74,16 @@ axios.post('http://localhost:8080/api/auth/authenticate',
         <Link to="PostComments?id=${post.id}">
           <IconButton>
             <Message/>
-          </IconButton> 
+          </IconButton>
         </Link>
 
-        <Tooltip title="Delete">
-          <IconButton>
-            <Delete/>
-          </IconButton>
-        </Tooltip>
+        <div>
+          <Tooltip title="Delete">
+            <IconButton onClick={deletePost}>
+              <Delete />
+            </IconButton>
+          </Tooltip>
+        </div>
 
       </CardActions>
     </Card>
