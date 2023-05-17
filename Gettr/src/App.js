@@ -12,6 +12,8 @@ import PostComments from "./components/PostComments";
 import './App.css';
 import SignupPage from './pages/Signup';
 import LoginPage from './pages/Login';
+//import SignupPage from './components/Signup';
+//import LoginPage from './components/Login';
 
 function App() {
   return (
