@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin(allowedHeaders = {"Access-Control-Allow-Origin", "Authorization"})
+@CrossOrigin(allowedHeaders = {"Access-Control-Allow-Origin", "Authorization", "Content-Type"})
 @RestController
 @RequestMapping("/post")
 @RequiredArgsConstructor

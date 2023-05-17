@@ -71,7 +71,7 @@ function Post({ post }) {
             {post.likes}
         </Typography>
 
-        <Link to="PostComments?id=${post.id}">
+        <Link to={`PostComments?id=${post.id}`}> //here we redirect
           <IconButton>
             <Message/>
           </IconButton>

@@ -23,7 +23,7 @@ function getPost(token, id){
 }
 
 function newPost(title, description, username, token){
-    return axios.post('http//localhost:8080/post/newPost',
+    return axios.post('http://localhost:8080/post/newPost',
         {
             "title": title,
             "description": description,
@@ -38,26 +38,6 @@ function newPost(title, description, username, token){
         }
     )
 }
-
-/*
-
-function register(username, password, name) {
-    return axios.post('http://localhost:8080/api/auth/register',
-    {
-        "username": username,
-        'hashedPassword': password,
-        'name': name
-    },
-    {
-        headers: {
-            "Content-type": "application/json"
-        }
-    })
-}
-
-
-
-*/
 
 function upVote(id, token){
     return axios.put('http//localhost:8080/post/upVotePost' + `/${id}`,

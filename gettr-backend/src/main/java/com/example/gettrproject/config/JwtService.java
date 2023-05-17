@@ -30,7 +30,9 @@ public class JwtService {
     }
 
     /**
-     * Gets all the claims associated with the jwtToken and returns subject username.
+     * Function that extracts claims based on the function we pass through as a parameter,
+     * in our case used when getting username via getSubject() or getting expiration using getExpiration()
+     * from the jwt token.
      * @param jwtToken
      * @param claimsResolver
      * @param <T>
@@ -66,17 +68,13 @@ public class JwtService {
      * @return
      */
     public String generateToken(UserDetails userDetails){
-        /*
-        * Map<String, Object> claims = new HashMap<>();
-        * String subjectUsername = userDetails.getUsername;
-        * */
         Map<String, Object> claims = new HashMap<>();
         String subjectUsername = userDetails.getUsername();
         return generateToken(claims, subjectUsername);
     }
 
     /**
-     * function that builds the jwt token based off username and claims.
+     * function that generates a jwt token based off username and claims.
      * <pre>
      *     {@code
      *
@@ -118,15 +116,35 @@ public class JwtService {
                 .compact();
     }
 
+    /**
+     * function that validates the jwt token by extracting username from token and
+     * checking if it's the same username in userDetails
+     *
+     * @param jwtToken
+     * @param userDetails
+     * @return boolean
+     */
     public boolean isValid(String jwtToken, UserDetails userDetails){
         final String username = getUsername(jwtToken);
         return (username.equals(userDetails.getUsername())) && !isTokenExpired(jwtToken);
     }
 
+    /**
+     * Getting jwt token expiration value and checking if it's after the current date/time
+     * if it is then token is still eligible and returns false otherwise return true
+     * re.
+     * @param token
+     * @return boolean
+     */
     private boolean isTokenExpired(String token) {
         return getExpiration(token).before(new Date());
     }
 
+    /**
+     * Function that gets expiration date of the jwt token.
+     * @param token
+     * @return Date
+     */
     private Date getExpiration(String token) {
         return getClaim(token, Claims::getExpiration);
     }
@@ -134,7 +152,7 @@ public class JwtService {
     /**
      * function that decodes the current secret key
      * and returns a SecretKey object based on the HMAC-SHA algorithm
-     * @return
+     * @return Key
      */
     private Key getSignInKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);

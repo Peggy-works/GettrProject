@@ -54,9 +54,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-        jwtToken = authenticationHeader.substring(7); // Extract the jwtToken
-        username = jwtService.getUsername(jwtToken);
+        jwtToken = authenticationHeader.substring(7); // Get the token from header
+        username = jwtService.getUsername(jwtToken);             // Get username from token
         /*
+        * Here we check if username is null or if the securityContextHolder has already authenticated the user
+        * If not create a userDetails object which is already implemented in our user entity class
+        *
+        *
         * Check if securityContextHolder has user credentials saved
         * If current user credentials have not been saved into our securityContextHolder
         * authenticate user and token while

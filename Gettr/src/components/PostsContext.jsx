@@ -25,12 +25,10 @@ export function PostsProvider({ children }) {
 
 // Reads Posts (globally)
 export function usePosts() {
-    //const data = new FormData(event.currentTarget)
-
-    //newPost(title, description, username)
-    //    .then(response => console.log(response))
-    //    .catch(error => console.log(error))
-
+    getPosts(localStorage.getItem("token"))
+    .then(response => {
+        console.log(response);
+    })
     return useContext(PostsContext)
 }
 

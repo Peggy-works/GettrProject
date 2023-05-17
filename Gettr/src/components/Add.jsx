@@ -1,6 +1,6 @@
 import { Box, Button, Fab, Modal, TextField, Tooltip, Typography, styled } from '@mui/material'
 import { Add as AddIcon } from "@mui/icons-material"
-
+import { newPost } from '../api/PostingsApi.js';
 import React, { useReducer, useState } from 'react'
 import { usePostsDispatch } from './PostsContext'
 
@@ -63,9 +63,11 @@ export default function Add() {
 
         // Work with Data as Plain Object
         const formJson = Object.fromEntries(formData.entries())
-
-        //console.log(localStorage.getItem('username'))
         console.log(formJson)
+        let username = localStorage.getItem("username");
+        console.log(e.target.title.value);
+        newPost(e.target.title.value, e.target.description.value, username, localStorage.getItem("token"));
+        //localStorage.setItem()
 
     }
 
@@ -73,7 +75,7 @@ export default function Add() {
     const handleChange = event => {
         setFormData({
             name: event.target.name,
-            value: event.target.value
+            value: event.target.value,
         });
     }
 
@@ -136,7 +138,6 @@ export default function Add() {
                                         description: formData.description,
                                         likes: formData.likes,
                                         poster_id: formData.poster_id,
-                                        username: formData.username,
                                         usernames: formData.usernames,
                                         comments: formData.comments
                                     })
