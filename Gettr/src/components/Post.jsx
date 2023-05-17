@@ -67,7 +67,8 @@ function Post({ post }) {
           <Checkbox icon={<FavoriteBorder/>} checkedIcon={<Favorite sx={{ color: "#002E5A" }} />} />
         </IconButton>
 
-        <Typography paddingRight={0}>
+        <Typography paddingRight={1}>
+            {post.likes}
         </Typography>
 
         <Link to="PostComments?id=${post.id}">
