@@ -138,6 +138,7 @@ export default function Add() {
                                         description: formData.description,
                                         likes: formData.likes,
                                         poster_id: formData.poster_id,
+                                        poster_name: formData.poster_name,
                                         usernames: formData.usernames,
                                         comments: formData.comments
                                     })

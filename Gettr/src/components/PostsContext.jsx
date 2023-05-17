@@ -11,24 +11,19 @@ const PostsDispatchContext = createContext(null);
 export function PostsProvider({ children }) {
     const [posts, dispatch] = useReducer(
         postsReducer,
-        initialPosts
-    );
-
+        postArray
+    )
     return (
         <PostsContext.Provider value={posts}>
             <PostsDispatchContext.Provider value={dispatch}>
                 {children}
             </PostsDispatchContext.Provider>
         </PostsContext.Provider>
-    );
+    )
 }
 
 // Reads Posts (globally)
 export function usePosts() {
-    getPosts(localStorage.getItem("token"))
-    .then(response => {
-        console.log(response);
-    })
     return useContext(PostsContext)
 }
 
@@ -62,15 +57,35 @@ function postsReducer(posts, action) {
     }
 }
 
-// Test Posts
-const initialPosts = [
+
+function callDatabase () {
+getPosts(localStorage.getItem("token"))
+    .then(response => {
+        setTimeout(20000)
+
+
+        //postArray.push(response.data)
+        postArray = response.data
+
+
+        // comment out after test
+        console.log(postArray)
+    })
+}
+
+let postArray = []
+callDatabase(postArray)
+
+
+/* list of posts
+let postArray = [
     {
         id: 1052,
         title: "testing posting 1",
         description: "Hello world1, im here.",
         likes: 10,
         poster_id: 1951,
-        username: "Peggster",
+        poster_name: "Peggster",
         usernames: ["Peggster", "Peggster"],
         comments: ["damn finals suck", "get off the fucking main branch"]
     },
@@ -80,7 +95,7 @@ const initialPosts = [
         description: "Hello",
         likes: 9,
         poster_id: 1952,
-        username: "Mijo",
+        poster_name: "Mijo",
         usernames: ["Peggster", "Peggster"],
         comments: ["damn son", "soooooooooooooooooooooooo......................"]
     },
@@ -90,8 +105,8 @@ const initialPosts = [
         description: "Hola soy dora",
         likes: 2,
         poster_id: 1953,
-        username: "Bruh",
+        poster_name: "Bruh",
         usernames: ["Mijo", "Peggster"],
         comments: ["yolo", "thats crazy"]
     }
-];
+];*/
