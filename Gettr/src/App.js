@@ -1,7 +1,6 @@
 import { Box } from "@mui/material";
 
 import Dashboard from "./components/Dashboard";
-import ResponsiveAppBar from "./components/Nav";
 import Messages from "./components/Messages";
 import Signup from "./components/Signup";
 import About from "./components/About";
@@ -18,7 +17,6 @@ import LoginPage from './pages/Login';
 function App() {
   return (
     <Box>
-      <ResponsiveAppBar/>
       <Routes>
         <Route path="/" element={<LoginPage/>} />
         <Route path="/signup" element={<SignupPage/>} />
