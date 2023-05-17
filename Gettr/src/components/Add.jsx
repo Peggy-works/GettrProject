@@ -64,9 +64,9 @@ export default function Add() {
         // Work with Data as Plain Object
         const formJson = Object.fromEntries(formData.entries())
         console.log(formJson)
-        let username = localStorage.getItem("username");
+        let username = JSON.parse(localStorage.getItem('user')).username;
         console.log(e.target.title.value);
-        newPost(e.target.title.value, e.target.description.value, username, localStorage.getItem("token"));
+        newPost(e.target.title.value, e.target.description.value, username, JSON.parse(localStorage.getItem('user')).token);
         //localStorage.setItem()
 
     }

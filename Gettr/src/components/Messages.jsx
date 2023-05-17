@@ -17,6 +17,7 @@ import Fab from '@mui/material/Fab';
 import SendIcon from '@mui/icons-material/Send';
 import{fetchUserMessages,sendMessage} from '../api/MessagesApi.js';
 import { fetchUserInfo } from '../api/UserApi.js';
+import ResponsiveAppBar from './Nav'
 import { borderRadius, padding } from '@mui/system';
 
 var stompClient = null;
@@ -288,6 +289,7 @@ const Messages = () => {
   return (
     
 <div>
+<ResponsiveAppBar/>
   <ThemeProvider theme={theme}>
         <Grid container>
             <Grid item xs={12} >

@@ -59,7 +59,7 @@ function postsReducer(posts, action) {
 
 
 function callDatabase () {
-getPosts(localStorage.getItem("token"))
+getPosts(JSON.parse(localStorage.getItem('user')).token)
     .then(response => {
         setTimeout(30000)
 
