@@ -2,18 +2,17 @@ import { Favorite, FavoriteBorder, Delete, Message } from '@mui/icons-material'
 import { Card, CardHeader, IconButton, CardContent, Typography, CardActions, Checkbox, Tooltip } from '@mui/material'
 import React from 'react'
 
-import { getPosts, getPost } from '../api/PostingsApi.js'
 import { usePosts } from './PostsContext'
 import { Link } from 'react-router-dom'
-import PostsContext from './PostsContext'
 
 export default function PostList() {
+
+  // get posts from database (.get = usePosts())
   const posts = usePosts()
 
-  return <>
+  return <>  
     {posts.slice(0).reverse().map(post => (
       <Post post={post} key={post.id} />
-
     ))}
   </>
 }
@@ -52,7 +51,7 @@ function Post({ post }) {
     <Card sx={{ maxWidth: 5000, margin: 4 }}>
       <CardHeader
         title={post.title}
-        subheader={localStorage.getItem('username')}
+        subheader={post.username}
       />
 
       <CardContent>

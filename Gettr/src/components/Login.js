@@ -14,8 +14,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider} from '@mui/material/styles';
-import { getPosts } from '../api/PostingsApi.js';
+import { createTheme, ThemeProvider} from '@mui/material/styles'; 
 import TungstenIcon from '@mui/icons-material/Tungsten'
 
 function Copyright(props){
@@ -58,12 +57,7 @@ export default function Login(){
                 //localStorage.setItem("username", response.data.username);
                 localStorage.setItem("user", response.data);
                 localStorage.setItem("username", response.data.username);
-                console.log(localStorage.getItem("username"));
-                getPosts(localStorage.getItem("token"))
-                .then(response => {
-                    console.log(response);
-                })
-                .catch(error => console.log(error));
+                console.log(localStorage.getItem("username")); 
                 navigate("/Dashboard")
             })
             .catch(error => {

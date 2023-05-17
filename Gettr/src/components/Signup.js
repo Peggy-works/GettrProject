@@ -4,8 +4,7 @@ import Input from "./Input";
 import * as React from 'react';
 import { register } from '../api/AuthApi.js'
 import PasswordMeter from "./PasswordMeter";
-import { useNavigate } from 'react-router-dom';
-import { getPosts } from '../api/PostingsApi.js';
+import { useNavigate } from 'react-router-dom'; 
 
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -143,13 +142,10 @@ useEffect(() => {
       firstName: data.get('firstName'),
       lastName: data.get('lastName'),
       username: data.get('username'),
-    });
-    getPosts(localStorage.getItem("token"))
-    .then(response => console.log(response))
-    .catch(error => console.log(error));
+    }); 
     //API call to AuthApi.js
     register(data.get('username'), data.get('password'), data.get('firstName') + data.get('lastName'))
-         .then(response => {console.log(response.data.token); navigate("/#");})
+         .then(response => {console.log(response.data.token); navigate("/");})
          .catch(error => console.log(error));
 
 
