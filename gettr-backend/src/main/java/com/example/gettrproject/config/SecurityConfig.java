@@ -38,7 +38,7 @@ public class SecurityConfig {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/auth/**", "/api/auth/authenticate", "/public", "/index.html", "/post/**","/user/**")
+                .requestMatchers("/api/auth/**", "/api/auth/authenticate", "/public", "/index.html", "/user/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -49,6 +49,7 @@ public class SecurityConfig {
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
                 /*Configuring */
+        http.cors();
         return http.build();
     }
 

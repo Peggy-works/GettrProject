@@ -5,6 +5,7 @@ function getPosts(token) {
     {
         headers: {
             "Content-type": "application/json",
+            "Access-Control-Allow-Origin": "*",
             "Authorization": `Bearer ${token}`
         }
     })
@@ -15,6 +16,7 @@ function getPost(token){
     {
         headers: {
             "Content-type": "application/json",
+            "Access-Control-Allow-Origin": "*",
             "Authorization": `Bearer ${token}`
         }
     })

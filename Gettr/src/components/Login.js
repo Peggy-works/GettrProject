@@ -16,6 +16,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider} from '@mui/material/styles';
+import { getPosts } from '../api/PostingsApi.js';
 
 function Copyright(props){
   return (
@@ -56,6 +57,11 @@ export default function Login(){
                 console.log(response.data.token);
                 localStorage.setItem("token", response.data.token);
                 localStorage.setItem("user", response.data);
+                getPosts(localStorage.getItem("token"))
+                .then(response => {
+                    console.log(response);
+                })
+                .catch(error => console.log(error));
                 navigate("/Dashboard")
             })
             .catch(error => {
