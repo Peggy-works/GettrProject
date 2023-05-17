@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext} from 'react';
 import {over} from 'stompjs';
 import SockJS from 'sockjs-client';
 import './Messages.css'
@@ -19,6 +19,7 @@ import Fab from '@mui/material/Fab';
 import SendIcon from '@mui/icons-material/Send';
 import{fetchUserMessages,sendMessage} from '../api/MessagesApi.js';
 import { fetchUserInfo } from '../api/UserApi.js';
+import { UserContext } from './UserState';
 import { borderRadius, padding } from '@mui/system';
 
 var stompClient = null;
@@ -28,7 +29,7 @@ const theme = createTheme({
   },
   chatSection: {
     width: '100%',
-    height: '80vh'
+    height: '82vh'
   },
   headBG: {
       backgroundColor: '#e0e0e0'
@@ -37,7 +38,7 @@ const theme = createTheme({
       borderRight: '1px solid #e0e0e0'
   },
   messageArea: {
-    height: '77vh',
+    height: '80vh',
     overflowY: 'auto'
   },
   chatSelf:{
@@ -45,18 +46,43 @@ const theme = createTheme({
     padding:'10px',
     borderRadius:'5px',
     //display: 'inline-flex',
-    align:'left'
+    align:'left',
+    maxWidth: '400px',
+    whiteSpace: 'wrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis'
   },
-  chatOut:{
-    backgroundColor: '#9bd996',
-    padding:'10px',
-    borderRadius:'5px',
-    //display: 'inline-flex',  
-    align:'right'
+    chatOut:{
+        backgroundColor: '#9bd996',
+        padding:'10px',
+        borderRadius:'5px',
+        //display: 'inline-flex',  
+        align:'right',
+        maxWidth: '400px',
+        whiteSpace: 'wrap',
+        overflow: 'hidden',
+    textOverflow: 'ellipsis'
     },
     divWidth:{
         width:'50%'
-    }
+    },
+    mouse:{
+        cursor:'pointer'
+    },
+
+  selected:{
+    cursor:'pointer',
+    backgroundColor: "#C5C8E0",
+    borderRadius: '5px',
+    padding:'1%',
+    width: '100%'
+  },
+  notSelected:{
+    cursor:'pointer',
+    borderRadius: '5px',
+    padding:'1%',
+    width: '100%'
+  }
 });
 
 
@@ -85,10 +111,6 @@ const Messages = () => {
                 if(key != userData.username && !userInfo.has(key)){
                     userInfo.set(key,value);
                 }
-                
-                // if(key != userData.username && !privateChats.has(key)){
-                //     privateChats.set(key,value);
-                // }
             }
             setUserInfo(new Map(userInfo));
             setPrivateChats(new Map(privateChats));
@@ -107,11 +129,14 @@ const Messages = () => {
         }
         fetchData();
         registerUser();
+        console.log(user);
 
-        return async()=> {
+        return async()=> {  // clean up
             await stompClient.disconnect();
         }
     },[]);
+
+    const {user,setUser} = useContext(UserContext);
 
     const [userData,setUserData] = useState({
         username:JSON.parse(localStorage.getItem('user')).username,
@@ -121,10 +146,6 @@ const Messages = () => {
         connected:false,
         message:""
     });
-
-    const [publicChats, setPublicChats] = useState(
-        []  // local memory of public chat array
-    );
 
     const [privateChats,setPrivateChats] = useState(
         //initialPrivateMessages // map for key value pairs ("sender name",[]chats sent and recieved)
@@ -178,13 +199,6 @@ const Messages = () => {
     Overall, this code initializes a connection to a WebSocket endpoint using the SockJS library and the STOMP 
     protocol, and sets up callback functions to handle the connection status.*/ 
 
-    // const registerUser =()=>{
-    //     if(stompClient === null){
-    //         let Sock = new SockJS('http://localhost:8080/ws');
-    //         stompClient = over(Sock);
-    //         stompClient.connect({},onConnected,onError) // the {} can contain headers if need be
-    //     }
-    // }
 
     const onConnected =()=>{
         setUserData({...userData,"connected":true});
@@ -214,10 +228,6 @@ const Messages = () => {
                     userInfo.set(payloadData.senderName,payloadData.senderId);
                     setUserInfo(new Map(userInfo));
                 }
-                break;
-            case "MESSAGE": // case for MESSAGE status (public)
-                publicChats.push(payloadData);  // pushing entire json data into local memory 
-                setPublicChats([...publicChats]);    // updating use state // may not work
                 break;
             default:
                 console.log("This should never happen")
@@ -301,39 +311,26 @@ const Messages = () => {
                 </List>
                 <Divider />
                 <Grid item xs={12} style={{padding: '10px'}}>
-                    <TextField id="outlined-basic-email" label="Search" variant="outlined" fullWidth value = {userData.searchTerm} onChange={handleSearch}/>
+                    <TextField id="outlined-basic-email" label="Search for a user" variant="outlined" fullWidth value = {userData.searchTerm} onChange={handleSearch}/>
                 </Grid>
                 <Divider />
                 {privateChats.size > 0 && userData.searchTerm === "" &&
                     <List>
-                        {/* <ListItem button key="RemySharp">
-                            <ListItemIcon>
-                                <Avatar alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/1.jpg" />
-                            </ListItemIcon>
-                            <ListItemText primary="Remy Sharp">Remy Sharp</ListItemText>
-                            <ListItemText secondary="online" align="right"></ListItemText>
-                        </ListItem>
-                        <ListItem button key="Alice">
-                            <ListItemIcon>
-                                <Avatar alt="Alice" src="https://material-ui.com/static/images/avatar/3.jpg" />
-                            </ListItemIcon>
-                            <ListItemText primary="Alice">Alice</ListItemText>
-                        </ListItem>
-                        <ListItem button key="CindyBaker">
-                            <ListItemIcon>
-                                <Avatar alt="Cindy Baker" src="https://material-ui.com/static/images/avatar/2.jpg" />
-                            </ListItemIcon>
-                            <ListItemText primary="Cindy Baker">Cindy Baker</ListItemText>
-                        </ListItem> */}
-                        {
-                            
+                        {  
                         [...privateChats.keys()].map((name,index)=>(
-                            <ListItem key = {index}>
-                                <ListItemIcon onClick={()=>{setTab({...tab,"currTab":name,"id":userInfo.get(name)});}}>
+                            <ListItem key = {index} >
+                                { tab.currTab === name &&
+                                <ListItemIcon style={theme.selected} onClick={()=>{setTab({...tab,"currTab":name,"id":userInfo.get(name)});}}>
                                     <Avatar alt={name} src="https://i.ytimg.com/vi/T4ZSspHXjt8/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AHuBIAC4AOKAgwIABABGFUgVChlMA8=&rs=AOn4CLC0NrTivpwu2erx_yCuXGjQJAGA8w" />
                                     <ListItemText primary={name}>{name}</ListItemText>
-                                    {/* <ListItemText secondary="online" align="right"></ListItemText> */}
                                 </ListItemIcon>
+                                }
+                                { tab.currTab !== name &&
+                                <ListItemIcon style={theme.notSelected} onClick={()=>{setTab({...tab,"currTab":name,"id":userInfo.get(name)});}}>
+                                    <Avatar alt={name} src="https://i.ytimg.com/vi/T4ZSspHXjt8/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AHuBIAC4AOKAgwIABABGFUgVChlMA8=&rs=AOn4CLC0NrTivpwu2erx_yCuXGjQJAGA8w" />
+                                    <ListItemText primary={name}>{name}</ListItemText>
+                                </ListItemIcon>
+                                }
                             </ListItem>
                         ))}
                     </List>
@@ -346,7 +343,6 @@ const Messages = () => {
                                 <ListItemIcon onClick={()=>{setTab({...tab,"currTab":name,"id":userInfo.get(name)});}}>
                                     <Avatar alt={name} src="https://i.ytimg.com/vi/T4ZSspHXjt8/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AHuBIAC4AOKAgwIABABGFUgVChlMA8=&rs=AOn4CLC0NrTivpwu2erx_yCuXGjQJAGA8w" />
                                     <ListItemText primary={name}>{name}</ListItemText>
-                                    {/* <ListItemText secondary="online" align="right"></ListItemText> */}
                                 </ListItemIcon>
                             </ListItem>
                         ))}
@@ -356,44 +352,14 @@ const Messages = () => {
             <Grid item xs={9}>
             { tab.currTab != "" &&
                 <List style={theme.messageArea} >
-                    {/* <ListItem key="1">
-                        <Grid container>
-                            <Grid item xs={12}>
-                                <ListItemText align="right" primary="Hey man, What's up ?"></ListItemText>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <ListItemText align="right" secondary="09:30"></ListItemText>
-                            </Grid>
-                        </Grid>
-                    </ListItem>
-                    <ListItem key="2">
-                        <Grid container>
-                            <Grid item xs={12}>
-                                <ListItemText align="left" primary="Hey, Iam Good! What about you ?"></ListItemText>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <ListItemText align="left" secondary="09:31"></ListItemText>
-                            </Grid>
-                        </Grid>
-                    </ListItem>
-                    <ListItem key="3">
-                        <Grid container>
-                            <Grid item xs={12}>
-                                <ListItemText align="right" primary="Cool. i am good, let's catch up!"></ListItemText>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <ListItemText align="right" secondary="10:30"></ListItemText>
-                            </Grid>
-                        </Grid>
-                    </ListItem> */}
-                    { privateChats.has(tab.currTab) &&
+                    {privateChats.has(tab.currTab) &&
                         [...privateChats.get(tab.currTab)].map((chat,index)=>(
-                            <ListItem key={index}>
+                            <ListItem key={index} sx={{maxWidth: 300}}>
                                 <Grid container>
                                     <Grid item xs={12} >
                                         <Grid container columns={2}>
                                             { chat.senderName === userData.username &&
-                                            <Grid item xs='auto' justifyContent='left' alignItems='flex-start'>
+                                            <Grid item xs = 'auto' justifyContent='left' alignItems='flex-start'>
                                                 {chat.senderName === userData.username && <ListItemText primary={chat.message}  style= {theme.chatSelf} align="left" ></ListItemText>}
                                             </Grid>
                                             }
@@ -401,7 +367,7 @@ const Messages = () => {
                                             {chat.senderName !== userData.username && <Grid item xs></Grid>}
 
                                             { chat.senderName !== userData.username &&
-                                            <Grid item xs='auto' justifyContent='right' alignItems='flex-end'>
+                                            <Grid item xs = 'auto' justifyContent='right' alignItems='flex-end'>
                                                 {chat.senderName !== userData.username && <ListItemText primary={chat.message} style={theme.chatOut} align="right"></ListItemText>}
                                             </Grid>
                                             }  
@@ -414,6 +380,7 @@ const Messages = () => {
                 </List>
             }
                 <Divider />
+                { tab.currTab !== "" &&
                 <Grid container style={{padding: '10px'}}>
                     <Grid item xs={11}>
                         <TextField id="outlined-basic-email" label="Type Something" fullWidth name = 'message' value={userData.message} onChange={handleValue}/>
@@ -422,6 +389,7 @@ const Messages = () => {
                         <Fab color="primary" aria-label="add" ><SendIcon onClick={sendPrivateMessage}/></Fab>
                     </Grid>
                 </Grid>
+                }
             </Grid>
         </Grid>
         </ThemeProvider>
