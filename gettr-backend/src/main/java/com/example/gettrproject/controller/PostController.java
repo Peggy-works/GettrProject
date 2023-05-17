@@ -9,6 +9,7 @@ import com.example.gettrproject.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -179,6 +180,30 @@ public class PostController {
             response.getComments().add(comment.getText());
         });
         return ResponseEntity.ok(response);
+    }
+
+    /**
+     * @param id
+     * @return
+     */
+    @PutMapping("/upVotePost/{id}")
+    public ResponseEntity<String> upVotePost(@PathVariable String id){
+        var post = postRepository.findById(Long.parseLong(id));
+        post.get().setLikes(post.get().getLikes() + 1);
+        postRepository.save(post.get());
+        return ResponseEntity.ok("Incremented post: " + id);
+    }
+
+    /**
+     * @param id
+     * @return
+     */
+    @Transactional
+    @DeleteMapping("/deletePost/{id}")
+    public ResponseEntity<String> deletePost(@PathVariable String id){
+        commentRepository.deleteAllByPostId(Long.parseLong(id));
+        postRepository.deleteById(Long.parseLong(id));
+        return ResponseEntity.ok("Deleted post: " + id);
     }
 
 }

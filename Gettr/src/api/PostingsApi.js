@@ -11,8 +11,8 @@ function getPosts(token) {
     })
 }
 
-function getPost(token){
-    return axios.get('http://localhost:8080/post/getPost',
+function getPost(token, id){
+    return axios.get('http://localhost:8080/post/getPost' + `/${id}`,
     {
         headers: {
             "Content-type": "application/json",
