@@ -8,8 +8,6 @@ import About from "./components/About";
 
 import { Routes, Route } from "react-router-dom"
 import PostComments from "./components/PostComments";
-import UserState from "./components/UserState";
-import { UserContext } from "./components/UserState";
 
 import './App.css';
 import SignupPage from './pages/Signup';
@@ -26,7 +24,6 @@ function App() {
     
     <Box>
       <ResponsiveAppBar/>
-      <UserContext.Provider value={{user,setUser}}>
       <Routes>
         
           <Route path="/" element={<LoginPage/>} />
@@ -38,7 +35,6 @@ function App() {
           <Route path="/Dashboard/PostComments" element={<PostComments/>}/>
         
       </Routes>
-      </UserContext.Provider>
     </Box>
     
   )

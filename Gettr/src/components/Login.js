@@ -16,8 +16,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider} from '@mui/material/styles';
-import { UserContext } from './UserState';
-import React,{useContext} from 'react';
+
 
 function Copyright(props){
   return (
@@ -44,7 +43,6 @@ export default function Login(){
     const [error, setErrorMsg] = useState("");
     const [success, setSuccess] = useState(false);
 
-    const {user,setUser} = useContext(UserContext);
 
 
     useEffect(() => {
@@ -59,9 +57,6 @@ export default function Login(){
                 console.log(response.data);
                 localStorage.setItem('user',JSON.stringify(response.data));
                 console.log(JSON.parse(localStorage.getItem('user')).id);
-
-                setUser({...user,username:response.data.username,id:response.data.id,token:response.data.token});
-                console.log(user);
             })
             .catch(error => {
                 console.log(error);

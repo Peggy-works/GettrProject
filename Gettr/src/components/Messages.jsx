@@ -1,9 +1,7 @@
-import React, { useEffect, useState, useContext} from 'react';
+import React, { useEffect, useState} from 'react';
 import {over} from 'stompjs';
 import SockJS from 'sockjs-client';
 import './Messages.css'
-//import { makeStyles } from '@mui/styles';
-//import { ThemeProvider, createMuiTheme, makeStyles } from '@material-ui/core/styles';
 import { createTheme, ThemeProvider} from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -19,7 +17,6 @@ import Fab from '@mui/material/Fab';
 import SendIcon from '@mui/icons-material/Send';
 import{fetchUserMessages,sendMessage} from '../api/MessagesApi.js';
 import { fetchUserInfo } from '../api/UserApi.js';
-import { UserContext } from './UserState';
 import { borderRadius, padding } from '@mui/system';
 
 var stompClient = null;
@@ -64,7 +61,7 @@ const theme = createTheme({
     textOverflow: 'ellipsis'
     },
     divWidth:{
-        width:'50%'
+        width:'100%'
     },
     mouse:{
         cursor:'pointer'
@@ -129,14 +126,12 @@ const Messages = () => {
         }
         fetchData();
         registerUser();
-        console.log(user);
 
         return async()=> {  // clean up
             await stompClient.disconnect();
         }
     },[]);
 
-    const {user,setUser} = useContext(UserContext);
 
     const [userData,setUserData] = useState({
         username:JSON.parse(localStorage.getItem('user')).username,
@@ -354,7 +349,7 @@ const Messages = () => {
                 <List style={theme.messageArea} >
                     {privateChats.has(tab.currTab) &&
                         [...privateChats.get(tab.currTab)].map((chat,index)=>(
-                            <ListItem key={index} sx={{maxWidth: 300}}>
+                            <ListItem key={index} >
                                 <Grid container>
                                     <Grid item xs={12} >
                                         <Grid container columns={2}>
