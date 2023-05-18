@@ -58,13 +58,14 @@ function postsReducer(posts, action) {
 
 
 function callDatabase () {
-getPosts(JSON.parse(localStorage.getItem('user')).token)
-    .then(response => {
-        setTimeout(30000)
-            postArray = response.data
+//getPosts(JSON.parse(localStorage.getItem('user')).token)
+    getPosts(localStorage.getItem('token'))
+        .then(response => {
+            setTimeout(30000)
+                postArray = response.data
 
-            // comment out after test
-            console.log(postArray)
+                // comment out after test
+                console.log(postArray)
         })
 }
 

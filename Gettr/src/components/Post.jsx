@@ -4,7 +4,7 @@ import React from 'react'
 
 import { usePosts } from './PostsContext'
 import { Link } from 'react-router-dom'
-import { getPost } from '../api/PostingsApi.js'
+import { deletePost } from '../api/PostingsApi.js'
 
 export default function PostList() {
   const posts = usePosts()
@@ -17,11 +17,17 @@ export default function PostList() {
 }
 
 // Deletes Post (Database)
-function deletePost() {
+export function Deletepost(posts) {
 
-    deletePost(localStorage.getItem("token"), 52)
+    //const posts = usePosts()
+    //let id = posts.filter(p => p.id)
+    console.log(posts.nativeEvent)
+
+    deletePost(localStorage.getItem("token"), 1)
         .then(response => console.log(response))
         .catch(error => console.log(error));
+
+    <PostList/>
 }
 
 
@@ -64,7 +70,7 @@ function Post({ post }) {
             {post.likes}
         </Typography>
 
-        <Link to={`PostComments?id=${post.id}`}> //here we redirect
+        <Link to={`PostComments?id=${post.id}`}>
           <IconButton>
             <Message/>
           </IconButton>
@@ -72,7 +78,8 @@ function Post({ post }) {
 
         <div>
           <Tooltip title="Delete">
-            <IconButton onClick={deletePost}>
+            <IconButton
+            onClick={Deletepost}>
               <Delete />
             </IconButton>
           </Tooltip>

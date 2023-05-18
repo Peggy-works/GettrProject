@@ -67,7 +67,6 @@ export default function Add() {
         let username = JSON.parse(localStorage.getItem('user')).username;
         console.log(e.target.title.value);
         newPost(e.target.title.value, e.target.description.value, username, JSON.parse(localStorage.getItem('user')).token);
-        //localStorage.setItem()
 
     }
 

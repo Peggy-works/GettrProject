@@ -40,7 +40,7 @@ function newPost(title, description, username, token){
 }
 
 function upVote(id, token){
-    return axios.put('http//localhost:8080/post/upVotePost' + `/${id}`,
+    return axios.put('http://localhost:8080/post/upVotePost' + `/${id}`,
     {
         headers:{
             "Content-Type": "application/json",
@@ -51,7 +51,7 @@ function upVote(id, token){
 }
 
 function addComment(userId, postId, text, token){
-     return axios.post('http//localhost:8080/post/addComment',
+     return axios.post('http://localhost:8080/post/addComment',
      {
         "user_id": userId,
         "post_id": postId,
@@ -67,7 +67,7 @@ function addComment(userId, postId, text, token){
 }
 
 function deletePost(token, id){
-    return axios.delete('http//localhost:8080/post/deletePost' + `/${id}`, {
+    return axios.delete('http://localhost:8080/post/deletePost' + `/${id}`, {
         headers:{
              "Content-Type": "application/json",
              "Access-Control-Allow-Origin": "*",

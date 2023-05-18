@@ -56,11 +56,12 @@ export default function Login(){
             .then(response => {
 
                 // console.log(response.data.token);
-                // localStorage.setItem("token", response.data.token);
-                // //localStorage.setItem("username", response.data.username);
+                 localStorage.setItem("token", response.data.token);
+                // localStorage.setItem("username", response.data.username);
                 // localStorage.setItem("user", response.data);
                 // localStorage.setItem("username", response.data.username);
-                // console.log(localStorage.getItem("username")); 
+                // console.log(localStorage.getItem("username"));
+
                 console.log(response.data);
                 localStorage.setItem('user',JSON.stringify(response.data));
                 console.log(JSON.parse(localStorage.getItem('user')).id);
