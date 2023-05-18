@@ -1,5 +1,5 @@
 package com.example.gettrproject.controller;
-import com.example.gettrproject.config.JwtService;
+import com.example.gettrproject.config.JwtUtils;
 import com.example.gettrproject.entity.Role;
 import com.example.gettrproject.entity.User;
 import com.example.gettrproject.repository.UserRepository;
@@ -7,14 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.logging.Logger;
 
 /*
 * */
@@ -24,7 +18,7 @@ public class AuthenticationService {
     @Autowired
     private final UserRepository repository;
     private final PasswordEncoder passwordEncoder;
-    private final JwtService jwtService;
+    private final JwtUtils jwtUtils;
     private final AuthenticationManager authenticationManager;
 
     /*
@@ -45,7 +39,7 @@ public class AuthenticationService {
         /*
         * Once
         * */
-        var jwtToken = jwtService.generateToken(user);
+        var jwtToken = jwtUtils.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .id(user.getId())
@@ -54,8 +48,8 @@ public class AuthenticationService {
     }
 
     /*
-    * Function that takes in request to endpoint authenticating user based on username
-    * and password, if validated returns a authenticationResponse object.
+    * Function that takes in the a authenticationRequest object that holds request information.
+    * Authenticate user based on username and password, if validated generate a jwt token and return a authenticationResponse object.
     * @Param AuthenticationRequest
     * @Return AuthenticationResponse
     * */
@@ -72,7 +66,7 @@ public class AuthenticationService {
         * */
         var user = repository.findByUsername (request.getUsername())
                 .orElseThrow();
-        var jwtToken = jwtService.generateToken(user);
+        var jwtToken = jwtUtils.generateToken(user);
         return AuthenticationResponse
                 .builder()
                 .token(jwtToken)

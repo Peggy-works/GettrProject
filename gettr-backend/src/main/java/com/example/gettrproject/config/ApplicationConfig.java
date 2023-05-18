@@ -15,30 +15,33 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+/*
+* Implements and injects all beans declared in this class
+* */
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
     private final UserRepository repository;
 
-    /*
-    * Load user by username
-    * @Params void
-    * @Returns <Optional> of type User
-    * @Throws user not found
-    * */
+    /**
+     * Using username as input fetch user from database
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> repository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+                .orElseThrow(() -> new UsernameNotFoundException("User not in database"));
     }
 
+    /**
+     * Our Authentication provider implementation that uses (data-access-object) DaoAuthenticationProvider that retrieves userDetails
+     * and uses our @Bean passwordEncoder to authenticate users by username and password. After user credentials
+     * have been validated the SecurityContext
+     * @return
+     */
     @Bean
-    /*
-    * Our Authentication provider implementation that uses (data-access-object) DaoAuthenticationProvider that retrieves userDetails
-    * and uses our @Bean passwordEncoder to authenticate users by username and password. After user credentials
-    * have been validated the SecurityContext
-    * */
     public AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService());
@@ -47,6 +50,7 @@ public class ApplicationConfig {
     }
 
     /**
+     * Returns the default implementation of authenticationManager
      * @param config
      * @return
      * @throws Exception
@@ -57,6 +61,7 @@ public class ApplicationConfig {
     }
 
     /**
+     * Password encoder bean used in spring security
      * @return
      */
     @Bean

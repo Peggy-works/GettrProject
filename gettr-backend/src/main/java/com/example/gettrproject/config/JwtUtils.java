@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
-public class JwtService {
+public class JwtUtils {
 
     private static final String SECRET_KEY = "753778214125442A472D4B6150645367566B59703373367638792F423F452848";
 
