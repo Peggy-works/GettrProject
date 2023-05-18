@@ -27,8 +27,8 @@ function deleteItems() {
 
 function ResponsiveAppBar() {
 
-  // Kicks out Nonusers
-  setTimeout(checkLogin, 60000)
+  // Kicks out Nonusers (10mins)
+  setTimeout(checkLogin, 600000)
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);

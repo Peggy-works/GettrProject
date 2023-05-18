@@ -17,17 +17,12 @@ export default function PostList() {
 }
 
 // Deletes Post (Database)
-export function Deletepost(posts) {
-
-    //const posts = usePosts()
-    //let id = posts.filter(p => p.id)
-    console.log(posts.nativeEvent)
-
-    deletePost(localStorage.getItem("token"), 1)
+export function Deletepost(postID) {
+    deletePost(localStorage.getItem("token"), postID)
         .then(response => console.log(response))
-        .catch(error => console.log(error));
-
-    <PostList/>
+        .catch(error => console.log(error))
+    setTimeout(6000)
+    window.location.reload()
 }
 
 
@@ -50,7 +45,7 @@ function Post({ post }) {
     <Card sx={{ maxWidth: 5000, margin: 4 }}>
       <CardHeader
         title={post.title}
-        subheader={post.username}
+        subheader={post.poster_name}
       />
 
       <CardContent>
@@ -66,21 +61,14 @@ function Post({ post }) {
           <Checkbox icon={<FavoriteBorder/>} checkedIcon={<Favorite sx={{ color: "#002E5A" }} />} />
         </IconButton>
 
-        <Typography paddingRight={1}>
-            {post.likes}
+        <Typography>
         </Typography>
-
-        <Link to={`PostComments?id=${post.id}`}>
-          <IconButton>
-            <Message/>
-          </IconButton>
-        </Link>
 
         <div>
           <Tooltip title="Delete">
             <IconButton
-            onClick={Deletepost}>
-              <Delete />
+            onClick={()=>{Deletepost(`${post.id}`)}}>
+              <Delete/>
             </IconButton>
           </Tooltip>
         </div>
