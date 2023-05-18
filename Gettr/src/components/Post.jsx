@@ -7,10 +7,11 @@ import { deletePost } from '../api/PostingsApi.js'
 
 export default function PostList() {
   const posts = usePosts()
-
+  
+  console.log("POSTLIST CALL");
   return <>  
     {posts.slice(0).reverse().map(post => (
-      <Post post={post} key={post.id} />
+      <Post post={post} key={post.poster_id} />
     ))}
   </>
 }

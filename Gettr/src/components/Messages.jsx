@@ -80,7 +80,8 @@ const theme = createTheme({
     borderRadius: '5px',
     padding:'1%',
     width: '100%'
-  }
+  },
+  
 });
 
 
@@ -300,8 +301,8 @@ const Messages = () => {
             <Grid item xs={3} style={theme.borderRight500}>
                 <List>
                     <ListItem key="User">
-                        <ListItemIcon>
-                        <Avatar alt={userData.username} src="https://i.ytimg.com/vi/T4ZSspHXjt8/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AHuBIAC4AOKAgwIABABGFUgVChlMA8=&rs=AOn4CLC0NrTivpwu2erx_yCuXGjQJAGA8w" />
+                        <ListItemIcon style = {theme.mouse} onClick={()=>{setTab({...tab,"currTab":"","id":null})}}>
+                        <Avatar alt={userData.username} />
                         </ListItemIcon>
                         <ListItemText primary={userData.username}></ListItemText>
                     </ListItem>
@@ -318,13 +319,13 @@ const Messages = () => {
                             <ListItem key = {index} >
                                 { tab.currTab === name &&
                                 <ListItemIcon style={theme.selected} onClick={()=>{setTab({...tab,"currTab":name,"id":userInfo.get(name)});}}>
-                                    <Avatar alt={name} src="https://i.ytimg.com/vi/T4ZSspHXjt8/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AHuBIAC4AOKAgwIABABGFUgVChlMA8=&rs=AOn4CLC0NrTivpwu2erx_yCuXGjQJAGA8w" />
+                                    <Avatar alt={name} />
                                     <ListItemText primary={name}>{name}</ListItemText>
                                 </ListItemIcon>
                                 }
                                 { tab.currTab !== name &&
                                 <ListItemIcon style={theme.notSelected} onClick={()=>{setTab({...tab,"currTab":name,"id":userInfo.get(name)});}}>
-                                    <Avatar alt={name} src="https://i.ytimg.com/vi/T4ZSspHXjt8/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AHuBIAC4AOKAgwIABABGFUgVChlMA8=&rs=AOn4CLC0NrTivpwu2erx_yCuXGjQJAGA8w" />
+                                    <Avatar alt={name} />
                                     <ListItemText primary={name}>{name}</ListItemText>
                                 </ListItemIcon>
                                 }
@@ -337,10 +338,18 @@ const Messages = () => {
                         {
                         [...searchQuery].map((name,index)=>(
                             <ListItem key = {index}>
-                                <ListItemIcon onClick={()=>{setTab({...tab,"currTab":name,"id":userInfo.get(name)});}}>
-                                    <Avatar alt={name} src="https://i.ytimg.com/vi/T4ZSspHXjt8/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AHuBIAC4AOKAgwIABABGFUgVChlMA8=&rs=AOn4CLC0NrTivpwu2erx_yCuXGjQJAGA8w" />
+                                { tab.currTab === name &&
+                                <ListItemIcon style={theme.selected} onClick={()=>{setTab({...tab,"currTab":name,"id":userInfo.get(name)});}}>
+                                    <Avatar alt={name} />
                                     <ListItemText primary={name}>{name}</ListItemText>
                                 </ListItemIcon>
+                                }
+                                { tab.currTab !== name &&
+                                <ListItemIcon style={theme.notSelected} onClick={()=>{setTab({...tab,"currTab":name,"id":userInfo.get(name)});}}>
+                                    <Avatar alt={name} />
+                                    <ListItemText primary={name}>{name}</ListItemText>
+                                </ListItemIcon>
+                                }
                             </ListItem>
                         ))}
                     </List>

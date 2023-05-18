@@ -25,7 +25,7 @@ public class ChatController {
     @SendTo("/chatroom/public") // used to specify where the message is being sent to
     public Message recievedPublicMessage(@Payload Message message){
         if(message.getStatus() == Status.JOIN){
-            userService.setConnected(true,message.getSenderId());
+            userService.setConnected(true,message.getSenderId());   // sets connected status for web socket connect event
         }
         else if (message.getStatus() == Status.LEAVE) {
             userService.setConnected(false,message.getSenderId());

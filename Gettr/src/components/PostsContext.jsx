@@ -8,6 +8,7 @@ const PostsDispatchContext = createContext(null);
 
 // Deals w/Posts
 export function PostsProvider({ children }) {
+    console.log("HERE");
     const [posts, dispatch] = useReducer(
         postsReducer,
         postArray
