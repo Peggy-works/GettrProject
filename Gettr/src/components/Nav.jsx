@@ -23,7 +23,6 @@ function deleteItems() {
   localStorage.clear();
 }
 
-//function 
 
 function ResponsiveAppBar() {
 
