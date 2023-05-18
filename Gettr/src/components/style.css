@@ -10,6 +10,10 @@
 
 }
 
+ input {
+    padding: 0.9px;
+    font-size: 0.9em;
+  }
 
 .box {
   position: relative;
@@ -23,8 +27,8 @@
   padding: 20px;
   border: 1px solid #999;
   overflow: auto;
-
-
+  
+  z-index: 9999;
 }
 
 .close-icon {
