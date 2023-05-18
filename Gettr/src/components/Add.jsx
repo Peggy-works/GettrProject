@@ -1,6 +1,6 @@
 import { Box, Button, Fab, Modal, TextField, Tooltip, Typography, styled } from '@mui/material'
 import { Add as AddIcon } from "@mui/icons-material"
-
+import { newPost } from '../api/PostingsApi.js';
 import React, { useReducer, useState } from 'react'
 import { usePostsDispatch } from './PostsContext'
 
@@ -57,17 +57,16 @@ export default function Add() {
             })
         }, 2000)
 
-        /* (testing)
-        // Make Form Object w/Post Info 
+        //Make Form Object w/Post Info
         const form = e.target
         const formData = new FormData(form)
 
         // Work with Data as Plain Object
         const formJson = Object.fromEntries(formData.entries())
         console.log(formJson)
-        */
-        
-        //localStorage.setItem()
+        let username = JSON.parse(localStorage.getItem('user')).username;
+        console.log(e.target.title.value);
+        newPost(e.target.title.value, e.target.description.value, username, JSON.parse(localStorage.getItem('user')).token);
 
     }
 
@@ -138,11 +137,13 @@ export default function Add() {
                                         description: formData.description,
                                         likes: formData.likes,
                                         poster_id: formData.poster_id,
+                                        poster_name: formData.poster_name,
                                         usernames: formData.usernames,
                                         comments: formData.comments
                                     })
                                 }
                             }}
+
                             type='submit'
                             disabled={disable}
                             sx={{ left: 160, top: 10 }}>

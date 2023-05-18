@@ -1,16 +1,35 @@
-import React from 'react';
+import React from 'react'
 
-import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Button, MenuItem } from '@mui/material';
+import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Button, MenuItem, Avatar } from '@mui/material'
 
-import MenuIcon from '@mui/icons-material/Menu';
-import TungstenIcon from '@mui/icons-material/Tungsten';
+import MenuIcon from '@mui/icons-material/Menu'
+import TungstenIcon from '@mui/icons-material/Tungsten'
 
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
-const pages = ['Dashboard', 'Messages', 'About'];
-const settings = ['Logout'];
+const pages = ['Dashboard', 'Messages', 'About']
+const settings = ['Logout']
+
+
+// Disables Navbar if User is not Logged In
+function checkLogin() {
+  if (JSON.parse(localStorage.getItem('user')).token == null) {
+    window.location.assign("\Signup")
+  }
+}
+
+// Clear localStorage on Logout
+function deleteItems() {
+  localStorage.clear();
+}
+
+//function 
 
 function ResponsiveAppBar() {
+
+  // Kicks out Nonusers (10mins)
+  setTimeout(checkLogin, 600000)
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -41,8 +60,6 @@ function ResponsiveAppBar() {
           <Typography
             variant="h6"
             noWrap
-            //component="a"
-            //href="Dashboard"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -130,7 +147,9 @@ function ResponsiveAppBar() {
 
           <Box sx={{ flexGrow: 0 }}>
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <div>[user]</div>
+              <Avatar 
+                sx={{ bgcolor: "#002E5A" }}
+                src="/broken-image.jpg"/>
             </IconButton>
             <Menu
               sx={{ mt: '45px' }}
@@ -149,12 +168,13 @@ function ResponsiveAppBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} 
+                  onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}
                     <Link
-                      //localStorage.clear()
                       style={{ textDecoration: "none", color: "white" }}
-                      to={`/${setting}`}>
+                      to={`/${setting}`}
+                      onClick={deleteItems}>
                       {setting}
                     </Link>
                   </Typography>
@@ -167,5 +187,4 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
-
-export default ResponsiveAppBar;
+export default ResponsiveAppBar

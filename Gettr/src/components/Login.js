@@ -4,7 +4,6 @@ import Input from "./Input";
 import ReCAPTCHA from "react-google-recaptcha"
 import { authenticate } from '../api/AuthApi.js'
 import { useNavigate } from 'react-router-dom';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -15,8 +14,9 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider} from '@mui/material/styles';
-import { getPosts } from '../api/PostingsApi.js';
+import { createTheme, ThemeProvider} from '@mui/material/styles'; 
+import TungstenIcon from '@mui/icons-material/Tungsten'
+
 
 function Copyright(props){
   return (
@@ -33,7 +33,6 @@ function Copyright(props){
 
 const theme = createTheme();
 
-
 export default function Login(){
 
     const userRef = useRef();
@@ -45,6 +44,7 @@ export default function Login(){
     const [success, setSuccess] = useState(false);
 
 
+
     useEffect(() => {
         setErrorMsg('');
     }, [username, password])
@@ -54,15 +54,20 @@ export default function Login(){
         console.log(username, password)
         authenticate(username, password)
             .then(response => {
-                console.log(response.data.token);
-                localStorage.setItem("token", response.data.token);
-                localStorage.setItem("user", response.data);
-                getPosts(localStorage.getItem("token"))
-                .then(response => {
-                    console.log(response);
-                })
-                .catch(error => console.log(error));
+
+                // console.log(response.data.token);
+                 localStorage.setItem("token", response.data.token);
+                // localStorage.setItem("username", response.data.username);
+                // localStorage.setItem("user", response.data);
+                // localStorage.setItem("username", response.data.username);
+                // console.log(localStorage.getItem("username"));
+
+                console.log(response.data);
+                localStorage.setItem('user',JSON.stringify(response.data));
+                console.log(JSON.parse(localStorage.getItem('user')).id);
                 navigate("/Dashboard")
+
+                
             })
             .catch(error => {
                 console.log(error);
@@ -71,10 +76,6 @@ export default function Login(){
         setPassword('');
         setSuccess(true);
     }
-
-
-
-
 
     return(
       <div>
@@ -92,9 +93,7 @@ export default function Login(){
 
                }}
              >
-               <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-
-               </Avatar>
+              <TungstenIcon sx={{ m: 1, size: "large" }}/>
                <Typography component="h1" variant="h4">
                  Welcome Back to Gettr
                </Typography>
@@ -142,9 +141,6 @@ export default function Login(){
                  </Button>
                  <Grid container>
                    <Grid item xs>
-                     <Link href="/forgot-password" variant="body2">
-                       Forgot password?
-                     </Link>
                    </Grid>
                    <Grid item>
                      <Link href="/signup" variant="body2">

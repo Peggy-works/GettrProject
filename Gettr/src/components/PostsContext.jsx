@@ -1,4 +1,5 @@
-import { createContext, useContext, useReducer } from 'react';
+import { createContext, useContext, useReducer } from 'react'
+import { getPosts } from '../api/PostingsApi.js'
 
 // Context: manage state globally
 // Dispatch: Update Component 
@@ -9,19 +10,15 @@ const PostsDispatchContext = createContext(null);
 export function PostsProvider({ children }) {
     const [posts, dispatch] = useReducer(
         postsReducer,
-
-        // replace with local storage / database
-        initialPosts
-        
-    );
-
+        postArray
+    )
     return (
         <PostsContext.Provider value={posts}>
             <PostsDispatchContext.Provider value={dispatch}>
                 {children}
             </PostsDispatchContext.Provider>
         </PostsContext.Provider>
-    );
+    )
 }
 
 // Reads Posts (globally)
@@ -42,7 +39,12 @@ function postsReducer(posts, action) {
                 id: action.id,
                 title: action.title,
                 description: action.description,
-                username: action.username
+                username: action.username,
+                likes: action.likes,
+                poster_id: action.poster_id,
+                poster_name: action.poster_name,
+                usernames: action.usernames,
+                comments: action.comments
             }];
         }
         case 'deleted': {
@@ -54,36 +56,18 @@ function postsReducer(posts, action) {
     }
 }
 
-// Test Posts
-const initialPosts = [
-    {
-        id: 1052,
-        title: "testing posting 1",
-        description: "Hello world1, im here.",
-        likes: 10,
-        poster_id: 1951,
-        poster_name: "Peggster",
-        usernames: ["Peggster","Peggster"],
-        comments: ["damn finals suck", "get off the fucking main branch"]
-    },
-    {
-        id: 1053,
-        title: "testing posting 2",
-        description: "Hello",
-        likes: 9,
-        poster_id: 1952,
-        poster_name: "Mijo",
-        usernames: ["Peggster", "Peggster"],
-        comments: ["damn son", "soooooooooooooooooooooooo......................"]
-    },
-    {
-        id: 1054,
-        title: "testing posting 3",
-        description: "Hola soy dora",
-        likes: 2,
-        poster_id: 1953,
-        poster_name: "Bruh",
-        usernames: ["Mijo", "Peggster"],
-        comments: ["yolo", "thats crazy"]
-    }
-];
+
+function callDatabase () {
+//getPosts(JSON.parse(localStorage.getItem('user')).token)
+    getPosts(localStorage.getItem('token'))
+        .then(response => {
+            setTimeout(30000)
+                postArray = response.data
+
+                // comment out after test
+                console.log(postArray)
+        })
+}
+
+let postArray = []
+callDatabase(postArray)
