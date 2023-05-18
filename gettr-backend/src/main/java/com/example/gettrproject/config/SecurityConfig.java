@@ -29,16 +29,28 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         /*
-        * Configuring stateless Authentication that we used in conjunction with java web tokens
-        * that validates the token
-        * instead uses java web tokens to validate
-        * every request
+        * authorizeHttpRequest:
+        * Authorizing http requests on paths listed in requestMatchers() exposing/permitting access to any
+        * of endpoints listed to httpRequest.
+        *
+        * RequestMatchers():
+        * We require authentication on any request not listed in requestMatchers().
+        *
+        * sessionCreationPolicy():
+        * Configuring sesssionManagement by setting the policy to STATELESS which tells spring boot to disable http sessions
+        * and to never return/obtain the securityContext through http sessions. We disable this because we use jwt token for authentication
+        *
+        * authenticationProvider():
+        * Passes our dao authentication provider
+        *
+        * addFilterBefore():
+        * Create jwt filter and add it before usernamePasswordAuthenticationFilter
         * */
         http
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/auth/**", "/api/auth/authenticate", "/public", "/index.html", "/user/**","/ws","/ws/**")
+                .requestMatchers("/api/auth/**", "/user/**","/ws","/ws/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -52,7 +64,7 @@ public class SecurityConfig {
         http.cors();
         return http.build();
     }
-
+    //"/api/auth/authenticate", "/public", "/index.html"
 
 
 }

@@ -23,8 +23,8 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private final JwtService jwtService;
-    private final UserDetailsService userDetailsService;
+    private final JwtUtils jwtUtils;
+    private final UserDetailsService userDetailsService; //interface available in spring framework
 
     /**
      * Once per request filter that intercepts http request, checks if authorization header has token
@@ -55,30 +55,35 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
         jwtToken = authenticationHeader.substring(7); // Get the token from header
-        username = jwtService.getUsername(jwtToken);             // Get username from token
+        username = jwtUtils.getUsername(jwtToken);             // Get username from token
         /*
         * Here we check if username is null or if the securityContextHolder has already authenticated the user
-        * If not create a userDetails object which is already implemented in our user entity class
-        *
-        *
-        * Check if securityContextHolder has user credentials saved
-        * If current user credentials have not been saved into our securityContextHolder
-        * authenticate user and token while
+        * If not create a userDetails object that's fetches user information from database.
         * */
         if(username != null && SecurityContextHolder.getContext().getAuthentication() == null){
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
-            if(jwtService.isValid(jwtToken, userDetails)){
-                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                        userDetails,
-                        null,
-                        userDetails.getAuthorities()
-                );
-                authToken.setDetails(
-                        new WebAuthenticationDetailsSource().buildDetails(request)
-                );
-                SecurityContextHolder.getContext().setAuthentication(authToken);
+            /*
+            * Calls isValid from jwtUtils class to check if user fetched from database matches user who holds the token
+            * */
+            if(jwtUtils.isValid(jwtToken, userDetails)){
+                /*
+                * If valid Create username password authentication token used by spring and security context holder to update security context.
+                * Security context holder is where spring boot stores credentials of users who are validated
+                * */
+                UsernamePasswordAuthenticationToken authorizationToken = new UsernamePasswordAuthenticationToken(userDetails,null, userDetails.getAuthorities());
+                /*
+                * Builds a details object based on the httpServletRequest object
+                * */
+                authorizationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                /*
+                * Updating the security context holder to the authentication token for the current user
+                * */
+                SecurityContextHolder.getContext().setAuthentication(authorizationToken);
             }
         }
+        /*
+        * Call next filter
+        * */
         filterChain.doFilter(request, response);
     }
 

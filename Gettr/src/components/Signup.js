@@ -15,7 +15,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import TungstenOutlinedIcon from '@mui/icons-material/TungstenOutlined';
 
 function Copyright(props) {
   return (
@@ -187,8 +187,7 @@ useEffect(() => {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-          </Avatar>
+          <TungstenOutlinedIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography component="h1" variant="h4">
            Join the Community
           </Typography>
