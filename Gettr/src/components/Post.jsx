@@ -1,9 +1,8 @@
-import { Favorite, FavoriteBorder, Delete, Message } from '@mui/icons-material'
+import { Favorite, FavoriteBorder, Delete } from '@mui/icons-material'
 import { Card, CardHeader, IconButton, CardContent, Typography, CardActions, Checkbox, Tooltip } from '@mui/material'
 import React from 'react'
 
 import { usePosts } from './PostsContext'
-import { Link } from 'react-router-dom'
 import { deletePost } from '../api/PostingsApi.js'
 
 export default function PostList() {
