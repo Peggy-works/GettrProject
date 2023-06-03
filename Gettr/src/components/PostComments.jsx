@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
 
 import { PostsProvider } from './PostsContext'
-import { ThreadPost } from './Post'
+//import { ThreadPost } from './Post'
 
 import React from 'react'
 import ResponsiveAppBar from './Nav'
@@ -15,7 +15,7 @@ function PostComments() {
       <ResponsiveAppBar/>
       <PostsProvider>
         <div>Post Comments</div>
-        <ThreadPost/>
+        {/* <ThreadPost/> */}
       </PostsProvider>
     </Box>
   )

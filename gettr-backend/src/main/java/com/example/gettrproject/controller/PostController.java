@@ -1,8 +1,12 @@
 package com.example.gettrproject.controller;
 
+import com.example.gettrproject.controller.embedded.PostLikesId;
+import com.example.gettrproject.controller.model.LikePost;
 import com.example.gettrproject.entity.Comment;
 import com.example.gettrproject.entity.Post;
+import com.example.gettrproject.entity.PostLikesMap;
 import com.example.gettrproject.repository.CommentRepository;
+import com.example.gettrproject.repository.PostLikesMapRepository;
 import com.example.gettrproject.repository.PostRepository;
 import com.example.gettrproject.repository.UserRepository;
 import com.example.gettrproject.service.UserService;
@@ -26,6 +30,8 @@ public class PostController {
 
     private final UserRepository userRepository;
     private final CommentRepository commentRepository;
+
+    private final PostLikesMapRepository postLikesMapRepository;
 
     @Autowired
     private UserService userService;
@@ -115,9 +121,11 @@ public class PostController {
      * }
      * </pre>
      */
-    @GetMapping("/getPosts")
-    public List<PostGetResponse> getAllPosts(){
+    @GetMapping("/getPosts/{userid}")
+    public List<PostGetResponse> getAllPosts(@PathVariable("userid") String userId){
         List<PostGetResponse> posts = new ArrayList<>();
+        Long user_id = Long.parseLong(userId);
+
         postRepository.findAll().forEach(post -> {
             /*
             * Pull specific details and build a PostGetResponse object
@@ -131,6 +139,7 @@ public class PostController {
                     .poster_name(post.getPoster().getUsername())
                     .comments(new ArrayList<String>())
                     .usernames(new ArrayList<String>())
+                    .liked(postLikesMapRepository.existsById(new PostLikesId(user_id,post.getId())))
                     .build();
             post.getComments().forEach(comment -> {
                 response.getUsernames().add(comment.getUser().getUsername());
@@ -187,11 +196,36 @@ public class PostController {
      * @return
      */
     @PutMapping("/upVotePost/{id}")
-    public ResponseEntity<String> upVotePost(@PathVariable String id){
-        var post = postRepository.findById(Long.parseLong(id));
-        post.get().setLikes(post.get().getLikes() + 1);
-        postRepository.save(post.get());
-        return ResponseEntity.ok("Incremented post: " + id);
+    public ResponseEntity<String> upVotePost(@PathVariable String id,@RequestBody LikePost request){
+        if(request.isLike()) {
+            var post = postRepository.findById(Long.parseLong(id));
+            post.get().setLikes(post.get().getLikes() + 1);
+            postRepository.save(post.get());
+            PostLikesId postLikesId = new PostLikesId(request.getUserId(),Long.parseLong(id));
+            if(!postLikesMapRepository.existsById(postLikesId)){
+                postLikesMapRepository.save(new PostLikesMap(postLikesId));
+            }
+            return ResponseEntity.ok("Incremented post: " + id);
+        }
+        else{
+            var post = postRepository.findById(Long.parseLong(id));
+            post.get().setLikes(post.get().getLikes() - 1);
+            postRepository.save(post.get());
+            PostLikesId postLikesId = new PostLikesId(request.getUserId(),Long.parseLong(id));
+            if(postLikesMapRepository.existsById(postLikesId)){
+                postLikesMapRepository.deleteById(postLikesId);
+            }
+            return ResponseEntity.ok("Decremented post: " + id);
+        }
+    }
+
+    // for checking if a user like a certain post
+    @GetMapping("/isLiked/{postid}/{userid}")
+    public boolean isLiked(@PathVariable("postid") String postId, @PathVariable("userid") String userId){
+        Long post_id = Long.parseLong(postId);
+        Long user_id = Long.parseLong(userId);
+        PostLikesId postLikesId = new PostLikesId(user_id,post_id);
+        return postLikesMapRepository.existsById(postLikesId);
     }
 
     /**

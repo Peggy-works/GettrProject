@@ -22,6 +22,8 @@ public class PostGetResponse {
     //private List<Comment> commentList;
     private List<String> usernames;
     private List<String> comments;
+
+    private boolean liked;
     //private List<String>
 
 }

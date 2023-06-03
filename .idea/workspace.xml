@@ -5,15 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7a34e03-0427-4e82-8112-90b73207ea36" name="Changes" comment="WS react update">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/embedded/PostLikesId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/model/LikePost.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/entity/PostLikesMap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/repository/PostLikesMapRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_7_2023_1_18_PM_[Changes]1/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_7_2023_1_18_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_7_2023_1_18_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_7_2023_1_18_PM__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_7_2023_1_18_PM__Changes_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_7_2023_1_18_PM__Changes_1.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gettr/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gettr/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gettr/src/api/MessagesApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/api/MessagesApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gettr/src/api/UserApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/api/UserApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gettr/src/components/Messages.js" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/components/Messages.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/src/api/PostingsApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/api/PostingsApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/src/components/Add.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/components/Add.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/src/components/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/components/Dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/src/components/Messages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/components/Messages.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/src/components/Post.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/components/Post.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/src/components/PostComments.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/components/PostComments.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/src/components/PostsContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/components/PostsContext.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/PostController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/PostGetResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/PostGetResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/resources/data.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,13 +34,14 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="MessagesReact" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />

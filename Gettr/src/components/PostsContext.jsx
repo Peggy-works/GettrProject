@@ -1,18 +1,37 @@
-import { createContext, useContext, useReducer } from 'react'
-import { getPosts } from '../api/PostingsApi.js'
+import { createContext, useContext, useEffect, useReducer } from 'react'
+import { fetchPosts, isLiked } from '../api/PostingsApi.js'
 
 // Context: manage state globally
 // Dispatch: Update Component 
-const PostsContext = createContext(null);
-const PostsDispatchContext = createContext(null);
+export const PostsContext = createContext(null);
+export const PostsDispatchContext = createContext(null);
 
-// Deals w/Posts
 export function PostsProvider({ children }) {
-    console.log("HERE");
     const [posts, dispatch] = useReducer(
-        postsReducer,
-        postArray
+      postsReducer,
+      {
+        postArr: [],
+        likeMap: new Map()
+      }
     )
+  
+    useEffect(() =>{
+      const init = async()=>{
+        const postData = await fetchPosts();
+        const tempMap = new Map();
+          postData.forEach( async (value)=>{
+            if(await isLiked(value.id)){
+              tempMap.set(value.id,true);
+            }
+            else{
+              tempMap.set(value.id,false);
+            }
+          });
+        dispatch({type:"initialFetch",postArr:postData,likeMap:tempMap});
+      }
+      init();
+    },[])
+  
     return (
         <PostsContext.Provider value={posts}>
             <PostsDispatchContext.Provider value={dispatch}>
@@ -20,7 +39,7 @@ export function PostsProvider({ children }) {
             </PostsDispatchContext.Provider>
         </PostsContext.Provider>
     )
-}
+  }
 
 // Reads Posts (globally)
 export function usePosts() {
@@ -36,7 +55,8 @@ export function usePostsDispatch() {
 function postsReducer(posts, action) {
     switch (action.type) {
         case 'added': {
-            return [...posts, {
+            return {
+              postArr : posts.postArr.push( {
                 id: action.id,
                 title: action.title,
                 description: action.description,
@@ -45,30 +65,23 @@ function postsReducer(posts, action) {
                 poster_id: action.poster_id,
                 poster_name: action.poster_name,
                 usernames: action.usernames,
-                comments: action.comments
-            }];
+                comments: action.comments,
+                liked:false
+            }),
+            likeMap: posts.likeMap.set(action.id,false)
+          }
         }
         case 'deleted': {
             return posts.filter(p => p.id !== action.id);
+        }
+        case 'initialFetch':{
+            return{ postArr: action.postArr,
+                    likeMap: action.likeMap}
         }
         default: {
             throw Error('Unknown action: ' + action.type);
         }
     }
-}
+  }
 
 
-function callDatabase () {
-//getPosts(JSON.parse(localStorage.getItem('user')).token)
-    getPosts(localStorage.getItem('token'))
-        .then(response => {
-            setTimeout(30000)
-                postArray = response.data
-
-                // comment out after test
-                console.log(postArray)
-        })
-}
-
-let postArray = []
-callDatabase(postArray)

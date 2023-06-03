@@ -246,17 +246,17 @@ const Messages = () => {
         }
     }
 
-    const sendPublicMessage=()=>{
-        if(stompClient){
-            let chatMessage={
-                senderName:userData.username,
-                message:userData.message,
-                status:'MESSAGE'
-            };
-            stompClient.send('/app/message',{},JSON.stringify(chatMessage));
-            setUserData({...userData,"message":""});
-        }
-    }
+    // const sendPublicMessage=()=>{
+    //     if(stompClient){
+    //         let chatMessage={
+    //             senderName:userData.username,
+    //             message:userData.message,
+    //             status:'MESSAGE'
+    //         };
+    //         stompClient.send('/app/message',{},JSON.stringify(chatMessage));
+    //         setUserData({...userData,"message":""});
+    //     }
+    // }
 
     const sendPrivateMessage=()=>{
         if(stompClient){

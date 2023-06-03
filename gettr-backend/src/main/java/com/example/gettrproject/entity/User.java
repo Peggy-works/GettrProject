@@ -48,6 +48,7 @@ public class User implements UserDetails {
     @Column(columnDefinition = "BLOB")
     private List<MessagesMapId> messageIds = new ArrayList<MessagesMapId>();
 
+
     //@OneToMany(mappedBy = "id", cascade = CascadeType.REMOVE, orphanRemoval = true)
     //private List<Post> postings;
 

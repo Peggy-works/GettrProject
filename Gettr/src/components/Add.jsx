@@ -64,9 +64,9 @@ export default function Add() {
         // Work with Data as Plain Object
         const formJson = Object.fromEntries(formData.entries())
         console.log(formJson)
-        let username = JSON.parse(localStorage.getItem('user')).username;
         console.log(e.target.title.value);
-        newPost(e.target.title.value, e.target.description.value, username, JSON.parse(localStorage.getItem('user')).token);
+        newPost(e.target.title.value, e.target.description.value, JSON.parse(localStorage.getItem('user')).username, JSON.parse(localStorage.getItem('user')).token);
+        window.location.reload(false);
 
     }
 
@@ -130,17 +130,17 @@ export default function Add() {
 
                             onClick={() => {
                                 if (formData.title !== undefined && formData.description !== undefined) {
-                                    dispatch({
-                                        type: 'added',
-                                        id: formData.id,
-                                        title: formData.title,
-                                        description: formData.description,
-                                        likes: formData.likes,
-                                        poster_id: formData.poster_id,
-                                        poster_name: formData.poster_name,
-                                        usernames: formData.usernames,
-                                        comments: formData.comments
-                                    })
+                                    // dispatch({
+                                    //     type: 'added',
+                                    //     id: formData.id,
+                                    //     title: formData.title,
+                                    //     description: formData.description,
+                                    //     likes: formData.likes,
+                                    //     poster_id: formData.poster_id,
+                                    //     poster_name: formData.poster_name,
+                                    //     usernames: formData.usernames,
+                                    //     comments: formData.comments
+                                    // })
                                 }
                             }}
 
