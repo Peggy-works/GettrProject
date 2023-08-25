@@ -17,6 +17,8 @@ import lombok.NoArgsConstructor;
 * */
 public class PostCreationRequest {
     private long id;
+
+    private Integer userId;
     private String title;
     private String description;
     private int likes;
