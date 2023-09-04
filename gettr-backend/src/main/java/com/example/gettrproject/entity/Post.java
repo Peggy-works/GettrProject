@@ -19,9 +19,9 @@ import java.util.List;
 @Table(name = "postings")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Post {
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    @GeneratedValue
-    @Column(name = "post_id", nullable = false)
+    //@Column(name = "post_id", nullable = false)
     private long id;
 
     @NonNull

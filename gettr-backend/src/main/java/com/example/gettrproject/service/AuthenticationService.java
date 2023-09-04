@@ -1,5 +1,8 @@
-package com.example.gettrproject.controller;
+package com.example.gettrproject.service;
 import com.example.gettrproject.config.JwtUtils;
+import com.example.gettrproject.controller.model.AuthenticationRequest;
+import com.example.gettrproject.controller.model.AuthenticationResponse;
+import com.example.gettrproject.controller.model.RegisterRequest;
 import com.example.gettrproject.entity.Role;
 import com.example.gettrproject.entity.User;
 import com.example.gettrproject.repository.UserRepository;

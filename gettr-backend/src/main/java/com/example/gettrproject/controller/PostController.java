@@ -1,7 +1,7 @@
 package com.example.gettrproject.controller;
 
 import com.example.gettrproject.controller.embedded.PostLikesId;
-import com.example.gettrproject.controller.model.LikePost;
+import com.example.gettrproject.controller.model.*;
 import com.example.gettrproject.entity.Comment;
 import com.example.gettrproject.entity.Post;
 import com.example.gettrproject.entity.PostLikesMap;
@@ -48,10 +48,10 @@ public class PostController {
     * */
     @PostMapping("/newPost")
     public ResponseEntity<PostCreationResponse> createPost(@RequestBody PostCreationRequest request){
-        var user = userRepository.findByUsername (request.getUsername())
+        var user = userRepository.findById(request.getUserId())
                 .orElseThrow();
         var post = Post.builder()
-                .id(request.getId())
+                //.id(request.getId())
                 .title(request.getTitle())
                 .description(request.getDescription())
                 .likes(request.getLikes())
@@ -81,7 +81,7 @@ public class PostController {
      * </pre>
      */
     @PostMapping("/addComment")
-    public ResponseEntity<String> addComment(@RequestBody CommentRequest request){
+    public ResponseEntity<Long> addComment(@RequestBody CommentRequest request){
         var user = userRepository.findById (request.getUser_id())
                 .orElseThrow();
         var post = postRepository.findById (request.getPost_id())
@@ -94,8 +94,14 @@ public class PostController {
         //commentRepository.
         //postRepository.getReferenceById(post_id).getComments().add(comment);
         postRepository.findById(request.getPost_id()).get().getComments().add(newComment);
-        commentRepository.save(newComment);
-        return ResponseEntity.ok("We attached message to forum post");
+        Long commentId = commentRepository.save(newComment).getId();
+        return ResponseEntity.ok(commentId);
+    }
+    @Transactional
+    @DeleteMapping("/deleteComment/{commentId}")
+    public ResponseEntity<String> deleteComment(@PathVariable("commentId") Long commentId){
+        commentRepository.deleteById(commentId);
+        return ResponseEntity.ok("Successfully deleted comment with id: "+commentId);
     }
 
     /**
@@ -115,7 +121,8 @@ public class PostController {
      *          "poster_id": ..,
      *          "poster_name": ..,
      *          "usernames": [],
-     *           "comments": []
+     *           "comments": [],
+     *           "userIds": []
      *      },
      *  ]
      * }
@@ -126,7 +133,7 @@ public class PostController {
         List<PostGetResponse> posts = new ArrayList<>();
         Long user_id = Long.parseLong(userId);
 
-        postRepository.findAll().forEach(post -> {
+        postRepository.findAllOrderedId().forEach(post -> {
             /*
             * Pull specific details and build a PostGetResponse object
             * */
@@ -139,11 +146,15 @@ public class PostController {
                     .poster_name(post.getPoster().getUsername())
                     .comments(new ArrayList<String>())
                     .usernames(new ArrayList<String>())
+                    .userIds(new ArrayList<Integer>())
+                    .commentIds(new ArrayList<Long>())
                     .liked(postLikesMapRepository.existsById(new PostLikesId(user_id,post.getId())))
                     .build();
             post.getComments().forEach(comment -> {
                 response.getUsernames().add(comment.getUser().getUsername());
+                response.getUserIds().add(comment.getUser().getId());
                 response.getComments().add(comment.getText());
+                response.getCommentIds().add(comment.getId());
             });
             posts.add(response);
         });

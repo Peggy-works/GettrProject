@@ -1,4 +1,4 @@
-package com.example.gettrproject.controller;
+package com.example.gettrproject.controller.model;
 
 import com.example.gettrproject.entity.Comment;
 import lombok.AllArgsConstructor;
@@ -22,6 +22,10 @@ public class PostGetResponse {
     //private List<Comment> commentList;
     private List<String> usernames;
     private List<String> comments;
+
+    private List<Integer> userIds;
+
+    private List<Long> commentIds;
 
     private boolean liked;
     //private List<String>

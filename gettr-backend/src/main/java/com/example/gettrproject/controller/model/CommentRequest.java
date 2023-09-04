@@ -1,4 +1,4 @@
-package com.example.gettrproject.controller;
+package com.example.gettrproject.controller.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

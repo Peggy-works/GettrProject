@@ -1,12 +1,12 @@
 package com.example.gettrproject.controller;
 
+import com.example.gettrproject.controller.model.AuthenticationRequest;
+import com.example.gettrproject.controller.model.AuthenticationResponse;
+import com.example.gettrproject.controller.model.RegisterRequest;
+import com.example.gettrproject.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/auth")

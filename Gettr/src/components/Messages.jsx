@@ -96,8 +96,7 @@ const Messages = () => {
 
     useEffect(()=>{ // will run once, as soon as component mounts
         const fetchData = async()=>{
-            
-            const usermessages = await fetchUserMessages();
+            const usermessages = await fetchUserMessages(); // fetches all existing messages that a user has
             if(usermessages != undefined){
                 for(let [key,value] of usermessages){
                     if(key != userData.username && !privateChats.has(key)){
@@ -105,18 +104,19 @@ const Messages = () => {
                     }
                 }
             }
-            const userinfo = await fetchUserInfo();
+            const userinfo = await fetchUserInfo(); // gets all existing user info (user id, username)
             for(let [key,value] of userinfo){
                 if(key != userData.username && !userInfo.has(key)){
                     userInfo.set(key,value);
                 }
             }
-            setUserInfo(new Map(userInfo));
-            setPrivateChats(new Map(privateChats));
+            setUserInfo(new Map(userInfo));         // sets use state for user info
+            setPrivateChats(new Map(privateChats)); // sets sets use state for all private chats
         }
 
+        // function to register user with the stomp websocket
         const registerUser =async()=>{
-            if(stompClient !== null){
+            if(stompClient !== null){   // assuring that a user was not previously connected
                 await stompClient.disconnect();
                 stompClient = null;
             }
@@ -134,7 +134,7 @@ const Messages = () => {
         }
     },[]);
 
-
+    // use state for current user data
     const [userData,setUserData] = useState({
         username:JSON.parse(localStorage.getItem('user')).username,
         userId:JSON.parse(localStorage.getItem('user')).id,
@@ -144,20 +144,25 @@ const Messages = () => {
         message:""
     });
 
+    // use state for private chats
     const [privateChats,setPrivateChats] = useState(
-        //initialPrivateMessages // map for key value pairs ("sender name",[]chats sent and recieved)
+        // map for key value pairs ("sender name",[]chats sent and recieved)
         new Map()
     );
 
+    // use state to hold info for all users
     const [userInfo,setUserInfo] = useState(
+        // map for key value pairs (user id, username)
         new Map()
     );
 
+    // use state to track what 'tab' is clicked on
     const [tab,setTab] = useState({
         currTab:"", // will hold user name
         id:null             // will hold userId
     });
 
+    // use state for username search
     const [searchQuery,setSearchQuery] = useState(
         []
     );
@@ -168,6 +173,7 @@ const Messages = () => {
         setUserData({...userData,[name]:value});
     }
 
+    // function to handle search return values
     const handleSearch =(event)=>{
         setSearchQuery(searchQuery=>[]);
         let usernames = Array.from(userInfo.keys());
@@ -204,6 +210,7 @@ const Messages = () => {
         userJoin();
     }
 
+    // joining websocket message
     const userJoin =()=>{
         let chatMessage={
             senderName:userData.username,
@@ -212,6 +219,7 @@ const Messages = () => {
         };
         stompClient.send('/app/message',{},JSON.stringify(chatMessage));
     }
+
 
     const onPublicMessageRecieved =(payload)=>{     // function for recieving payload json from server
         let payloadData=JSON.parse(payload.body);   // parsing json into payloadData
@@ -242,7 +250,7 @@ const Messages = () => {
             let list = [];
             list.push(payloadData);
             privateChats.set(payloadData.senderName,list);
-            setPrivateChats(new Map(privateChats));;
+            setPrivateChats(new Map(privateChats));
         }
     }
 
@@ -269,7 +277,6 @@ const Messages = () => {
                 date:null,
                 status:'MESSAGE'
             };
-            console.log(chatMessage);
             if(userData.username !== tab.currTab){
                 if(!privateChats.has(tab.currTab)){
                     privateChats.set(tab.currTab,[]);

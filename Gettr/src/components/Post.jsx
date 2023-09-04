@@ -5,19 +5,60 @@ import React, { useContext, useEffect, useState } from 'react'
 import { PostsContext, usePosts,usePostsDispatch } from './PostsContext'
 import { deletePost ,fetchPosts, getPosts,upVote} from '../api/PostingsApi.js'
 
+import PostComments from './PostComments'
 
 
-export default function PostList() {
 
-const posts = useContext(PostsContext);
-  console.log(posts.likeMap.size);
-  return <>  
-    
-        {posts !== undefined && posts.postArr.slice(0).reverse().map(post => (
-        <Post post={post} key={post.id} />
-        ))}
-    
-  </>
+export default function PostList({self}) {
+
+    const posts = useContext(PostsContext);
+    //   return <>  
+    //         {
+    //         self?
+    //             posts !== undefined && posts.postArr.length > 0 && posts.postArr.map(post => (
+    //                 post.poster_id === JSON.parse(localStorage.getItem('user')).id && <Post post={post} key={post.id} />
+    //             ))
+                
+    //         :
+    //             posts !== undefined && posts.postArr.length > 0 && posts.postArr.map(post => (
+    //                 <Post post={post} key={post.id} />
+    //             ))
+    //         }
+    //   </>
+   return(
+    <div>
+        {
+            self === true && posts !== undefined && posts.postArr.length > 0 &&
+            posts.postArr.map(post => (
+                post.poster_id === JSON.parse(localStorage.getItem('user')).id && <Post post={post} key={post.id} />
+            ))
+            
+        }
+        {
+            self !== true && posts !== undefined && posts.postArr.length > 0 &&
+            posts !== undefined && posts.postArr.length > 0 && posts.postArr.map(post => (
+                <Post post={post} key={post.id} />
+            ))
+           
+        }
+        {
+            posts !== undefined && posts.postArr.length > 0 &&
+            <Typography component="h1" variant="h4" align="center" mt={2} sx={{opacity:0.2}}>
+                ❤（っ＾▿＾）
+            </Typography>
+        }
+        {
+            posts === undefined || posts.postArr.length <= 0 &&
+            <Typography component="h1" variant="h4" align="center" mt={15} sx={{opacity:0.2}}>
+                Hmm... No Posts Yet
+                <Typography component="h1" variant="h4" align="center" mt={2}>
+                    ಥ_ಥ
+                </Typography>
+            </Typography>
+        }
+        
+    </div>
+   )
 }
 
 // Deletes Post (Database)
@@ -90,11 +131,12 @@ function Post({post}) {
                 }} />
             }
             </IconButton>
-            
-
             <Typography>
                 {postLikes}
             </Typography>
+
+           <PostComments post={post}></PostComments>
+
             { post.poster_id === JSON.parse(localStorage.getItem('user')).id &&
             <div>
                 <Tooltip title="Delete">

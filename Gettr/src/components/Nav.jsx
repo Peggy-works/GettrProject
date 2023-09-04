@@ -7,14 +7,14 @@ import TungstenIcon from '@mui/icons-material/Tungsten'
 
 import { Link } from 'react-router-dom'
 
-const pages = ['Dashboard', 'Messages', 'About']
+const pages = ['Dashboard', 'Messages', 'Profile', 'About'] // the different pages a user can select from
 const settings = ['Logout']
 
 
 // Disables Navbar if User is not Logged In
 function checkLogin() {
   if (JSON.parse(localStorage.getItem('user')).token == null) {
-    window.location.assign("\Signup")
+    window.location.assign("/") // was Signup
   }
 }
 
@@ -101,14 +101,18 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}
+                <MenuItem key={page} onClick={()=>{
+                  handleCloseNavMenu();
+                  window.location.assign(`/${page}`);
+                }}>
+                  {/* <Typography textAlign="center">{page}
                     <Link
                       style={{ textDecoration: "none", color: "white" }}
                       to={`/${page}`}>
                       {page}
                     </Link>
-                  </Typography>
+                  </Typography> */}
+                  {page}
                 </MenuItem>
               ))}
             </Menu>
@@ -168,15 +172,20 @@ function ResponsiveAppBar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} 
-                  onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}
+                  onClick={()=>{
+                    deleteItems();
+                    window.location.assign("/");
+                  }}>
+                  {/* <Typography textAlign="center">{setting}
                     <Link
                       style={{ textDecoration: "none", color: "white" }}
-                      to={`/${setting}`}
+                      // to={`/${setting}`}
+                      to={"/"}
                       onClick={deleteItems}>
                       {setting}
                     </Link>
-                  </Typography>
+                  </Typography> */}
+                  Logout
                 </MenuItem>
               ))}
             </Menu>

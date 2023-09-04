@@ -51,16 +51,10 @@ export default function Login(){
 
     const handleSubmit= async (e)=>{
         e.preventDefault();
-        console.log(username, password)
         authenticate(username, password)
             .then(response => {
 
-                // console.log(response.data.token);
                  localStorage.setItem("token", response.data.token);
-                // localStorage.setItem("username", response.data.username);
-                // localStorage.setItem("user", response.data);
-                // localStorage.setItem("username", response.data.username);
-                // console.log(localStorage.getItem("username"));
 
                 console.log(response.data);
                 localStorage.setItem('user',JSON.stringify(response.data));

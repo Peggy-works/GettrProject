@@ -11,6 +11,7 @@ import PostComments from "./components/PostComments";
 import './App.css';
 import SignupPage from './pages/Signup';
 import LoginPage from './pages/Login';
+import Profile from "./components/Profile";
 
 //import SignupPage from './components/Signup';
 //import LoginPage from './components/Login';
@@ -29,6 +30,7 @@ function App() {
           <Route path="/Messages" element={<Messages/>}/>
           <Route path="/About" element={<About/>}/>
           <Route path="/Logout" element={<Signup/>}/>
+          <Route path="/Profile" element={<Profile/>}/>
           <Route path="/Dashboard/PostComments" element={<PostComments/>}/>
         
       </Routes>

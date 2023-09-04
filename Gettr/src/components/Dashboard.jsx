@@ -21,7 +21,7 @@ export default function Dashboard() {
       <ResponsiveAppBar/>
       <PostsProvider>
         <Add/>
-        <PostList/>
+        <PostList self={false}/>
       </PostsProvider>
     </Box>
   )

@@ -2,13 +2,13 @@ package com.example.gettrproject.controller;
 
 import com.example.gettrproject.controller.embedded.MessagesMapId;
 import com.example.gettrproject.controller.model.Message;
+import com.example.gettrproject.controller.model.UserInfoResponse;
 import com.example.gettrproject.entity.MessagesMap;
 import com.example.gettrproject.entity.User;
 import com.example.gettrproject.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

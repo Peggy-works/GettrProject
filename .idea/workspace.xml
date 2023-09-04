@@ -5,25 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7a34e03-0427-4e82-8112-90b73207ea36" name="Changes" comment="WS react update">
-      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/embedded/PostLikesId.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/model/LikePost.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/entity/PostLikesMap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/repository/PostLikesMapRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_7_2023_1_18_PM_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_7_2023_1_18_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_7_2023_1_18_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_7_2023_1_18_PM__Changes_1.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gettr/src/api/PostingsApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/api/PostingsApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gettr/src/components/Add.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/components/Add.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gettr/src/components/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/components/Dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/src/components/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/components/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gettr/src/components/Messages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/components/Messages.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gettr/src/components/Nav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/components/Nav.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gettr/src/components/Post.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/components/Post.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gettr/src/components/PostComments.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/components/PostComments.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gettr/src/components/PostsContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Gettr/src/components/PostsContext.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/AuthController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/PostController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/PostGetResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/PostGetResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/resources/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/model/AuthenticationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/model/AuthenticationRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/model/AuthenticationResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/model/AuthenticationResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/model/CommentRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/model/CommentRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/model/DeletionResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/model/DeletionResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/model/PostCreationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/model/PostCreationRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/model/PostCreationResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/model/PostCreationResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/model/PostGetResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/model/PostGetResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/model/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/model/RegisterRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/model/UserInfoResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/controller/model/UserInfoResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/entity/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/entity/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/repository/PostRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/service/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/service/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gettr-backend/src/main/java/com/example/gettrproject/service/PostService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

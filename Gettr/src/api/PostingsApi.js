@@ -47,13 +47,14 @@ function newPost(title, description, username, token){
         {
             "title": title,
             "description": description,
-            "username": username
+            "username": JSON.parse(localStorage.getItem('user')).username,
+            "userId": JSON.parse(localStorage.getItem('user')).id
         },
         {
             headers:{
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Origin": "*",
-                "Authorization": `Bearer ${token}`
+                "Authorization": `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
             }
         }
     )
@@ -76,10 +77,10 @@ function upVote(id,request){
     })
 }
 
-function addComment(userId, postId, text, token){
+function addComment(postId, text){
      return axios.post('http://localhost:8080/post/addComment',
      {
-        "user_id": userId,
+        "user_id": JSON.parse(localStorage.getItem('user')).id,
         "post_id": postId,
         "text": text
      },
@@ -87,9 +88,21 @@ function addComment(userId, postId, text, token){
          headers:{
              "Content-Type": "application/json",
              "Access-Control-Allow-Origin": "*",
-             "Authorization": `Bearer ${token}`
+             "Authorization": `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
          }
      })
+}
+
+
+function deleteComment(commentId){
+    return axios.delete('http://localhost:8080/post/deleteComment/'+commentId, 
+        {
+            headers:{
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+                "Authorization": `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
+            }
+        })
 }
 
 function deletePost(id){
@@ -126,6 +139,6 @@ function isLiked(postId){
     })
 }
 
-export { fetchPosts, getPosts, getPost, newPost, upVote, addComment, deletePost, isLiked };
+export { fetchPosts, getPosts, getPost, newPost, upVote, addComment, deletePost, isLiked, deleteComment};
 
 

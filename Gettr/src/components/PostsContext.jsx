@@ -11,6 +11,7 @@ export function PostsProvider({ children }) {
       postsReducer,
       {
         postArr: [],
+        selfPostArr: [],
         likeMap: new Map()
       }
     )
@@ -18,6 +19,12 @@ export function PostsProvider({ children }) {
     useEffect(() =>{
       const init = async()=>{
         const postData = await fetchPosts();
+        const selfPostData = [];
+        postData.forEach((value)=>{
+          if(value.poster_id === JSON.parse(localStorage.getItem('user')).id){
+            selfPostData.push(value);
+          }
+        })
         const tempMap = new Map();
           postData.forEach( async (value)=>{
             if(await isLiked(value.id)){
@@ -27,7 +34,7 @@ export function PostsProvider({ children }) {
               tempMap.set(value.id,false);
             }
           });
-        dispatch({type:"initialFetch",postArr:postData,likeMap:tempMap});
+        dispatch({type:"initialFetch",postArr:postData,likeMap:tempMap,selfPostArr:selfPostData});
       }
       init();
     },[])
@@ -55,20 +62,51 @@ export function usePostsDispatch() {
 function postsReducer(posts, action) {
     switch (action.type) {
         case 'added': {
-            return {
-              postArr : posts.postArr.push( {
-                id: action.id,
-                title: action.title,
-                description: action.description,
-                username: action.username,
-                likes: action.likes,
-                poster_id: action.poster_id,
-                poster_name: action.poster_name,
-                usernames: action.usernames,
-                comments: action.comments,
-                liked:false
-            }),
-            likeMap: posts.likeMap.set(action.id,false)
+            if(action.poster_id === JSON.parse(localStorage.getItem('user')).id){
+              return {
+                postArr : posts.postArr.push({
+                  id: action.id,
+                  title: action.title,
+                  description: action.description,
+                  username: action.username,
+                  likes: action.likes,
+                  poster_id: action.poster_id,
+                  poster_name: action.poster_name,
+                  usernames: action.usernames,
+                  comments: action.comments,
+                  liked:false
+                }),
+                selfPostArr : posts.selfPostArr.push({
+                  id: action.id,
+                  title: action.title,
+                  description: action.description,
+                  username: action.username,
+                  likes: action.likes,
+                  poster_id: action.poster_id,
+                  poster_name: action.poster_name,
+                  usernames: action.usernames,
+                  comments: action.comments,
+                  liked:false
+                }),
+                likeMap: posts.likeMap.set(action.id,false)
+            }
+            }
+            else{
+              return {
+                postArr : posts.postArr.push( {
+                  id: action.id,
+                  title: action.title,
+                  description: action.description,
+                  username: action.username,
+                  likes: action.likes,
+                  poster_id: action.poster_id,
+                  poster_name: action.poster_name,
+                  usernames: action.usernames,
+                  comments: action.comments,
+                  liked:false
+              }),
+              likeMap: posts.likeMap.set(action.id,false)
+            }
           }
         }
         case 'deleted': {
@@ -76,7 +114,8 @@ function postsReducer(posts, action) {
         }
         case 'initialFetch':{
             return{ postArr: action.postArr,
-                    likeMap: action.likeMap}
+                    likeMap: action.likeMap,
+                    selfPostArr: action.selfPostArr}
         }
         default: {
             throw Error('Unknown action: ' + action.type);
